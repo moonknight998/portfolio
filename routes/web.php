@@ -23,6 +23,10 @@ Route::get('/blogs', function () {
     return view('frontend.pages.blog.blog');
 })->name('blogs');
 
+Route::get('/blog-details', function(){
+    return view('frontend.pages.blog.blog-details');
+})->name('blog-details');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

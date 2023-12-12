@@ -11,11 +11,16 @@
     <!--End Logo-->
 
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+      <!--General Part-->
+      <li class="nav-title">{{__('admin/sidebar.general')}}</li>
       <li class="nav-item"><a class="nav-link" href="index.html">
           <svg class="nav-icon">
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-          </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
-      <li class="nav-title">Theme</li>
+          </svg>{{__('admin/sidebar.dashboard')}}<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
+      <!--End General Part-->
+
+      <!--Theme Part-->
+      {{-- <li class="nav-title">Theme</li>
       <li class="nav-item"><a class="nav-link" href="colors.html">
           <svg class="nav-icon">
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
@@ -23,7 +28,9 @@
       <li class="nav-item"><a class="nav-link" href="typography.html">
           <svg class="nav-icon">
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-          </svg> Typography</a></li>
+          </svg> Typography</a></li> --}}
+      <!--End Theme Part-->
+
       <li class="nav-title">Components</li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">

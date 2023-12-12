@@ -20,27 +20,27 @@
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
-      <div class="container" data-aos="fade-down" style="padding-top: 10pt;">
+      <div class="container" data-aos="fade-down">
 
-        <div class="row">
+        <div class="row" style="margin-top: 50pt">
 
           <div class="col-lg-8 entries">
 
             <article class="entry">
 
               <div class="entry-img">
-                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                <img src="{{asset('frontend/assets/img/blog/blog-1.jpg')}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                <a href="{{route('blog-details')}}">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{route('blog-details')}}">John Doe</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{route('blog-details')}}"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{route('blog-details')}}">12 Comments</a></li>
                 </ul>
               </div>
 
@@ -59,7 +59,7 @@
             <article class="entry">
 
               <div class="entry-img">
-                <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+                <img src="{{asset('frontend/assets/img/blog/blog-2.jpg')}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -89,7 +89,7 @@
             <article class="entry">
 
               <div class="entry-img">
-                <img src="assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
+                <img src="{{asset('frontend/assets/img/blog/blog-3.jpg')}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -119,7 +119,7 @@
             <article class="entry">
 
               <div class="entry-img">
-                <img src="assets/img/blog/blog-4.jpg" alt="" class="img-fluid">
+                <img src="{{asset('frontend/assets/img/blog/blog-4.jpg')}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -148,8 +148,8 @@
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
               </ul>
             </div>
@@ -183,31 +183,31 @@
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
                 <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-1.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/blog/blog-recent-1.jpg')}}" alt="">
                   <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-2.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/blog/blog-recent-2.jpg')}}" alt="">
                   <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-3.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/blog/blog-recent-3.jpg')}}" alt="">
                   <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-4.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/blog/blog-recent-4.jpg')}}" alt="">
                   <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-5.jpg" alt="">
+                  <img src="{{asset('frontend/assets/img/blog/blog-recent-5.jpg')}}" alt="">
                   <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>

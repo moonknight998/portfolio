@@ -1,4 +1,4 @@
-<header id="header" class="header fixed-top">
+<header id="header" class="header fixed-top" style="{{Route::currentRouteName() === 'home' ? '' : 'background-color: white;'}}">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="{{route('home')}}" class="logo d-flex align-items-center">
