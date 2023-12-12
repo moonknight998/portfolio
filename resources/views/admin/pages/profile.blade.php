@@ -165,7 +165,7 @@
               </div>
             </div>
           </div>
-      </div>
+    </div>
 </div>
 <!--End Main Part-->
 @endsection

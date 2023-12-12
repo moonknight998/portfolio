@@ -187,7 +187,10 @@ return [
     */
 
     'attributes' => [
-        'password' => 'password'
+        'password' => 'password',
+        'slogan' => 'Slogan',
+        'short_description' => 'Short description',
+        'image' => 'Image',
     ],
 
 ];

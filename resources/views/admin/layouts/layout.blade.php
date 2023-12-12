@@ -31,6 +31,9 @@
         <link rel="icon" type="image/png" sizes="96x96" href="{{asset('backend/assets/favicon/favicon-96x96.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset('backend/assets/favicon/favicon-16x16.png')}}">
         <link rel="manifest" href="{{asset('backend/assets/favicon/manifest.json')}}">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{asset('backend/assets/favicon/ms-icon-144x144.png')}}">
         <meta name="theme-color" content="#ffffff">
@@ -153,7 +156,7 @@
 
           <!--Start Body-->
           @yield('content')
-          <!--End Body
+          <!--End Body-->
 
           <!--Start Footer-->
           <footer class="footer footer-sticky mt-4">
@@ -172,8 +175,6 @@
         <script src="{{asset('backend/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js')}}"></script>
         <script src="{{asset('backend/assets/vendors/@coreui/utils/js/coreui-utils.js')}}"></script>
         <script src="{{asset('backend/assets/js/main.js')}}"></script>
-        <script>
-        </script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       </body>
     </html>

@@ -97,8 +97,8 @@ return [
         'string' => 'The :attribute field must not be greater than :max characters.',
     ],
     'max_digits' => 'The :attribute field must not have more than :max digits.',
-    'mimes' => 'The :attribute field must be a file of type: :values.',
-    'mimetypes' => 'The :attribute field must be a file of type: :values.',
+    'mimes' => ':attribute phải là một trong số các dạng tệp: :values.',
+    'mimetypes' => ':attribute phải là một trong số các dạng tệp: :values.',
     'min' => [
         'array' => ':attribute phải có ít nhất :min items.',
         'file' => 'The :attribute field must be at least :min kilobytes.',
@@ -188,7 +188,10 @@ return [
 
     'attributes' => [
         'email' => 'Email',
-        'password' => 'Mật khẩu'
+        'password' => 'Mật khẩu',
+        'slogan' => 'Thông điệp',
+        'short_description' => 'Mô tả ngắn',
+        'image' => 'Hình ảnh',
     ],
 
 ];

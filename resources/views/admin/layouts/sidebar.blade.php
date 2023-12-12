@@ -13,11 +13,21 @@
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
       <!--General Part-->
       <li class="nav-title">{{__('admin/sidebar.general')}}</li>
-      <li class="nav-item"><a class="nav-link" href="index.html">
+      <li class="nav-item"><a class="nav-link" href="{{route('dashboard')}}">
           <svg class="nav-icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+            <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-speedometer')}}"></use>
           </svg>{{__('admin/sidebar.dashboard')}}<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
       <!--End General Part-->
+
+      <li class="nav-title">{{__('admin/sidebar.components')}}</li>
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use>
+        </svg>{{__('admin/sidebar.home')}}</a>
+        <ul class="nav-group-items">
+            <li class="nav-item"><a class="nav-link" href="{{route('admin.hero.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.hero-section')}}</a></li>
+        </ul>
+       </li>
 
       <!--Theme Part-->
       {{-- <li class="nav-title">Theme</li>
@@ -31,7 +41,8 @@
           </svg> Typography</a></li> --}}
       <!--End Theme Part-->
 
-      <li class="nav-title">Components</li>
+      <!--Components Part-->
+      {{-- <li class="nav-title">Components</li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
@@ -107,9 +118,14 @@
       <li class="nav-item"><a class="nav-link" href="widgets.html">
           <svg class="nav-icon">
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
-          </svg> Widgets<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
+          </svg> Widgets<span class="badge badge-sm bg-info ms-auto">NEW</span></a>
+      </li> --}}
+      <!--End Components Part-->
+
       <li class="nav-divider"></li>
-      <li class="nav-title">Extras</li>
+
+      <!--Extras Part-->
+      {{-- <li class="nav-title">Extras</li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
@@ -142,7 +158,10 @@
             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
           </svg> Try CoreUI
           <div class="fw-semibold">PRO</div>
-        </a></li>
+        </a>
+      </li> --}}
+      <!--End Extras Part-->
+
     </ul>
 
     {{-- <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button> --}}
