@@ -16,6 +16,10 @@
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Admin Portfolio</title>
+
+        <!-- Frontend style for preview-->
+        @include('frontend.layout.style')
+
         <!-- CSS Libraries -->
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('backend/assets/apple-icon-57x57.png')}}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{asset('backend/assets/favicon/apple-icon-60x60.png')}}">
@@ -37,14 +41,20 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{asset('backend/assets/favicon/ms-icon-144x144.png')}}">
         <meta name="theme-color" content="#ffffff">
+
         <!-- Vendors styles-->
         <link rel="stylesheet" href="{{asset('backend/assets/vendors/simplebar/css/simplebar.css')}}">
         <link rel="stylesheet" href="{{asset('backend/assets/css/vendors/simplebar.css')}}">
+
+        <!-- This is style for datatable but it'll override main styles below if you move this line below main styles-->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
         <!-- Main styles for this application-->
         <link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet">
+
         <!-- We use those styles to show code examples, you should remove them in your application.-->
-        <link href="{{asset('backend/assets/css/examples.css')}}" rel="stylesheet">
-        <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
+        {{-- <link href="{{asset('backend/assets/css/examples.css')}}" rel="stylesheet">
+        <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet"> --}}
       </head>
       <body>
         <!--Start Sidebar-->
@@ -167,14 +177,88 @@
         </div>
         <!--End Main Part-->
 
+        <!--Fronted script for preview-->
+        @include('frontend.layout.script')
+
+        <!--JQuery-->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
         <!-- CoreUI and necessary plugins-->
         <script src="{{asset('backend/assets/vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
         <script src="{{asset('backend/assets/vendors/simplebar/js/simplebar.min.js')}}"></script>
+
         <!-- Plugins and scripts required by this view-->
         <script src="{{asset('backend/assets/vendors/chart.js/js/chart.min.js')}}"></script>
         <script src="{{asset('backend/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js')}}"></script>
         <script src="{{asset('backend/assets/vendors/@coreui/utils/js/coreui-utils.js')}}"></script>
         <script src="{{asset('backend/assets/js/main.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{asset('functions/functions.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+        <script>AOS.init();</script>
+        <script>new PureCounter({once: false});</script>
+
+        <script>
+            $(document).ready(function(){
+                $('body').on('click', '.delete-btn', function(e){
+                    $.ajaxSetup({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      }
+                    });
+                    e.preventDefault();
+                    let deleteUrl = $(this).attr('href');
+                    Swal.fire({
+                            title: '{{__('admin/common.are_you_sure')}}',
+                            text: '{{__('admin/common.cant_reverted')}}',
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: '{{__('admin/common.yes_delete_it')}}',
+                            cancelButtonText: '{{__('admin/common.cancel')}}'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: deleteUrl,
+                                    success: function(data, status, xhr)
+                                    {
+                                        if(status == 'success')
+                                        {
+                                            Swal.fire(
+                                                    '{{__('admin/common.swal_deleted')}}',
+                                                    '',
+                                                    'success'
+                                                ).then((result) => {
+                                                    if (result.isConfirmed)
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                            })
+                                        }
+                                        else if (status == 'error')
+                                        {
+                                            Swal.fire(
+                                                '{{__('admin/common.swal_delete_failed')}}',
+                                                '',
+                                                'error'
+                                            )
+                                        }
+                                    },
+                                    error: function(xhr, status, error)
+                                    {
+                                        console.log(error);
+                                    },
+                                })
+                            }
+                        })
+                })
+            })
+        </script>
+
+        @stack('scripts')
       </body>
-    </html>
+</html>

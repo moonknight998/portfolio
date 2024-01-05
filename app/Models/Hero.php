@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Hero extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "slogan",
+        "short_description",
+        "button_text",
+        "button_url",
+        "image",
+        "status",
+    ];
 }

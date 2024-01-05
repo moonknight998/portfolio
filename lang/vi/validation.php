@@ -192,6 +192,10 @@ return [
         'slogan' => 'Thông điệp',
         'short_description' => 'Mô tả ngắn',
         'image' => 'Hình ảnh',
+        'question' => 'Câu hỏi',
+        'button_text'=> 'Tên nút',
+        'title'=> 'Tiêu đề',
+        'summary'=> 'Tóm tắt',
     ],
 
 ];

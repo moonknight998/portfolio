@@ -2,7 +2,17 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\Section\AboutController;
+use App\Http\Controllers\Admin\Section\CountController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureIconTitleController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureListController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureTabItemController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureTabTitleController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureTitleController;
 use App\Http\Controllers\Admin\Section\HeroController;
+use App\Http\Controllers\Admin\Section\Value\ValueCardController;
+use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.pages.home.home');
-})->name('home');
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/blogs', function () {
     return view('frontend.pages.blog.blog');
@@ -36,8 +44,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Resource controller alway register last
 Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::resource('hero', HeroController::class);
+    Route::resource('about', AboutController::class);
+    Route::resource('value_title', ValueTitleController::class);
+    Route::put('value_card/change-status', [ValueCardController::class, 'changeStatus'])->name('value_card.change-status');
+    Route::resource('value_card', ValueCardController::class);
+    Route::put('count/change-status', [CountController::class,'changeStatus'])->name('count.change-status');
+    Route::resource('count', CountController::class);
+    Route::resource('feature_title', FeatureTitleController::class);
+    Route::put('feature_list/change-status', [FeatureListController::class,'changeStatus'])->name('feature_list.change-status');
+    Route::resource('feature_list', FeatureListController::class);
+    Route::resource('feature_tab_title', FeatureTabTitleController::class);
+    Route::put('feature_tab_item/change-status', [FeatureTabItemController::class,'changeStatus'])->name('feature_tab_item.change-status');
+    Route::resource('feature_tab_item', FeatureTabItemController::class);
+    Route::resource('feature_icon_title', FeatureIconTitleController::class);
 });
 
 require __DIR__.'/auth.php';

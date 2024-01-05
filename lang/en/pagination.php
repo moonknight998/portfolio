@@ -15,5 +15,6 @@ return [
 
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-
+    'previous_datatable'=> 'Previous',
+    'next_datatable'=> 'Next',
 ];

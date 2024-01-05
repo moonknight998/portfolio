@@ -191,6 +191,10 @@ return [
         'slogan' => 'Slogan',
         'short_description' => 'Short description',
         'image' => 'Image',
+        'question' => 'Question',
+        'button_text'=> 'Button text',
+        'title'=> 'Title',
+        'summary'=> 'Summary',
     ],
 
 ];

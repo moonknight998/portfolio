@@ -23,6 +23,14 @@
   /**
    * Easy event listener function
    */
+//   const on = (type, el, listener, all = false) => {
+//     if (all) {
+//       select(el, all).forEach(e => e.addEventListener(type, listener))
+//     } else {
+//       select(el, all).addEventListener(type, listener)
+//     }
+//   }
+
   const on = (type, el, listener, all = false) => {
     if (all) {
       select(el, all).forEach(e => e.addEventListener(type, listener))
@@ -32,7 +40,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -82,7 +90,7 @@
   let selectHeader = select('#header')
   if (selectHeader) {
     const headerScrolled = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 50) {
         selectHeader.classList.add('header-scrolled')
       } else {
         selectHeader.classList.remove('header-scrolled')
@@ -222,7 +230,7 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfokio-lightbox'
@@ -288,7 +296,7 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Initiate Pure Counter
    */
   new PureCounter();
 
