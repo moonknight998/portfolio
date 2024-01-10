@@ -55,6 +55,12 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
+                                        @if (session('status') === 'required')
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            {{__('admin/feature/feature.feature_tab_title_required')}}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/feature/feature.title')}}</label>
                                             <textarea class="form-control" rows="1" id="title" name="title" type="text" placeholder="{{__('admin/feature/feature.title_placeholder')}}"

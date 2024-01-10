@@ -12,8 +12,9 @@ return [
     'value-card'=> 'Thẻ giá trị',
     'count' => 'Bộ đếm',
     'feature_section'=> 'Tính năng',
-    'feature_list'=> 'Danh sách tính năng',
+    'feature_list'=> 'Các tính năng chính',
     'feature_tab_title'=> 'Tiêu đề thẻ',
     'feature_tab_items'=> 'Các thẻ tính năng',
     'feature_icon_title' => 'Tiêu đề biểu tượng',
+    'feature_icon_item'=> 'Các thẻ biểu tượng',
 ];

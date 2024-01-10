@@ -18,6 +18,11 @@ class FeatureListController extends Controller
      */
     public function index(FeatureListDataTable $dataTable)
     {
+        $feature_title = FeatureTitle::first();
+        if ($feature_title == null)
+        {
+            return redirect()->route('admin.feature_title.index')->with('status', 'required');
+        }
         return $dataTable->render('admin.pages.sections.feature.feature_list_index');
     }
 

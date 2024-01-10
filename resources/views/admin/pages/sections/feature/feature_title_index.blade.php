@@ -50,10 +50,16 @@
                                     <div class="tab-content rounded-bottom" id="content_tab">
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
                                         @if (session('status') === 'updated')
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{__('admin/feature/feature.updated')}}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{__('admin/feature/feature.updated')}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        @endif
+                                        @if (session('status') === 'required')
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                {{__('admin/feature/feature.feature_title_required')}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
                                         @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/feature/feature.section_name')}}</label>
@@ -117,7 +123,7 @@
                                                         <header class="section-header" style="display: block;">
                                                             <h2 id="preview_section_name">{{ __('admin/feature/feature.section_name_placeholder')}}</h2>
                                                             <p id="preview_title">{{__('admin/feature/feature.title_placeholder')}}</p>
-                                                        </header>   
+                                                        </header>
                                                     @endif
                                                     <div class="row">
                                                         @if ($feature_title && $feature_title->status == 1)

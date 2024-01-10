@@ -6,7 +6,6 @@ return [
     'created'=> 'Create value card successfully!',
     'updated' => 'Update our values successfully!',
     'section_name_placeholder'=> 'Our Value',
-    'title_placeholder'=> 'The way to get started is to quit talking and begin doing.',
     'all_value_card' => 'All value card',
     'title'=> 'Title',
     'title_placeholder' => 'Value title',
@@ -15,4 +14,5 @@ return [
     'image'=> 'Image',
     'create_new_card'=> 'Create new value card',
     'edit_card' => 'Edit card',
+    'value_title_required'=> 'You need update value title first!',
 ];

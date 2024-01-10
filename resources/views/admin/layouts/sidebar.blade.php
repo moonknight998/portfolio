@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li class="nav-item"><a class="nav-link {{request()->is('*admin/count*') ? 'active' : ''}}" href="{{route('admin.count.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.count')}}</a></li>
-            <li class="nav-group {{(request()->is('*admin/feature_list*') || request()->is('*admin/feature_title*')) || request()->is('*admin/feature_icon_title*') ||request()->is('*admin/feature_tab_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+            <li class="nav-group {{(request()->is('*admin/feature_list*') || request()->is('*admin/feature_title*')) || request()->is('*admin/feature_icon_title*') ||request()->is('*admin/feature_tab_item*') || request()->is('*admin/feature_icon_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
                 <svg class="nav-icon">
                   {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
                 </svg>{{__('admin/sidebar.feature_section')}}</a>
@@ -48,6 +48,7 @@
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/feature_tab_title*') ? 'active' : ''}}" href="{{route('admin.feature_tab_title.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.feature_tab_title')}}</a></li>
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/feature_tab_item*') ? 'active' : ''}}" href="{{route('admin.feature_tab_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.feature_tab_items')}}</a></li>
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/feature_icon_title*') ? 'active' : ''}}" href="{{route('admin.feature_icon_title.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.feature_icon_title')}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/feature_icon_item*') ? 'active' : ''}}" href="{{route('admin.feature_icon_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.feature_icon_item')}}</a></li>
                 </ul>
             </li>
         </ul>

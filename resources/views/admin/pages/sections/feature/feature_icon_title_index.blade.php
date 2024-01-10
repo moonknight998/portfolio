@@ -55,6 +55,12 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
+                                        @if (session('status') === 'required')
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            {{__('admin/feature/feature.icon_title_updated')}}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/feature/feature.title')}}</label>
                                             <textarea class="form-control" rows="1" id="title" name="title" type="text" placeholder="{{__('admin/feature/feature.title_placeholder')}}"
@@ -99,55 +105,24 @@
                                                 <div class="row feature-icons aos-init aos-animate" data-aos="fade-up">
                                                     <h3 id="preview_title">{{$feature_icon_title ? ($feature_icon_title->title === '' ? old('title') : $feature_icon_title->title) : __('admin/feature/feature.title_placeholder')}}</h3>
                                                     <div class="row">
-                                                      <div class="col-xl-4 text-center aos-init aos-animate" data-aos="fade-right" data-aos-delay="100">
-                                                        <img src="{{$feature_icon_title ? ($feature_icon_title->image === '' ? asset("frontend/assets/img/features-3.png") : $feature_icon_title->image) : asset("frontend/assets/img/features-3.png")}}" class="img-fluid p-4" alt="">
-                                                      </div>
-                                                      <div class="col-xl-8 d-flex content">
-                                                        <div class="row align-self-center gy-4">
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up">
-                                                            <i class="ri-line-chart-line"></i>
-                                                            <div>
-                                                              <h4>Corporis voluptates sit</h4>
-                                                              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                                                            </div>
-                                                          </div>
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                                                            <i class="ri-stack-line"></i>
-                                                            <div>
-                                                              <h4>Ullamco laboris nisi</h4>
-                                                              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                                                            </div>
-                                                          </div>
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                                                            <i class="ri-brush-4-line"></i>
-                                                            <div>
-                                                              <h4>Labore consequatur</h4>
-                                                              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                                                            </div>
-                                                          </div>
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                                                            <i class="ri-magic-line"></i>
-                                                            <div>
-                                                              <h4>Beatae veritatis</h4>
-                                                              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-                                                            </div>
-                                                          </div>
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                                                            <i class="ri-command-line"></i>
-                                                            <div>
-                                                              <h4>Molestiae dolor</h4>
-                                                              <p>Et fuga et deserunt et enim. Dolorem architecto ratione tensa raptor marte</p>
-                                                            </div>
-                                                          </div>
-                                                          <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
-                                                            <i class="ri-radar-line"></i>
-                                                            <div>
-                                                              <h4>Explicabo consectetur</h4>
-                                                              <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
-                                                            </div>
-                                                          </div>
+                                                        <div class="col-xl-4 text-center aos-init aos-animate" data-aos="fade-right" data-aos-delay="100">
+                                                            <img src="{{$feature_icon_title ? ($feature_icon_title->image === '' ? asset("frontend/assets/img/features-3.png") : $feature_icon_title->image) : asset("frontend/assets/img/features-3.png")}}" class="img-fluid p-4" alt="">
                                                         </div>
-                                                      </div>
+                                                        <div class="col-xl-8 d-flex content">
+                                                            <div class="row align-self-center gy-4">
+                                                                @if (count($feature_icon_items) > 0)
+                                                                    @foreach ($feature_icon_items as $feature_icon_item_local)
+                                                                        <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                                                            <i class="{{$feature_icon_item_local->icon}}"></i>
+                                                                            <div>
+                                                                                <h4>{{$feature_icon_item_local->title}}</h4>
+                                                                                <p>{{$feature_icon_item_local->description}}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                   </div>
                                             </section>

@@ -9,7 +9,7 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/sidebar.feature_tab_items')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/feature/feature.all_icon_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,7 +24,7 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/feature/feature.all_feature')}}</h2>
+                            <h2>{{__('admin/feature/feature.all_tab_item')}}</h2>
                             @if ($can_create_new)
                             <a href="{{route('admin.feature_tab_item.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
                             @endif

@@ -15,5 +15,6 @@ return [
     'feature_list'=> 'Feature list',
     'feature_tab_title'=> 'Tab title',
     'feature_tab_items'=> 'Tab items',
-    'feature_icon_title' => 'Feature icon title',
+    'feature_icon_title' => 'Icon title',
+    'feature_icon_item'=> 'Icon items',
 ];

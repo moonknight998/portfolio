@@ -9,7 +9,8 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/count/count.create_count')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.feature_tab_items')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/feature/feature.edit_icon_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -23,11 +24,10 @@
             <div class="col-lg-12">
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
-                        <div class="card-header">
-                            <h2>{{__('admin/value/value-index.create_new_card')}}</h2>
-                        </div>
-                        <form method="POST" action="{{route('admin.count.store')}}" enctype="multipart/form-data">
+                        <div class="card-header"><h2>{{__('admin/feature/feature.edit_icon_item')}}</h2></div>
+                        <form method="POST" action="{{route('admin.feature_icon_item.update', $feature_icon_item->id)}}" enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             <div class="card-body">
                                 <div class="example">
                                     <ul class="nav nav-tabs" role="tablist">
@@ -47,16 +47,16 @@
                                     <!--Edit Tab-->
                                     <div class="tab-content rounded-bottom" id="content_tab">
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
-                                        @if (session('status') === 'created')
+                                        @if (session('status') === 'updated')
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{__('admin/count/count.created')}}
+                                            {{__('admin/feature/feature.icon_item_updated')}}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/count/count.title')}}</label>
-                                            <input class="form-control" id="title" required name="title" type="text" placeholder="{{__('admin/count/count.title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_title')">
+                                            <label class="form-label">{{__('admin/feature/feature.title')}}</label>
+                                            <input class="form-control" id="title" name="title" type="text" placeholder="{{__('admin/feature/feature.title_placeholder')}}"
+                                            onchange="loadDocument(event, 'preview_item_title')" value="{{$feature_icon_item->title}}">
                                             @if ($errors->has('title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('title')}}</div>
@@ -64,18 +64,19 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/count/count.quantity')}} <a>({{__('admin/common.only_nonnegative_integer')}})</a></label>
-                                            <input class="form-control" id="quantity" required name="quantity" type="number" min="1" step="1" placeholder="{{__('admin/count/count.quantity_placeholder')}}"
-                                            onchange="changeAttribute(event, 'preview_quantity', 'data-purecounter-end')">
-                                            @if ($errors->has('quantity'))
+                                            <label class="form-label">{{__('admin/feature/feature.description')}}</label>
+                                            <textarea class="form-control" rows="1" id="description" name="description" type="text" placeholder="{{__('admin/feature/feature.description_placeholder')}}"
+                                            onchange="loadDocument(event, 'preview_item_description')"
+                                            onkeypress="detectEnterline(event, 'description'); loadDocument(event, 'preview_item_description')">{{$feature_icon_item->description}}</textarea>
+                                            @if ($errors->has('description'))
                                                 <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('quantity')}}</div>
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('description')}}</div>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.icon')}} <a href="https://icons.getbootstrap.com/" target="_blank">({{__('admin/count/count.choose_icon_here')}})</a></label>
-                                            <input class="form-control" id="icon" name="icon" type="text" onchange="changeAttribute(event, 'preview_icon', 'class')">
+                                            <input class="form-control" id="icon" name="icon" type="text" onchange="changeAttribute(event, 'preview_item_icon', 'class')" value="{{$feature_icon_item->icon}}">
                                             @if ($errors->has('icon'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('icon')}}</div>
@@ -83,19 +84,10 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/common.icon_color')}}</label>
-                                            <input class="form-control form-control-color" id="icon_color" name="icon_color" type="color" value="#f00000" onchange="changeColor(event, 'preview_icon')">
-                                            @if ($errors->has('icon_color'))
-                                                <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('icon_color')}}</div>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status')}}</label>
                                             <select class="form-select" id="status" name="status">
-                                                <option selected value="1">{{__('admin/common.display')}}</option>
-                                                <option value="0">{{__('admin/common.hide')}}</option>
+                                                <option {{$feature_icon_item->status == '1' ? 'selected' : ''}} value="1">{{__('admin/common.display')}}</option>
+                                                <option {{$feature_icon_item->status == '0' ? 'selected' : ''}} value="0">{{__('admin/common.hide')}}</option>
                                             </select>
                                         </div>
                                       </div>
@@ -106,35 +98,30 @@
                                     <div class="tab-content rounded-bottom" id="preview_tab" style="display: none">
                                         <div class="tab-pane active preview" role="tabpanel">
                                             @if ($detect->isMobile())
-                                            <div class="alert alert-warning fade show mt-4" role="alert">
-                                                {{__('admin/common.about_mobile_warning')}}
-                                            </div>
+                                                <div class="alert alert-warning fade show mt-4" role="alert">
+                                                    {{__('admin/common.about_mobile_warning')}}
+                                                </div>
                                             @endif
-                                            <section id="counts" class="counts">
-                                                <div class="container" data-aos="fade-up">
-                                                    <div class="row gy-4" style="justify-content: center">
-                                                        @if ($counts)
-                                                            @foreach ($counts as $count)
-                                                                <div class="col-lg-3 col-md-6" >
-                                                                    <div class="count-box">
-                                                                        <i class="{{$count->icon}}" style="color: {{$count->icon_color}}"></i>
+                                            <section id="features" class="features">
+                                                <div class="row feature-icons aos-init aos-animate" data-aos="fade-up">
+                                                    <h3 id="preview_title">{{$feature_icon_title ? ($feature_icon_title->title === '' ? old('title') : $feature_icon_title->title) : __('admin/feature/feature.title_placeholder')}}</h3>
+                                                    <div class="row">
+                                                        <div class="col-xl-4 text-center aos-init aos-animate" data-aos="fade-right" data-aos-delay="100">
+                                                            <img src="{{$feature_icon_title ? ($feature_icon_title->image === '' ? asset("frontend/assets/img/features-3.png") : $feature_icon_title->image) : asset("frontend/assets/img/features-3.png")}}" class="img-fluid p-4" alt="">
+                                                        </div>
+                                                        <div class="col-xl-8 d-flex content">
+                                                            <div class="row align-self-center gy-4" style="width: 100%">
+                                                                @foreach ($feature_icon_items as $feature_icon_item_local)
+                                                                    <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                                                        <i id="{{$feature_icon_item_local->id == $feature_icon_item->id ? 'preview_item_icon' : ''}}" class="{{$feature_icon_item_local->icon}}"></i>
                                                                         <div>
-                                                                            <span data-purecounter-start="0" data-purecounter-end="{{$count->quantity}}" data-purecounter-duration="1" class="purecounter">1</span>
-                                                                            <p>{{$count->title}}</p>
+                                                                            <h4 id="{{$feature_icon_item_local->id == $feature_icon_item->id ? 'preview_item_title' : ''}}">{{$feature_icon_item_local->title}}</h4>
+                                                                            <p id="{{$feature_icon_item_local->id == $feature_icon_item->id ? 'preview_item_description' : ''}}">{{$feature_icon_item_local->description}}</p>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
-                                                        <div class="col-lg-3 col-md-6">
-                                                            <div class="count-box">
-                                                              <i id="preview_icon" class="bi bi-emoji-smile" style="color: red"></i>
-                                                              <div>
-                                                                <span id="preview_quantity" data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="1" class="purecounter">1</span>
-                                                                <p id="preview_title">{{__('admin/count/count.title_placeholder')}}</p>
-                                                              </div>
+                                                                @endforeach
                                                             </div>
-                                                          </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </section>
@@ -144,7 +131,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.create_new')}}</button>
+                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.update')}}</button>
                                     </div>
                                 </div>
                             </div>

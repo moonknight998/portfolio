@@ -21,6 +21,11 @@ class ValueCardController extends Controller
      */
     public function index(ValueCardDataTable $dataTable)
     {
+        $value_title = ValueTitle::first();
+        if ($value_title == null)
+        {
+            return redirect()->route('admin.value_title.index')->with('status','required');
+        }
         return $dataTable->render('admin.pages.sections.value.value_card_index');
     }
 
@@ -30,8 +35,8 @@ class ValueCardController extends Controller
     public function create()
     {
         $detect = new MobileDetect();
-        $value_cards = ValueCard::all();
         $value_title = ValueTitle::first();
+        $value_cards = ValueCard::all();
         return view('admin.pages.sections.value.value_card_create', compact('detect', 'value_cards', 'value_title'));
     }
 

@@ -17,8 +17,13 @@ class FeatureTabItemController extends Controller
      */
     public function index(FeatureTabItemDataTable $dataTable)
     {
-        $feature_tab_items = FeatureTabItem::all();
         $feature_tab_title = FeatureTabTitle::first();
+        if($feature_tab_title == null)
+        {
+            return redirect()->route('admin.feature_tab_title.index')->with('status','required');
+        }
+
+        $feature_tab_items = FeatureTabItem::all();
         $can_create_new = count($feature_tab_items) < $feature_tab_title->tab_quantity;
 
         return $dataTable->render('admin.pages.sections.feature.feature_tab_item_index', compact('can_create_new'));

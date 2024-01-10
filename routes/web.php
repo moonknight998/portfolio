@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Section\AboutController;
 use App\Http\Controllers\Admin\Section\CountController;
+use App\Http\Controllers\Admin\Section\Feature\FeatureIconItemController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureIconTitleController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureListController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureTabItemController;
@@ -60,6 +61,8 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::put('feature_tab_item/change-status', [FeatureTabItemController::class,'changeStatus'])->name('feature_tab_item.change-status');
     Route::resource('feature_tab_item', FeatureTabItemController::class);
     Route::resource('feature_icon_title', FeatureIconTitleController::class);
+    Route::put('feature_icon_item/change-status', [FeatureIconItemController::class,'changeStatus'])->name('feature_icon_item.change-status');
+    Route::resource('feature_icon_item', FeatureIconItemController::class);
 });
 
 require __DIR__.'/auth.php';

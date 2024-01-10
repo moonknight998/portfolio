@@ -55,6 +55,12 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
+                                        @if (session('status') === 'required')
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            {{__('admin/value/value-index.value_title_required')}}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/about/about-index.question')}}</label>
                                             <input class="form-control" id="section_name" name="section_name" type="text" placeholder="{{__('admin/value/value-index.section_name_placeholder')}}"
@@ -93,37 +99,45 @@
                                     <div class="tab-content rounded-bottom" id="preview_tab" style="display: none">
                                         <div class="tab-pane active preview" role="tabpanel">
                                             @if ($detect->isMobile())
-                                            <div class="alert alert-warning fade show mt-4" role="alert">
-                                                {{__('admin/common.about_mobile_warning')}}
-                                            </div>
+                                                <div class="alert alert-warning fade show mt-4" role="alert">
+                                                    {{__('admin/common.about_mobile_warning')}}
+                                                </div>
                                             @endif
                                             <section id="values" class="values">
                                                 <div class="container" data-aos="fade-up">
-                                                  <header class="section-header">
-                                                    <h2 id="preview_section_name"
-                                                    >{{$value_title ?
-                                                            ($value_title->section_name === '' ? __('admin/value/value-index.section_name_placeholder') : $value_title->section_name)
-                                                            : __('admin/value/value-index.section_name_placeholder')
-                                                    }}</h2>
-                                                    <p id="preview_title"
-                                                    >{!!$value_title ?
-                                                            ($value_title->title=== '' ? __('admin/value/value-index.title_placeholder') : $value_title->title)
-                                                            : __('admin/value/value-index.title_placeholder')
-                                                    !!}</p>
-                                                  </header>
-                                                  <div class="row" style="justify-content: center">
-                                                    @if ($value_cards != null)
-                                                    @foreach ($value_cards as $value_card_item)
-                                                    <div class="col-lg-4 mb-3" data-aos="fade-up" data-aos-delay="200">
-                                                        <div class="box">
-                                                          <img src="{{$value_card_item->image === '' ? (asset('frontend/assets/img/values-1.png')) : asset($value_card_item->image)}}" class="img-fluid" alt="">
-                                                          <h3>{!!$value_card_item->title!!}</h3>
-                                                          <p>{!!$value_card_item->description!!}</p>
-                                                        </div>
-                                                      </div>
-                                                    @endforeach
-                                                    @endif
-                                                  </div>
+                                                    <header class="section-header">
+                                                        <h2 id="preview_section_name"
+                                                        >{{$value_title ?
+                                                                ($value_title->section_name === '' ? __('admin/value/value-index.section_name_placeholder') : $value_title->section_name)
+                                                                : __('admin/value/value-index.section_name_placeholder')
+                                                        }}</h2>
+                                                        <p id="preview_title"
+                                                        >{!!$value_title ?
+                                                                ($value_title->title=== '' ? __('admin/value/value-index.title_placeholder') : $value_title->title)
+                                                                : __('admin/value/value-index.title_placeholder')
+                                                        !!}</p>
+                                                    </header>
+                                                    <div class="row" style="justify-content: center">
+                                                        @if (count($value_cards) > 0)
+                                                            @foreach ($value_cards as $value_card_item)
+                                                                <div class="col-lg-4 mb-3" data-aos="fade-up" data-aos-delay="200">
+                                                                    <div class="box">
+                                                                        <img src="{{$value_card_item->image === '' ? (asset('frontend/assets/img/values-1.png')) : asset($value_card_item->image)}}" class="img-fluid" alt="">
+                                                                        <h3>{!!$value_card_item->title!!}</h3>
+                                                                        <p>{!!$value_card_item->description!!}</p>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @else
+                                                            <div class="col-lg-4 mb-3" data-aos="fade-up" data-aos-delay="200">
+                                                                <div class="box">
+                                                                    <img src="{{asset('frontend/assets/img/values-1.png')}}" class="img-fluid" alt="">
+                                                                    <h3>{!!__('admin/value/value-index.title_placeholder')!!}</h3>
+                                                                    <p>{!!__('admin/value/value-index.description_placeholder')!!}</p>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </section>
                                         </div>
