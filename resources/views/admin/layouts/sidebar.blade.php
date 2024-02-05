@@ -51,6 +51,24 @@
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/feature_icon_item*') ? 'active' : ''}}" href="{{route('admin.feature_icon_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.feature_icon_item')}}</a></li>
                 </ul>
             </li>
+            <li class="nav-group {{request()->is('*admin/service_title*') || request()->is('*admin/service_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                  {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
+                </svg>{{__('admin/sidebar.service_section')}}</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/service_title*') ? 'active' : ''}}" href="{{route('admin.service_title.index')}}"><span class="nav-icon"></span>{{__('admin/service/service.title')}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/service_item*') ? 'active' : ''}}" href="{{route('admin.service_item.index')}}"><span class="nav-icon"></span>{{__('admin/service/service.service_items')}}</a></li>
+                </ul>
+            </li>
+            <li class="nav-group {{request()->is('*admin/pricing_title*') || request()->is('*admin/pricing_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                  {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
+                </svg>{{__('admin/sidebar.pricing_section')}}</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/pricing_title*') ? 'active' : ''}}" href="{{route('admin.pricing_title.index')}}"><span class="nav-icon"></span>{{__('admin/pricing/pricing.title')}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/pricing_item*') ? 'active' : ''}}" href="{{route('admin.pricing_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.pricing_items')}}</a></li>
+                </ul>
+            </li>
         </ul>
        </li>
 

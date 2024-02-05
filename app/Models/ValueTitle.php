@@ -10,8 +10,8 @@ class ValueTitle extends Model
     use HasFactory;
 
     protected $fillable = [
-        "section_name",
-        "title",
+        'section_name',
+        'title',
         'status',
     ];
 }

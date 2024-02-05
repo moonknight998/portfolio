@@ -197,6 +197,11 @@
         <script src="{{asset('functions/functions.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 
+        <!-- include summernote css/js-->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
         <script>AOS.init();</script>
         <script>new PureCounter({once: false});</script>
 
@@ -255,8 +260,24 @@
                                 })
                             }
                         })
-                })
+                });
             })
+        </script>
+        <script>
+            $('.summernote').summernote({
+              placeholder: 'Hello stand alone ui',
+              tabsize: 2,
+              height: 120,
+              toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+              ]
+            });
         </script>
 
         @stack('scripts')

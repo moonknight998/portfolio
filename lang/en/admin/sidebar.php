@@ -17,4 +17,7 @@ return [
     'feature_tab_items'=> 'Tab items',
     'feature_icon_title' => 'Icon title',
     'feature_icon_item'=> 'Icon items',
+    'service_section' => 'Service Section',
+    'pricing_section' => 'Pricing section',
+    'pricing_items' => 'Pricing items',
 ];

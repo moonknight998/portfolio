@@ -835,6 +835,17 @@ section {
   transition: 0.3s;
 }
 
+.services .service-box .icon-backend {
+    font-size: 36px;
+    padding: 40px 20px;
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 25px;
+    display: inline-block;
+    line-height: 0;
+    transition: 0.3s;
+  }
+
 .services .service-box h3 {
   color: #444444;
   font-weight: 700;
@@ -1022,7 +1033,7 @@ section {
   text-align: center;
   line-height: 26px;
   font-size: 16px;
-  margin-bottom: 25px;
+  margin-bottom: 100px;
 }
 
 .pricing ul li {
@@ -1046,6 +1057,10 @@ section {
   font-weight: 600;
   transition: 0.3s;
   border: 1px solid #4154f1;
+  position: absolute;
+  bottom: 10%;
+  left: 15%;
+  right: 15%;
 }
 
 .pricing .btn-buy:hover {

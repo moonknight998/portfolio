@@ -62,9 +62,40 @@ var changeAttribute = function(event, previewId, attributeName)
     preview.setAttribute(attributeName, event.target.value);
 };
 
+var changeClassWithExtraParam = function(event, previewId, extraParam)
+{
+    var preview = document.getElementById(previewId);
+    preview.setAttribute('class', event.target.value + ' ' + extraParam);
+};
+
 var changeColor = function(event, previewId)
 {
     document.getElementById(previewId).style.color = event.target.value;
+};
+
+var changeColorWithColorName = function(event, previewId, colorName)
+{
+    document.getElementById(previewId).style.color = colorName;
+};
+
+var changeColorByInput = function(event, id, colorId)
+{
+    document.getElementById(id).style.color = document.getElementById(colorId).value;
+}
+
+var changeBackgroundByColorCode = function(event, id, colorCode)
+{
+    document.getElementById(id).style.background = colorCode;
+}
+
+var changeBackground = function(event, previewId)
+{
+    document.getElementById(previewId).style.background = event.target.value;
+};
+
+var changeStyle = function(event, previewId, styleToChange)
+{
+    document.getElementById(previewId).style.borderBottomColor = event.target.value;
 };
 
 var detectEnterline = function(event, detectId)
@@ -107,6 +138,23 @@ var changeStatus = function(event, id, className)
     }
 
 }
+var changeStatusOne = function(event, id, idToChange)
+{
+
+    var statusElement = document.getElementById(id);
+
+    elementToChange = document.getElementById(idToChange);
+
+    if(statusElement.value == 1)
+    {
+        elementToChange.style.display = "block";
+    }
+    else
+    {
+        elementToChange.style.display = "none";
+    }
+
+}
 
 
 var changeColumnSize = function(event, statusId, className)
@@ -132,3 +180,18 @@ var changeColumnSize = function(event, statusId, className)
         }
     }
 }
+
+var changeBackgroundByInput = function(event, id, colorId)
+{
+    document.getElementById(id).style.background = document.getElementById(colorId).value;
+}
+
+var changeBackgroundToWhite = function(event, id)
+{
+    document.getElementById(id).style.background = 'white';
+}
+
+var changeBackgroundWithColorName = function(event, previewId, colorName)
+{
+    document.getElementById(previewId).style.color = colorName;
+};

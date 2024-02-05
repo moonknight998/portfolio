@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\Section\Feature\FeatureTabItemController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureTabTitleController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureTitleController;
 use App\Http\Controllers\Admin\Section\HeroController;
+use App\Http\Controllers\Admin\Section\Pricing\PricingItemController;
+use App\Http\Controllers\Admin\Section\Pricing\PricingTitleController;
+use App\Http\Controllers\Admin\Section\Service\ServiceItemController;
+use App\Http\Controllers\Admin\Section\Service\ServiceTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
 use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -63,6 +67,12 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('feature_icon_title', FeatureIconTitleController::class);
     Route::put('feature_icon_item/change-status', [FeatureIconItemController::class,'changeStatus'])->name('feature_icon_item.change-status');
     Route::resource('feature_icon_item', FeatureIconItemController::class);
+    Route::resource('service_title', ServiceTitleController::class);
+    Route::put('service_item/change-status', [ServiceItemController::class, 'changeStatus'])->name('service_item.change-status');
+    Route::resource('service_item', ServiceItemController::class);
+    Route::resource('pricing_title', PricingTitleController::class);
+    Route::put('pricing_item/change-status', [PricingItemController::class, 'changeStatus'])->name('pricing_item.change-status');
+    Route::resource('pricing_item', PricingItemController::class);
 });
 
 require __DIR__.'/auth.php';

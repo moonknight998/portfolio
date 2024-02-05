@@ -12,6 +12,10 @@ use App\Models\FeatureTabItem;
 use App\Models\FeatureTabTitle;
 use App\Models\FeatureTitle;
 use App\Models\Hero;
+use App\Models\PricingItem;
+use App\Models\PricingTitle;
+use App\Models\Service;
+use App\Models\ServiceItem;
 use App\Models\ValueCard;
 use App\Models\ValueTitle;
 
@@ -41,6 +45,14 @@ class HomeController extends Controller
         $feature_icon_title = FeatureIconTitle::first();
         //Feature icon items
         $feature_icon_items = FeatureIconItem::all();
+        //Service title
+        $service_title = Service::first();
+        //Service item
+        $service_items = ServiceItem::all();
+        //Pricing title
+        $pricing_title = PricingTitle::first();
+        //Pricing item
+        $pricing_items = PricingItem::all();
 
         return
             view('frontend.pages.home.home',
@@ -56,6 +68,10 @@ class HomeController extends Controller
                 'feature_tab_items',
                 'feature_icon_title',
                 'feature_icon_items',
+                'service_title',
+                'service_items',
+                'pricing_title',
+                'pricing_items',
             )
         );
     }
