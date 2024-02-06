@@ -17,9 +17,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Admin Portfolio</title>
 
-        <!-- Frontend style for preview-->
-        @include('frontend.layout.style')
-
         <!-- CSS Libraries -->
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('backend/assets/apple-icon-57x57.png')}}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{asset('backend/assets/favicon/apple-icon-60x60.png')}}">
@@ -36,7 +33,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset('backend/assets/favicon/favicon-16x16.png')}}">
         <link rel="manifest" href="{{asset('backend/assets/favicon/manifest.json')}}">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> --}}
 
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{asset('backend/assets/favicon/ms-icon-144x144.png')}}">
@@ -49,12 +46,12 @@
         <!-- This is style for datatable but it'll override main styles below if you move this line below main styles-->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+        <!-- Frontend style for preview-->
+        @include('frontend.layout.style')
+
         <!-- Main styles for this application-->
         <link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet">
 
-        <!-- We use those styles to show code examples, you should remove them in your application.-->
-        {{-- <link href="{{asset('backend/assets/css/examples.css')}}" rel="stylesheet">
-        <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet"> --}}
       </head>
       <body>
         <!--Start Sidebar-->
@@ -84,7 +81,7 @@
               <ul class="header-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#">
                     <svg class="icon icon-lg">
-                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                      <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bell')}}"></use>
                     </svg></a></li>
                 {{-- <li class="nav-item"><a class="nav-link" href="#">
                     <svg class="icon icon-lg">
@@ -104,31 +101,31 @@
                       <div class="fw-semibold">Account</div>
                     </div><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bell')}}"></use>
                       </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open')}}"></use>
                       </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-tas')}}k"></use>
                       </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-comment-square')}}"></use>
                       </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
                     <div class="dropdown-header bg-light py-2">
                       <div class="fw-semibold">Settings</div>
                     </div><a class="dropdown-item" href="{{route('profile.edit')}}">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user')}}"></use>
                       </svg> Profile</a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-settings')}}"></use>
                       </svg> Settings</a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-credit-card')}}"></use>
                       </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
                       <svg class="icon me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
                       </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
                     <div class="dropdown-divider"></div>
                         {{-- <a class="dropdown-item" href="#">
@@ -177,9 +174,6 @@
         </div>
         <!--End Main Part-->
 
-        <!--Fronted script for preview-->
-        @include('frontend.layout.script')
-
         <!--JQuery-->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -189,22 +183,28 @@
 
         <!-- Plugins and scripts required by this view-->
         <script src="{{asset('backend/assets/vendors/chart.js/js/chart.min.js')}}"></script>
-        <script src="{{asset('backend/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js')}}"></script>
+        {{-- <script src="{{asset('backend/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js')}}"></script> --}}
         <script src="{{asset('backend/assets/vendors/@coreui/utils/js/coreui-utils.js')}}"></script>
         <script src="{{asset('backend/assets/js/main.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{asset('functions/functions.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 
         <!-- include summernote css/js-->
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
+        <!--Fronted script for preview-->
+        @include('frontend.layout.script')
 
         <script>AOS.init();</script>
         <script>new PureCounter({once: false});</script>
 
+        <!-- My functions -->
+        <script src="{{asset('functions/functions.js')}}"></script>
+
+
+        <!-- Popup -->
         <script>
             $(document).ready(function(){
                 $('body').on('click', '.delete-btn', function(e){
@@ -263,9 +263,11 @@
                 });
             })
         </script>
+
+        <!-- Summernote -->
         <script>
-            $('.summernote').summernote({
-              placeholder: 'Hello stand alone ui',
+            $('.summernote-full').summernote({
+              placeholder: '{{__('admin/common.type_your_content')}}',
               tabsize: 2,
               height: 120,
               toolbar: [
@@ -276,6 +278,17 @@
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
                 ['view', ['fullscreen', 'codeview', 'help']]
+              ]
+            });
+            $('.summernote-no-media').summernote({
+              placeholder: '{{__('admin/common.type_your_content')}}',
+              tabsize: 2,
+              height: 120,
+              toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
               ]
             });
         </script>

@@ -51,6 +51,43 @@ var openTab = function(event, activeId, disableId){
     document.getElementById(activeId).className += " active";
 };
 
+var expandable = function(event, expandContentId)
+{
+    saveEventTargetClassName = event.target.className;
+    saveExpandContentIdClassName = document.getElementById(expandContentId).className;
+
+    accordionButtons = document.getElementsByClassName("accordion-button");
+
+    for(i = 0; i < accordionButtons.length; i++)
+    {
+        if(!accordionButtons[i].className.includes('collapsed'))
+        {
+            accordionButtons[i].className = accordionButtons[i].className + " collapsed";
+        }
+    }
+
+    accordionCollapses = document.getElementsByClassName("accordion-collapse collapse");
+
+    for (i = 0; i < accordionCollapses.length; i++)
+    {
+        if (accordionCollapses[i].className.includes('show'))
+        {
+            accordionCollapses[i].className = accordionCollapses[i].className.replace(" show", "");
+        }
+    }
+
+    if(saveEventTargetClassName.includes('collapsed'))
+    {
+        //event.target.className = event.target.className + " collapsed";
+        event.target.className = event.target.className.replace(" collapsed", "");
+    }
+
+    if(!saveExpandContentIdClassName.includes('show'))
+    {
+        document.getElementById(expandContentId).className = document.getElementById(expandContentId).className + " show";
+    }
+}
+
 var loadDocument = function(event, previewId) {
     var preview = document.getElementById(previewId);
     preview.innerHTML = event.target.value;

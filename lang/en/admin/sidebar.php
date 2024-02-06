@@ -20,4 +20,6 @@ return [
     'service_section' => 'Service Section',
     'pricing_section' => 'Pricing section',
     'pricing_items' => 'Pricing items',
+    'faq_section' => 'F.A.Q',
+    'faq_items' => 'F.A.Q items',
 ];

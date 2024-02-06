@@ -69,6 +69,15 @@
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/pricing_item*') ? 'active' : ''}}" href="{{route('admin.pricing_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.pricing_items')}}</a></li>
                 </ul>
             </li>
+            <li class="nav-group {{request()->is('*admin/faq_title*') || request()->is('*admin/faq_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                  {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
+                </svg>{{__('admin/sidebar.faq_section')}}</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/faq_title*') ? 'active' : ''}}" href="{{route('admin.faq_title.index')}}"><span class="nav-icon"></span>{{__('admin/faq/faq.title')}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/faq_item*') ? 'active' : ''}}" href="{{route('admin.faq_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.faq_items')}}</a></li>
+                </ul>
+            </li>
         </ul>
        </li>
 

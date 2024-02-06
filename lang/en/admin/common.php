@@ -20,7 +20,6 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'content'=> 'Content',
-    'preview' => 'Preview',
     'swal_deleted' => 'Deleted',
     'swal_delete_failed' => 'Cannot delete this item',
     'are_you_sure' => 'Are you sure?',
@@ -32,7 +31,6 @@ return [
     'icon_color' => 'Icon color',
     'main_title' => 'Main Title',
     'mobile_warning' => 'Previews may not be accurate!!!',
-    'read_more' => 'Read More',
     'button_url' => 'Button url',
     'main_color' => 'Main color',
     'extra_color' => 'Extra color',
@@ -47,4 +45,5 @@ return [
     'color' => 'Color',
     'currency' => 'Currency',
     'month' => 'month',
+    'type_your_content' => 'Type your content',
 ];

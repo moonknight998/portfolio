@@ -20,4 +20,6 @@ return [
     'service_section' => 'Dịch vụ',
     'pricing_section' => 'Mức giá',
     'pricing_items' => 'Các mức giá',
+    'faq_section' => 'Câu hỏi thường gặp',
+    'faq_items' => 'Các câu hỏi',
 ];

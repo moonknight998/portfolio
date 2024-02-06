@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Section\AboutController;
 use App\Http\Controllers\Admin\Section\CountController;
+use App\Http\Controllers\Admin\Section\Faq\FaqItemController;
+use App\Http\Controllers\Admin\Section\Faq\FaqTitleController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureIconItemController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureIconTitleController;
 use App\Http\Controllers\Admin\Section\Feature\FeatureListController;
@@ -73,6 +75,8 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('pricing_title', PricingTitleController::class);
     Route::put('pricing_item/change-status', [PricingItemController::class, 'changeStatus'])->name('pricing_item.change-status');
     Route::resource('pricing_item', PricingItemController::class);
+    Route::resource('faq_title', FaqTitleController::class);
+    Route::resource('faq_item', FaqItemController::class);
 });
 
 require __DIR__.'/auth.php';

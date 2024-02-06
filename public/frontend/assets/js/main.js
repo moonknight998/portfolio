@@ -23,14 +23,6 @@
   /**
    * Easy event listener function
    */
-//   const on = (type, el, listener, all = false) => {
-//     if (all) {
-//       select(el, all).forEach(e => e.addEventListener(type, listener))
-//     } else {
-//       select(el, all).addEventListener(type, listener)
-//     }
-//   }
-
   const on = (type, el, listener, all = false) => {
     if (all) {
       select(el, all).forEach(e => e.addEventListener(type, listener))

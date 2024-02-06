@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.pricing_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/pricing/pricing.create_item')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/faq/faq.create_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,7 +24,7 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/pricing/pricing.create_item')}}</h2>
+                            <h2>{{__('admin/faq/faq.create_item')}}</h2>
                         </div>
                         <form method="POST" action="{{route('admin.pricing_item.store')}}" enctype="multipart/form-data">
                             @csrf

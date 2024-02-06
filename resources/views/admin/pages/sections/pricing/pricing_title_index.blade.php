@@ -129,7 +129,7 @@
                                                                 @endif
                                                             @endforeach
                                                         @else
-                                                        <div class="row gy-4" data-aos="fade-left">
+                                                        <div class="row gy-4" data-aos="fade-left" style="justify-content: center">
                                                             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100" style="display: flex">
                                                                 <div class="box">
                                                                     <h3 style="color: #07d5c0;">{{__('admin/pricing/pricing.pricing_name')}}</h3>

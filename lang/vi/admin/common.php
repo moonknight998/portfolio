@@ -20,7 +20,6 @@ return [
     'edit' => 'Sửa',
     'delete' => 'Xoá',
     'content'=> 'Nội dung',
-    'preview' => 'Xem trước',
     'swal_deleted' => 'Đã xoá',
     'swal_delete_failed' => 'Không thể xoá mục này',
     'are_you_sure' => 'Bạn có chắc chắn?',
@@ -32,7 +31,6 @@ return [
     'icon_color' => 'Màu biểu tượng',
     'main_title' => 'Tiêu đề chính',
     'mobile_warning' => 'Xem trước có thể không chính xác!!!',
-    'read_more' => 'Đọc Thêm',
     'button_url' => 'Đường liên kết',
     'main_color' => 'Màu chính',
     'extra_color' => 'Màu phụ',
@@ -47,4 +45,5 @@ return [
     'color' => 'Màu sắc',
     'currency' => 'Đơn vị',
     'month' => 'tháng',
+    'type_your_content' => 'Nhập nội dung của bạn',
 ];
