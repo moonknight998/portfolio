@@ -22,4 +22,6 @@ return [
     'pricing_items' => 'Các mức giá',
     'faq_section' => 'Câu hỏi thường gặp',
     'faq_items' => 'Các câu hỏi',
+    'testimonial_section' => 'Khách hàng phản hồi',
+    'testimonial_items' => 'Các phản hồi',
 ];

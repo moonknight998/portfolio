@@ -46,4 +46,12 @@ return [
     'currency' => 'Đơn vị',
     'month' => 'tháng',
     'type_your_content' => 'Nhập nội dung của bạn',
+    'question' => 'Câu hỏi',
+    'question_preview' => 'Đây là một câu hỏi?',
+    'answer' => 'Trả lời',
+    'answer_preview' => 'Đây là một câu trả lời',
+    'name' => 'Tên',
+    'name_preview' => 'Tên xem trước',
+    'customer_name_placeholder' => 'Nhập tên khách hàng của bạn',
+    'star' => 'sao',
 ];

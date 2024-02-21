@@ -53,7 +53,7 @@
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/feature/feature.title')}}</label>
+                                            <label class="form-label">{{__('admin/feature/feature.title')}} (*)</label>
                                             <input class="form-control" id="title" name="title" type="text" placeholder="{{__('admin/feature/feature.title_placeholder')}}"
                                             onchange="loadDocument(event, 'preview_item_title')">
                                             @if ($errors->has('title'))
@@ -63,7 +63,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/feature/feature.description')}}</label>
+                                            <label class="form-label">{{__('admin/feature/feature.description')}} (*)</label>
                                             <textarea class="form-control" rows="1" id="description" name="description" type="text" placeholder="{{__('admin/feature/feature.description_placeholder')}}"
                                             onchange="loadDocument(event, 'preview_item_description')"
                                             onkeypress="detectEnterline(event, 'description'); loadDocument(event, 'preview_item_description')"></textarea>
@@ -83,7 +83,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/common.status')}}</label>
+                                            <label class="form-label">{{__('admin/common.status')}} (*)</label>
                                             <select class="form-select" id="status" name="status" onchange="changeStatus(event, 'status', 'can-hide')">
                                                 <option selected value="1">{{__('admin/common.display')}}</option>
                                                 <option value="0">{{__('admin/common.hide')}}</option>
@@ -109,7 +109,7 @@
                                                             <img src="{{$feature_icon_title ? ($feature_icon_title->image === '' ? asset("frontend/assets/img/features-3.png") : $feature_icon_title->image) : asset("frontend/assets/img/features-3.png")}}" class="img-fluid p-4" alt="">
                                                         </div>
                                                         <div class="col-xl-8 d-flex content">
-                                                            <div class="row align-self-center gy-4">
+                                                            <div class="row align-self-center gy-4" style="width: 100%">
                                                                 @if (count($feature_icon_items) > 0)
                                                                     @foreach ($feature_icon_items as $feature_icon_item_local)
                                                                         <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -122,10 +122,10 @@
                                                                     @endforeach
                                                                 @endif
                                                                 <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                                                                    <i id="preview_item_icon" class="bi bi-check2-all"></i>
+                                                                    <i class="bi bi-check2-all"></i>
                                                                     <div>
-                                                                        <h4 id="preview_item_title">{{__('admin/feature/feature.title_placeholder')}}</h4>
-                                                                        <p id="preview_item_description">{!!__('admin/feature/feature.description_placeholder')!!}</p>
+                                                                        <h4 id="preview_item_title">{{__('admin/common.title_preview')}}</h4>
+                                                                        <p id="preview_item_description">{{__('admin/common.description_preview')}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>

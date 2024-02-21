@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\Section\Pricing\PricingItemController;
 use App\Http\Controllers\Admin\Section\Pricing\PricingTitleController;
 use App\Http\Controllers\Admin\Section\Service\ServiceItemController;
 use App\Http\Controllers\Admin\Section\Service\ServiceTitleController;
+use App\Http\Controllers\Admin\Section\Testimonial\TestimonialItemController;
+use App\Http\Controllers\Admin\Section\Testimonial\TestimonialTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
 use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -76,7 +78,11 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::put('pricing_item/change-status', [PricingItemController::class, 'changeStatus'])->name('pricing_item.change-status');
     Route::resource('pricing_item', PricingItemController::class);
     Route::resource('faq_title', FaqTitleController::class);
+    Route::put('faq_item/change-status', [FaqItemController::class, 'changeStatus'])->name('faq_item.change-status');
     Route::resource('faq_item', FaqItemController::class);
+    Route::resource('testimonial_title', TestimonialTitleController::class);
+    Route::put('testimonial_item/change-status', [TestimonialItemController::class, 'changeStatus'])->name('testimonial_item.change-status');
+    Route::resource('testimonial_item', TestimonialItemController::class);
 });
 
 require __DIR__.'/auth.php';

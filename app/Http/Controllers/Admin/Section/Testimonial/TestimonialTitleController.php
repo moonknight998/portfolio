@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Section\Faq;
+namespace App\Http\Controllers\Admin\Section\Testimonial;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
-use App\Models\FaqItem;
+use App\Models\TestimonialItem;
+use App\Models\TestimonialTitle;
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class FaqTitleController extends Controller
+class TestimonialTitleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +17,9 @@ class FaqTitleController extends Controller
     public function index()
     {
         $detect = new MobileDetect();
-        $faq_title = Faq::first();
-        $faq_items = FaqItem::all();
-        $faq_items_active = array();
-        foreach($faq_items as $faq_item_local)
-        {
-            if ($faq_item_local->status == 1)
-            {
-                array_push($faq_items_active, $faq_item_local);
-            }
-        }
-        return view('admin.pages.sections.faq.faq_title_index', compact('detect', 'faq_title', 'faq_items_active'));
+        $testimonial_title = TestimonialTitle::first();
+        $testimonial_items = TestimonialItem::all();
+        return view('admin.pages.sections.testimonial.testimonial_title_index', compact('detect', 'testimonial_title', 'testimonial_items'));
     }
 
     /**
@@ -56,14 +48,14 @@ class FaqTitleController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.faq_title.index', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('admin.testimonial_title.index', "#$key")->withErrors($validator)->withInput();
         }
 
-        $faq_title = new Faq();
-        $faq_title->section_name = $request->section_name;
-        $faq_title->title = $request->title;
-        $faq_title->status = $request->status;
-        $faq_title->save();
+        $testimonial_title = new TestimonialTitle();
+        $testimonial_title->section_name = $request->section_name;
+        $testimonial_title->title = $request->title;
+        $testimonial_title->status = $request->status;
+        $testimonial_title->save();
 
         return redirect()->back()->with('status', 'updated');
     }
@@ -89,8 +81,6 @@ class FaqTitleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $faq_title = Faq::findOrFail($id);
-
         $validator = Validator::make($request->all(), [
             'section_name'=> ['required','string', 'max:200'],
             'title'=> ['required','string', 'max:500'],
@@ -104,13 +94,14 @@ class FaqTitleController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.faq_title.index', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('admin.testimonial_title.index', "#$key")->withErrors($validator)->withInput();
         }
 
-        $faq_title->section_name = $request->section_name;
-        $faq_title->title = $request->title;
-        $faq_title->status = $request->status;
-        $faq_title->save();
+        $testimonial_title = TestimonialTitle::findOrFail($id);
+        $testimonial_title->section_name = $request->section_name;
+        $testimonial_title->title = $request->title;
+        $testimonial_title->status = $request->status;
+        $testimonial_title->save();
 
         return redirect()->back()->with('status', 'updated');
     }

@@ -22,7 +22,28 @@ class FaqItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'faqitem.action')
+            ->addColumn('action', function($query){
+                $editBtn = '<a href="'.route('admin.faq_item.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('admin.faq_item.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                return $editBtn.$deleteBtn;
+            })
+            ->addColumn('status', function($query){
+                if($query->status == 1)
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" checked data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                else
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
@@ -44,7 +65,7 @@ class FaqItemDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0, 'asc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -62,15 +83,19 @@ class FaqItemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            // Column::make('index')->data('DT_RowIndex')->orderable(false)->searchable(false),
+            Column::make('question')->title(__('admin/common.question'))->orderable(false)->searchable(false),
+            Column::make('answer')->title(__('admin/common.answer'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('admin/common.status'))->orderable(false)->searchable(false),
+            // Column::make('created_at')->title(__('admin/common.created_at')),
+            // Column::make('updated_at')->title(__('admin/common.updated_at')),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                  ->width(170)
+                  ->addClass('text-center')
+                  ->title(__('admin/common.action')),
         ];
     }
 

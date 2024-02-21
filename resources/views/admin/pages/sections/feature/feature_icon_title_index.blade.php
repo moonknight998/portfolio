@@ -57,7 +57,7 @@
                                         @endif
                                         @if (session('status') === 'required')
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                            {{__('admin/feature/feature.icon_title_updated')}}
+                                            {{__('admin/feature/feature.feature_title_required')}}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
@@ -109,7 +109,7 @@
                                                             <img src="{{$feature_icon_title ? ($feature_icon_title->image === '' ? asset("frontend/assets/img/features-3.png") : $feature_icon_title->image) : asset("frontend/assets/img/features-3.png")}}" class="img-fluid p-4" alt="">
                                                         </div>
                                                         <div class="col-xl-8 d-flex content">
-                                                            <div class="row align-self-center gy-4">
+                                                            <div class="row align-self-center gy-4" style="width: 100%">
                                                                 @if (count($feature_icon_items) > 0)
                                                                     @foreach ($feature_icon_items as $feature_icon_item_local)
                                                                         <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -120,6 +120,14 @@
                                                                             </div>
                                                                         </div>
                                                                     @endforeach
+                                                                @else
+                                                                <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                                                    <i class="bi bi-check2-all"></i>
+                                                                    <div>
+                                                                        <h4>{{__('admin/common.title_preview')}}</h4>
+                                                                        <p>{{__('admin/common.description_preview')}}</p>
+                                                                    </div>
+                                                                </div>
                                                                 @endif
                                                             </div>
                                                         </div>

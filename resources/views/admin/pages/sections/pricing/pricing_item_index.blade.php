@@ -9,7 +9,7 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item"><a>{{__('admin/sidebar.service_section')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.pricing_section')}}</a></li>
             <li class="breadcrumb-item active"><a>{{__('admin/sidebar.pricing_items')}}</a></li>
           </ol>
         </nav>

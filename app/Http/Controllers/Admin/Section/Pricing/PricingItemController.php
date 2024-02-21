@@ -139,6 +139,11 @@ class PricingItemController extends Controller
         }
 
         if($request->hasFile('image')){
+
+            if(File::exists(public_path($pricing_item->image)))
+            {
+                File::delete(public_path($pricing_item->image));
+            }
             $image = $request->file('image');
             $imageName = rand().$image->getClientOriginalName();
             $image->move(public_path('/uploads'), $imageName);

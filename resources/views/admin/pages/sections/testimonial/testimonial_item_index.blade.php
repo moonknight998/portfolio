@@ -9,8 +9,8 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item"><a>{{__('admin/sidebar.faq_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/sidebar.faq_items')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.testimonial_section')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/sidebar.testimonial_items')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -25,8 +25,8 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/faq/faq.all_faq')}}</h2>
-                            <a href="{{route('admin.faq_item.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
+                            <h2>{{__('admin/testimonial/testimonial.all_testimonial')}}</h2>
+                            <a href="{{route('admin.testimonial_item.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="card-body">
                             {{$dataTable->table()}}
@@ -55,7 +55,7 @@
                 });
 
                 $.ajax({
-                url: "{{route('admin.faq_item.change-status')}}",
+                url: "{{route('admin.testimonial_item.change-status')}}",
                 type: 'PUT',
                 data:{
                     "status": isChecked,

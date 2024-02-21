@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Count;
+use App\Models\Faq;
+use App\Models\FaqItem;
 use App\Models\FeatureIconItem;
 use App\Models\FeatureIconTitle;
 use App\Models\FeatureList;
@@ -16,6 +18,8 @@ use App\Models\PricingItem;
 use App\Models\PricingTitle;
 use App\Models\Service;
 use App\Models\ServiceItem;
+use App\Models\TestimonialItem;
+use App\Models\TestimonialTitle;
 use App\Models\ValueCard;
 use App\Models\ValueTitle;
 
@@ -53,6 +57,23 @@ class HomeController extends Controller
         $pricing_title = PricingTitle::first();
         //Pricing item
         $pricing_items = PricingItem::all();
+        //Faq title
+        $faq_title = Faq::first();
+        //Faq items
+        $faq_items = FaqItem::all();
+        //Faq active items
+        $faq_items_active = array();
+        foreach($faq_items as $faq_item_local)
+        {
+            if ($faq_item_local->status == 1)
+            {
+                array_push($faq_items_active, $faq_item_local);
+            }
+        }
+        //Testimonial title
+        $testimonial_title = TestimonialTitle::first();
+        //Testimonial items
+        $testimonial_items = TestimonialItem::all();
 
         return
             view('frontend.pages.home.home',
@@ -72,6 +93,10 @@ class HomeController extends Controller
                 'service_items',
                 'pricing_title',
                 'pricing_items',
+                'faq_title',
+                'faq_items_active',
+                'testimonial_title',
+                'testimonial_items',
             )
         );
     }

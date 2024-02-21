@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.faq_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/faq/faq.title')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/faq/faq.update_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -23,12 +23,12 @@
             <div class="col-lg-12">
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
-                        <div class="card-header"><h2>{{__('admin/faq/faq.update_title')}}</h2></div>
-                        <form method="POST" action="{{$faq_title == null ? route('admin.faq_title.store') : route('admin.faq_title.update', $faq_title->id)}}" enctype="multipart/form-data">
+                        <div class="card-header">
+                            <h2>{{__('admin/faq/faq.update_item')}}</h2>
+                        </div>
+                        <form method="POST" action="{{route('admin.faq_item.update', $faq_item->id)}}" enctype="multipart/form-data">
                             @csrf
-                            @if ($faq_title)
                             @method('PATCH')
-                            @endif
                             <div class="card-body">
                                 <div class="example">
                                     <ul class="nav nav-tabs" role="tablist">
@@ -49,45 +49,38 @@
                                     <div class="tab-content rounded-bottom" id="content_tab">
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
                                         @if (session('status') === 'updated')
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                {{__('admin/faq/faq.title_updated')}}
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
-                                        @endif
-                                        @if (session('status') === 'required')
-                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                {{__('admin/faq/faq.title_required')}}
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{__('admin/faq/faq.item_updated')}}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/pricing/pricing.section_name')}}</label>
-                                            <input class="form-control" id="section_name" name="section_name" type="text" placeholder="{{__('admin/common.section_name_placeholder')}}"
-                                            value="{{$faq_title ? ($faq_title->section_name === '' ? old('section_name') : $faq_title->section_name) : ''}}"
-                                            onchange="loadDocument(event, 'preview_section_name')">
-                                            @if ($errors->has('section_name'))
+                                            <label class="form-label">{{__('admin/common.question')}}</label>
+                                            <textarea class="form-control" rows="5" id="question" name="question" type="text"
+                                            onchange="loadDocument(event, 'preview_question')"
+                                            onkeypress="detectEnterline(event, 'question'); loadDocument(event, 'preview_question')">{!!$faq_item->question!!}</textarea>
+                                            @if ($errors->has('question'))
                                                 <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('section_name')}}</div>
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('question')}}</div>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/feature/feature.title')}}</label>
-                                            <textarea class="form-control" rows="5" id="title" name="title" type="text" placeholder="{{__('admin/common.title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_title')"
-                                            onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')"
-                                            >{{$faq_title ? ($faq_title->title === '' ? old('title') : $faq_title->title) : ''}}</textarea>
-                                            @if ($errors->has('title'))
+                                            <label class="form-label">{{__('admin/common.answer')}}</label>
+                                            <textarea class="form-control" rows="5" id="answer" name="answer" type="text"
+                                            onchange="loadDocument(event, 'preview_answer')"
+                                            onkeypress="detectEnterline(event, 'answer'); loadDocument(event, 'preview_answer')">{!!$faq_item->answer!!}</textarea>
+                                            @if ($errors->has('answer'))
                                                 <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('title')}}</div>
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('answer')}}</div>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status')}}</label>
                                             <select class="form-select" id="status" name="status">
-                                                <option {{$faq_title ? ($faq_title->status == 1 ? 'selected' : '') : 'selected'}} value="1">{{__('admin/common.display')}}</option>
-                                                <option {{$faq_title ? ($faq_title->status == 0 ? 'selected' : '') : ''}} value="0">{{__('admin/common.hide')}}</option>
+                                                <option {{$faq_item->status == 1 ? 'selected': ''}} value="1">{{__('admin/common.display')}}</option>
+                                                <option {{$faq_item->status == 0 ? 'selected': ''}} value="0">{{__('admin/common.hide')}}</option>
                                             </select>
                                         </div>
                                       </div>
@@ -117,28 +110,42 @@
                                                                         @if (($loop->index + 2) % 2 == 0)
                                                                             <div class="accordion-item">
                                                                                 <h2 class="accordion-header">
-                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{$loop->index}}">
+                                                                                    <button id="{{$faq_item_local->id == $faq_item->id ? 'preview_question' : ''}}" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{$loop->index}}">
                                                                                     {!!$faq_item_local->question!!}
                                                                                     </button>
                                                                                 </h2>
                                                                                 <div id="faq-content-{{$loop->index}}" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
-                                                                                    <div class="accordion-body">
+                                                                                    <div id="{{$faq_item_local->id == $faq_item->id ? 'preview_answer' : ''}}" class="accordion-body">
                                                                                     {!!$faq_item_local->answer!!}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         @endif
                                                                     @endforeach
+                                                                    @if ((count($faq_items_active) + 2) % 2 == 0 && $faq_item->status == 0)
+                                                                        <div class="accordion-item" style="background-color: gray">
+                                                                            <h2 class="accordion-header">
+                                                                                <button id="preview_question" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-x">
+                                                                                {!!$faq_item->question!!}
+                                                                                </button>
+                                                                            </h2>
+                                                                            <div id="faq-content-x" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
+                                                                                <div class="accordion-body" id="preview_answer">
+                                                                                {!!$faq_item->answer!!}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
                                                                 @else
                                                                 <div class="accordion-item">
                                                                     <h2 class="accordion-header">
                                                                         <button id="preview_question" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-x">
-                                                                        {{__('admin/common.question_preview')}}
+                                                                        {!!$faq_item->question!!}
                                                                         </button>
                                                                     </h2>
                                                                     <div id="faq-content-x" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
                                                                         <div class="accordion-body" id="preview_answer">
-                                                                        {{__('admin/common.answer_preview')}}
+                                                                        {!!$faq_item->answer!!}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -153,31 +160,32 @@
                                                                         @if (($loop->index + 2) % 2 != 0)
                                                                             <div class="accordion-item">
                                                                                 <h2 class="accordion-header">
-                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{$loop->index}}">
+                                                                                    <button id="{{$faq_item_local->id == $faq_item->id ? 'preview_question' : ''}}" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{$loop->index}}">
                                                                                     {!!$faq_item_local->question!!}
                                                                                     </button>
                                                                                 </h2>
                                                                                 <div id="faq-content-{{$loop->index}}" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
-                                                                                    <div class="accordion-body">
+                                                                                    <div id="{{$faq_item_local->id == $faq_item->id ? 'preview_answer' : ''}}" class="accordion-body">
                                                                                     {!!$faq_item_local->answer!!}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         @endif
                                                                     @endforeach
-                                                                @else
-                                                                <div class="accordion-item">
-                                                                    <h2 class="accordion-header">
-                                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-y">
-                                                                        {{__('admin/common.question_preview')}}
-                                                                        </button>
-                                                                    </h2>
-                                                                    <div id="faq-content-y" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
-                                                                        <div class="accordion-body">
-                                                                        {{__('admin/common.answer_preview')}}
+                                                                    @if ((count($faq_items_active) + 2) % 2 != 0 && $faq_item->status == 0)
+                                                                        <div class="accordion-item" style="background-color: gray">
+                                                                            <h2 class="accordion-header">
+                                                                                <button id="preview_question" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-y">
+                                                                                {!!$faq_item->question!!}
+                                                                                </button>
+                                                                            </h2>
+                                                                            <div id="faq-content-y" class="accordion-collapse collapse" data-bs-parent="#faqlist" style="visibility: visible">
+                                                                                <div class="accordion-body" id="preview_answer">
+                                                                                {!!$faq_item->answer!!}
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>

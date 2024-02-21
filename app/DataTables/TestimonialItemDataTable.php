@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ValueCard;
+use App\Models\TestimonialItem;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -11,9 +11,8 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Illuminate\Support\Str;
 
-class ValueCardDataTable extends DataTable
+class TestimonialItemDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,8 +23,8 @@ class ValueCardDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $editBtn = '<a href="'.route('admin.value_card.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.value_card.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                $editBtn = '<a href="'.route('admin.testimonial_item.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('admin.testimonial_item.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
                 return $editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
@@ -43,15 +42,15 @@ class ValueCardDataTable extends DataTable
                 }
                 return $button;
             })
+            ->addIndexColumn()
             ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
-
     /**
      * Get the query source of dataTable.
      */
-    public function query(ValueCard $model): QueryBuilder
+    public function query(TestimonialItem $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -62,7 +61,7 @@ class ValueCardDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('valuecard-table')
+                    ->setTableId('faqitem-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -85,9 +84,10 @@ class ValueCardDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('title')->title(__('admin/value/value-index.title')),
-            Column::make('description')->title(__('admin/value/value-index.description')),
-            Column::make('status')->title(__('admin/common.status')),
+            // Column::make('index')->data('DT_RowIndex')->orderable(false)->searchable(false),
+            Column::make('name')->title(__('admin/common.name'))->orderable(false)->searchable(false),
+            Column::make('feedback')->title(__('admin/testimonial/testimonial.feedback'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('admin/common.status'))->orderable(false)->searchable(false),
             // Column::make('created_at')->title(__('admin/common.created_at')),
             // Column::make('updated_at')->title(__('admin/common.updated_at')),
             Column::computed('action')
@@ -104,6 +104,6 @@ class ValueCardDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ValueCard_' . date('YmdHis');
+        return 'TestimonialItem_' . date('YmdHis');
     }
 }

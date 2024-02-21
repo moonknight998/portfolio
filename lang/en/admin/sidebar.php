@@ -22,4 +22,6 @@ return [
     'pricing_items' => 'Pricing items',
     'faq_section' => 'F.A.Q',
     'faq_items' => 'F.A.Q items',
+    'testimonial_section' => 'Testimonial',
+    'testimonial_items' => 'Testimonial items',
 ];

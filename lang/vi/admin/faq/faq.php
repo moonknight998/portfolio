@@ -9,4 +9,7 @@ return [
     'title_required' => 'Bạn cần cập nhật tiêu đề trước!!!',
     'create_item' => 'Tạo câu hỏi mới',
     'all_faq' => 'Tất cả các câu hỏi',
+    'item_created' => 'Tạo câu hỏi thành công!',
+    'update_item' => 'Cập nhật câu hỏi',
+    'item_updated' => 'Cập nhật câu hỏi thành công!',
 ];

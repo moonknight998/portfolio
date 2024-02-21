@@ -46,4 +46,12 @@ return [
     'currency' => 'Currency',
     'month' => 'month',
     'type_your_content' => 'Type your content',
+    'question' => 'Question',
+    'question_preview' => 'This is a preview question',
+    'answer' => 'Answer',
+    'answer_preview' => 'This is a preview answer',
+    'name' => 'Name',
+    'name_preview' => 'Name preview',
+    'customer_name_placeholder' => 'Type your customer name',
+    'star' => 'star',
 ];
