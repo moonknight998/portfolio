@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Section\Pricing\PricingItemController;
 use App\Http\Controllers\Admin\Section\Pricing\PricingTitleController;
 use App\Http\Controllers\Admin\Section\Service\ServiceItemController;
 use App\Http\Controllers\Admin\Section\Service\ServiceTitleController;
+use App\Http\Controllers\Admin\Section\Team\TeamTitleController;
 use App\Http\Controllers\Admin\Section\Testimonial\TestimonialItemController;
 use App\Http\Controllers\Admin\Section\Testimonial\TestimonialTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
@@ -83,6 +84,7 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('testimonial_title', TestimonialTitleController::class);
     Route::put('testimonial_item/change-status', [TestimonialItemController::class, 'changeStatus'])->name('testimonial_item.change-status');
     Route::resource('testimonial_item', TestimonialItemController::class);
+    Route::resource('team_title', TeamTitleController::class);
 });
 
 require __DIR__.'/auth.php';
