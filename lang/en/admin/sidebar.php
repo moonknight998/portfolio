@@ -24,4 +24,6 @@ return [
     'faq_items' => 'F.A.Q items',
     'testimonial_section' => 'Testimonial',
     'testimonial_items' => 'Testimonial items',
+    'team_section' => 'Team',
+    'team_items' => 'Team items',
 ];

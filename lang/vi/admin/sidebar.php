@@ -24,4 +24,6 @@ return [
     'faq_items' => 'Các câu hỏi',
     'testimonial_section' => 'Khách hàng phản hồi',
     'testimonial_items' => 'Các phản hồi',
+    'team_section' => 'Đội nhóm',
+    'team_items' => 'Các đội nhóm',
 ];
