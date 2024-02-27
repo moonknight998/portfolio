@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\TestimonialItem;
+use App\Models\TeamItem;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class TestimonialItemDataTable extends DataTable
+class TeamItemDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,8 +23,8 @@ class TestimonialItemDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $editBtn = '<a href="'.route('admin.testimonial_item.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.testimonial_item.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                $editBtn = '<a href="'.route('admin.team_item.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('admin.team_item.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
                 return $editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
@@ -50,7 +50,7 @@ class TestimonialItemDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(TestimonialItem $model): QueryBuilder
+    public function query(TeamItem $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -61,11 +61,11 @@ class TestimonialItemDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('testimonialitem-table')
+                    ->setTableId('teamitem-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(0, 'asc')
+                    ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -86,7 +86,7 @@ class TestimonialItemDataTable extends DataTable
             Column::make('id'),
             // Column::make('index')->data('DT_RowIndex')->orderable(false)->searchable(false),
             Column::make('name')->title(__('admin/common.name'))->orderable(false)->searchable(false),
-            Column::make('feedback')->title(__('admin/testimonial/testimonial.feedback'))->orderable(false)->searchable(false),
+            Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
             Column::make('status')->title(__('admin/common.status'))->orderable(false)->searchable(false),
             // Column::make('created_at')->title(__('admin/common.created_at')),
             // Column::make('updated_at')->title(__('admin/common.updated_at')),
@@ -104,6 +104,6 @@ class TestimonialItemDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'TestimonialItem_' . date('YmdHis');
+        return 'TeamItem_' . date('YmdHis');
     }
 }

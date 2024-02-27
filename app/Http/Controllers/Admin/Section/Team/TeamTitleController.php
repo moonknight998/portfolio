@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TeamTitle;
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeamTitleController extends Controller
 {
@@ -24,7 +25,7 @@ class TeamTitleController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -32,7 +33,29 @@ class TeamTitleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'section_name'=> ['required','string', 'max:200'],
+            'title'=> ['required','string', 'max:500'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.team_title.index', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $team_title = new TeamTitle();
+        $team_title->section_name = $request->section_name;
+        $team_title->title = $request->title;
+        $team_title->status = $request->status;
+        $team_title->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**
@@ -56,7 +79,29 @@ class TeamTitleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'section_name'=> ['required','string', 'max:200'],
+            'title'=> ['required','string', 'max:500'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.team_title.index', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $team_title = TeamTitle::findOrFail($id);
+        $team_title->section_name = $request->section_name;
+        $team_title->title = $request->title;
+        $team_title->status = $request->status;
+        $team_title->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**

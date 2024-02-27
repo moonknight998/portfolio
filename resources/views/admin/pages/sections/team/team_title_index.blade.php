@@ -63,7 +63,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/team/team.section_name')}}</label>
                                             <input class="form-control" id="section_name" name="section_name" type="text" placeholder="{{__('admin/common.section_name_placeholder')}}"
-                                            value="{{$team_title ? ($team_title->section_name === '' ? old('section_name') : $team_title->section_name) : ''}}"
+                                            value="{{ShowFormValue($team_title, "section_name")}}"
                                             onchange="loadDocument(event, 'preview_section_name')">
                                             @if ($errors->has('section_name'))
                                                 <div class="row mb-0">
@@ -76,7 +76,7 @@
                                             <textarea class="form-control" rows="5" id="title" name="title" type="text" placeholder="{{__('admin/common.title_placeholder')}}"
                                             onchange="loadDocument(event, 'preview_title')"
                                             onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')"
-                                            >{{$team_title ? ($team_title->title === '' ? old('title') : $team_title->title) : ''}}</textarea>
+                                            >{{ShowFormValue($team_title, "title")}}</textarea>
                                             @if ($errors->has('title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('title')}}</div>
@@ -105,19 +105,20 @@
                                             <section id="team" class="team">
                                                 <div class="container" data-aos="fade-up">
                                                     <header class="section-header">
-                                                        <h2>Team</h2>
-                                                        <p>Our hard working team</p>
+                                                        <h2 id="preview_section_name">{{ShowTextData($team_title, "section_name", __('admin/common.section_name_preview'))}}</h2>
+                                                        <p id="preview_title">{{ShowTextData($team_title, "title", __('admin/common.title_preview'))}}</p>
                                                     </header>
-                                                    <div class="row gy-4">
+                                                    <div class="row gy-4" style="justify-content: center">
                                                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                                                             <div class="member">
                                                                 <div class="member-img">
                                                                     <img src="{{asset('frontend/assets/img/team/team-1.jpg')}}" class="img-fluid" alt="">
                                                                     <div class="social">
-                                                                        <a href=""><i class="bi bi-twitter"></i></a>
                                                                         <a href=""><i class="bi bi-facebook"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                                                                         <a href=""><i class="bi bi-instagram"></i></a>
-                                                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                                                        <a href=""><i class="bi bi-telegram"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="member-info">
@@ -132,10 +133,11 @@
                                                                 <div class="member-img">
                                                                     <img src="{{asset('frontend/assets/img/team/team-2.jpg')}}" class="img-fluid" alt="">
                                                                     <div class="social">
-                                                                        <a href=""><i class="bi bi-twitter"></i></a>
                                                                         <a href=""><i class="bi bi-facebook"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                                                                         <a href=""><i class="bi bi-instagram"></i></a>
-                                                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                                                        <a href=""><i class="bi bi-telegram"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                     </div>
                                                                 </div>
                                                                     <div class="member-info">
@@ -150,10 +152,11 @@
                                                                 <div class="member-img">
                                                                     <img src="{{asset('frontend/assets/img/team/team-3.jpg')}}" class="img-fluid" alt="">
                                                                     <div class="social">
-                                                                        <a href=""><i class="bi bi-twitter"></i></a>
                                                                         <a href=""><i class="bi bi-facebook"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                                                                         <a href=""><i class="bi bi-instagram"></i></a>
-                                                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                                                        <a href=""><i class="bi bi-telegram"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="member-info">
@@ -168,10 +171,11 @@
                                                                 <div class="member-img">
                                                                     <img src="{{asset('frontend/assets/img/team/team-4.jpg')}}" class="img-fluid" alt="">
                                                                     <div class="social">
-                                                                        <a href=""><i class="bi bi-twitter"></i></a>
                                                                         <a href=""><i class="bi bi-facebook"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                                                                         <a href=""><i class="bi bi-instagram"></i></a>
-                                                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                                                        <a href=""><i class="bi bi-telegram"></i></a>
+                                                                        {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="member-info">

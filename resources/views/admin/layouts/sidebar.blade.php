@@ -93,7 +93,7 @@
                 </svg>{{__('admin/sidebar.team_section')}}</a>
                 <ul class="nav-group-items">
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/team_title*') ? 'active' : ''}}" href="{{route('admin.team_title.index')}}"><span class="nav-icon"></span>{{__('admin/team/team.title')}}</a></li>
-                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/testimonial_item*') ? 'active' : ''}}" href="{{route('admin.testimonial_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.team_items')}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{request()->is('*admin/team_item*') ? 'active' : ''}}" href="{{route('admin.team_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.team_items')}}</a></li>
                 </ul>
             </li>
         </ul>
