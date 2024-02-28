@@ -26,4 +26,6 @@ return [
     'testimonial_items' => 'Các phản hồi',
     'team_section' => 'Đội nhóm',
     'team_items' => 'Các đội nhóm',
+    'client_section' => 'Khách hàng',
+    'client_items' => 'Các khách hàng',
 ];

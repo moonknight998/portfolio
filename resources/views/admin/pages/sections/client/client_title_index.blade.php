@@ -8,8 +8,8 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item"><a>{{__('admin/sidebar.team_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/team/team.title')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.client_section')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/client/client.title')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,9 +24,9 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header"><h2>{{__('admin/team/team.update_title')}}</h2></div>
-                        <form method="POST" action="{{$team_title == null ? route('admin.team_title.store') : route('admin.team_title.update', $team_title->id)}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{$client_title== null ? route('admin.client_item.store') : route('admin.client_item.update', $client_title->id)}}" enctype="multipart/form-data">
                             @csrf
-                            @if ($team_title)
+                            @if ($client_title)
                             @method('PATCH')
                             @endif
                             <div class="card-body">
@@ -50,20 +50,20 @@
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
                                         @if (session('status') === 'updated')
                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                {{__('admin/team/team.title_updated')}}
+                                                {{__('admin/client/client.title_updated')}}
                                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                             </div>
                                         @endif
                                         @if (session('status') === 'required')
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                {{__('admin/team/team.title_required')}}
+                                                {{__('admin/client/client.title_required')}}
                                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                             </div>
                                         @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/team/team.section_name')}}</label>
                                             <input class="form-control" id="section_name" name="section_name" type="text" placeholder="{{__('admin/common.section_name_placeholder')}}"
-                                            value="{{ShowFormValue($team_title, "section_name")}}"
+                                            value="{{ShowFormValue($client_title, "section_name")}}"
                                             onchange="loadDocument(event, 'preview_section_name')">
                                             @if ($errors->has('section_name'))
                                                 <div class="row mb-0">
@@ -76,7 +76,7 @@
                                             <textarea class="form-control" rows="5" id="title" name="title" type="text" placeholder="{{__('admin/common.title_placeholder')}}"
                                             onchange="loadDocument(event, 'preview_title')"
                                             onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')"
-                                            >{{ShowFormValue($team_title, "title")}}</textarea>
+                                            >{{ShowFormValue($client_title, "title")}}</textarea>
                                             @if ($errors->has('title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('title')}}</div>
@@ -86,8 +86,8 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status')}}</label>
                                             <select class="form-select" id="status" name="status">
-                                                <option {{$team_title ? ($team_title->status == 1 ? 'selected' : '') : 'selected'}} value="1">{{__('admin/common.display')}}</option>
-                                                <option {{$team_title ? ($team_title->status == 0 ? 'selected' : '') : ''}} value="0">{{__('admin/common.hide')}}</option>
+                                                <option {{$client_title ? ($client_title->status == 1 ? 'selected' : '') : 'selected'}} value="1">{{__('admin/common.display')}}</option>
+                                                <option {{$client_title ? ($client_title->status == 0 ? 'selected' : '') : ''}} value="0">{{__('admin/common.hide')}}</option>
                                             </select>
                                         </div>
                                       </div>
@@ -97,61 +97,29 @@
                                     <!--Preview Tab-->
                                     <div class="tab-content rounded-bottom" id="preview_tab" style="display: none">
                                         <div class="tab-pane active preview" role="tabpanel">
-                                            @if ($detect->isMobile())
+                                            @if (MobileDetect()->isMobile())
                                             <div class="alert alert-warning fade show mt-4" role="alert">
                                                 {{__('admin/common.about_mobile_warning')}}
                                             </div>
                                             @endif
-                                            <section id="team" class="team">
+                                            <section id="clients" class="clients">
                                                 <div class="container" data-aos="fade-up">
                                                     <header class="section-header">
-                                                        <h2 id="preview_section_name">{{ShowTextData($team_title, "section_name", __('admin/common.section_name_preview'))}}</h2>
-                                                        <p id="preview_title">{{ShowTextData($team_title, "title", __('admin/common.title_preview'))}}</p>
+                                                        <h2 id="preview_section_name">{{__('admin/common.section_name_preview')}}</h2>
+                                                        <p id="preview_title">{{__('admin/common.title_preview')}}</p>
                                                     </header>
-                                                    <div class="row gy-4" style="justify-content: center">
-                                                        @if (count($team_items) > 0)
-                                                            @foreach ($team_items as $team_item_local)
-                                                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                                                                    <div class="member">
-                                                                        <div class="member-img">
-                                                                            <img src="{{$team_item_local->image === "" ? asset('frontend/assets/img/team/team-2.jpg') : $team_item_local->image}}" class="img-fluid mem-img" alt="">
-                                                                            <div class="social">
-                                                                                <a href="{{$team_item_local->facebook_url}}" target="_blank"><i class="bi bi-facebook"></i></a>
-                                                                                {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
-                                                                                <a href="{{$team_item_local->instagram_url}}" target="_blank"><i class="bi bi-instagram"></i></a>
-                                                                                <a href="{{$team_item_local->telegram_url}}" target="_blank"><i class="bi bi-telegram"></i></a>
-                                                                                {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
-                                                                            </div>
-                                                                        </div>
-                                                                            <div class="member-info">
-                                                                            <h4>{{$team_item_local->name}}</h4>
-                                                                            <span>{{$team_item_local->work_title}}</span>
-                                                                            <p>{{$team_item_local->description}}</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-                                                        @else
-                                                            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                                                                <div class="member">
-                                                                    <div class="member-img">
-                                                                        <img src="{{asset('frontend/assets/img/team/team-1.jpg')}}" class="img-fluid mem-img" alt="">
-                                                                        <div class="social">
-                                                                            <a href=""><i class="bi bi-facebook"></i></a>
-                                                                            {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
-                                                                            <a href=""><i class="bi bi-instagram"></i></a>
-                                                                            <a href=""><i class="bi bi-telegram"></i></a>
-                                                                            {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="member-info">
-                                                                        <h4>{{__('admin/common.name_preview')}}</h4>
-                                                                        <span>{{__('admin/team/team.work_title_preview')}}</span>
-                                                                        <p>{{__('admin/common.description_preview')}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endif
+                                                    <div class="clients-slider swiper">
+                                                        <div class="{{count($client_items) > 6 ? "swiper-wrapper align-items-center" : "container-fluid little-item"}}">
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-1.png')}}" class="img-fluid" alt=""></div>
+                                                            {{-- <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-2.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-3.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-4.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-5.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-6.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-7.png')}}" class="img-fluid" alt=""></div>
+                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-8.png')}}" class="img-fluid" alt=""></div> --}}
+                                                        </div>
+                                                        <div class="swiper-pagination"></div>
                                                     </div>
                                                 </div>
                                             </section>

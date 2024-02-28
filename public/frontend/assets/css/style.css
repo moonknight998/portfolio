@@ -1454,7 +1454,7 @@ section {
   background: #fff;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
   transition: 0.3s;
-  width: 360px;
+  width: 300px;
 }
 
 .team .member .member-img {
@@ -1472,6 +1472,13 @@ section {
   background: url(../img/team-shape.svg) no-repeat center bottom;
   background-size: contain;
   z-index: 1;
+}
+
+.team .member .member-img .mem-img
+{
+    object-fit: cover;
+    width: 100%;
+    height: 300px; /*equal member width*/
 }
 
 .team .member .social {
@@ -1553,6 +1560,29 @@ section {
 .clients .clients-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
+}
+
+.clients .clients-slider .little-item
+{
+    display: flex;
+    justify-content: center;
+}
+
+.clients .clients-slider .little-item img
+{
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.clients .clients-slider .little-item img:hover
+{
+    opacity: 1;
+}
+
+.clients .clients-slider .little-item .image-container
+{
+    width: 18%;
+    padding: 20px;
 }
 
 .clients .clients-slider .swiper-pagination .swiper-pagination-bullet {

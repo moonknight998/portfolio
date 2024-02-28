@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Section\AboutController;
+use App\Http\Controllers\Admin\Section\Client\ClientItemController;
+use App\Http\Controllers\Admin\Section\Client\ClientTitleController;
 use App\Http\Controllers\Admin\Section\CountController;
 use App\Http\Controllers\Admin\Section\Faq\FaqItemController;
 use App\Http\Controllers\Admin\Section\Faq\FaqTitleController;
@@ -88,6 +90,8 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('team_title', TeamTitleController::class);
     Route::put('team_item/change-status', [TeamItemController::class, 'changeStatus'])->name('team_item.change-status');
     Route::resource('team_item', TeamItemController::class);
+    Route::resource('client_title', ClientTitleController::class);
+    Route::resource('client_item', ClientItemController::class);
 });
 
 require __DIR__.'/auth.php';
