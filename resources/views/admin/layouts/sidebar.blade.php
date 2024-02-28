@@ -87,7 +87,7 @@
                     <li class="nav-item"><a class="nav-link {{request()->is('*admin/testimonial_item*') ? 'active' : ''}}" href="{{route('admin.testimonial_item.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.testimonial_items')}}</a></li>
                 </ul>
             </li>
-            <li class="nav-group {{request()->is('*admin/team_title*') || request()->is('*admin/testimonial_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+            <li class="nav-group {{request()->is('*admin/team_title*') || request()->is('*admin/team_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
                 <svg class="nav-icon">
                   {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
                 </svg>{{__('admin/sidebar.team_section')}}</a>

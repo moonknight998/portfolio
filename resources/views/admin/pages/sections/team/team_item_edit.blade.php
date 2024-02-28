@@ -157,12 +157,12 @@
                                                                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                                                                     <div class="member">
                                                                         <div class="member-img">
-                                                                            <img id="preview_image" src="{{$team_item_local->image}}" class="img-fluid" alt="" style="object-fit:cover; width:261px; height:261px;">
+                                                                            <img id="preview_image" src="{{$team_item_local->image}}" class="img-fluid" alt="" style="object-fit:cover; width: 100%; height: 360px;">
                                                                             <div class="social">
-                                                                                <a id="preview_facebook_url" href="{{$team_item_local->facebook_url}}"><i class="bi bi-facebook"></i></a>
+                                                                                <a id="preview_facebook_url" href="{{$team_item_local->facebook_url}}" target="_blank"><i class="bi bi-facebook"></i></a>
                                                                                 {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
-                                                                                <a id="preview_instagram_url" href="{{$team_item_local->instagram_url}}"><i class="bi bi-instagram"></i></a>
-                                                                                <a id="preview_telegram_url" href="{{$team_item_local->telegram_url}}"><i class="bi bi-telegram"></i></a>
+                                                                                <a id="preview_instagram_url" href="{{$team_item_local->instagram_url}}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                                                                <a id="preview_telegram_url" href="{{$team_item_local->telegram_url}}" target="_blank"><i class="bi bi-telegram"></i></a>
                                                                                 {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                             </div>
                                                                         </div>
@@ -177,12 +177,12 @@
                                                                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                                                                     <div class="member">
                                                                         <div class="member-img">
-                                                                            <img src="{{$team_item_local->image === "" ? asset('frontend/assets/img/team/team-2.jpg') : $team_item_local->image}}" class="img-fluid" alt="" style="object-fit:cover; width:261px; height:261px;">
+                                                                            <img src="{{$team_item_local->image === "" ? asset('frontend/assets/img/team/team-2.jpg') : $team_item_local->image}}" class="img-fluid" alt="" style="object-fit:cover; width: 100%; height: 360px;">
                                                                             <div class="social">
-                                                                                <a href="{{$team_item_local->facebook_url}}"><i class="bi bi-facebook"></i></a>
+                                                                                <a href="{{$team_item_local->facebook_url}}" target="_blank"><i class="bi bi-facebook"></i></a>
                                                                                 {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
-                                                                                <a href="{{$team_item_local->instagram_url}}"><i class="bi bi-instagram"></i></a>
-                                                                                <a href="{{$team_item_local->telegram_url}}"><i class="bi bi-telegram"></i></a>
+                                                                                <a href="{{$team_item_local->instagram_url}}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                                                                <a href="{{$team_item_local->telegram_url}}" target="_blank"><i class="bi bi-telegram"></i></a>
                                                                                 {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                                                                             </div>
                                                                         </div>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.create_new')}}</button>
+                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.update')}}</button>
                                     </div>
                                 </div>
                             </div>

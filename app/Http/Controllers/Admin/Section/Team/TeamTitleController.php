@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Section\Team;
 
 use App\Http\Controllers\Controller;
+use App\Models\TeamItem;
 use App\Models\TeamTitle;
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class TeamTitleController extends Controller
     {
         $detect = new MobileDetect();
         $team_title = TeamTitle::first();
-        return view('admin.pages.sections.team.team_title_index', compact('detect', 'team_title'));
+        $team_items = TeamItem::all();
+        return view('admin.pages.sections.team.team_title_index', compact('detect', 'team_title', 'team_items'));
     }
 
     /**

@@ -144,7 +144,7 @@ class TestimonialItemController extends Controller
 
         $testimonial_item->name = $request->name;
         $testimonial_item->career = $request->career;
-        $testimonial_item->image = isset($imagePath) ? $imagePath : asset('frontend/assets/img/testimonials/testimonials-2.jpg');
+        $testimonial_item->image = isset($imagePath) ? $imagePath : $testimonial_item->image;
         $testimonial_item->rated = $request->rated;
         $testimonial_item->feedback = $request->feedback;
         $testimonial_item->status = $request->status;

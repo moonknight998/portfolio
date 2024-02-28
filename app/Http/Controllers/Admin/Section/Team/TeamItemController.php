@@ -64,14 +64,6 @@ class TeamItemController extends Controller
             return redirect()->route('admin.team_item.create', "#$key")->withErrors($validator)->withInput();
         }
 
-        // if($request->hasFile('image')){
-        //     $image = $request->file('image');
-        //     $imageName = rand().$image->getClientOriginalName();
-        //     $image->move(public_path('/uploads'), $imageName);
-
-        //     $imagePath = "/uploads/".$imageName;
-        // }
-
         $imagePath = HandleUpload('image', $team_item);
 
         $team_item->name = $request->name;
@@ -111,7 +103,42 @@ class TeamItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $team_item = TeamItem::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'name'=> ['required','string', 'max:200'],
+            'work_title'=> ['required','string', 'max:200'],
+            'description' => ['required', 'string', 'max:500'],
+            'image' => ['mimes:jpeg,bmp,png', 'max:2048'], //2MB max
+            'facebook_url' => ['url', 'max:250'],
+            'instagram_url' => ['url', 'max:250'],
+            'telegram_url' => ['url', 'max:250'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.team_item.edit', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $imagePath = HandleUpload('image', $team_item);
+
+        $team_item->name = $request->name;
+        $team_item->work_title = $request->work_title;
+        $team_item->description = $request->description;
+        $team_item->image = isset($imagePath) ? $imagePath : $team_item->image;
+        $team_item->facebook_url = $request->facebook_url;
+        $team_item->instagram_url = $request->instagram_url;
+        $team_item->telegram_url = $request->telegram_url;
+        $team_item->status = $request->status;
+        $team_item->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**

@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\app",
-    "\\app\\DataTables"
+    "\\app\\DataTables",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers",
+    "\\app\\Http\\Controllers\\Admin",
+    "\\app\\Http\\Controllers\\Admin\\Section",
+    "\\app\\Http\\Controllers\\Admin\\Section\\Team"
   ],
-  "SelectedNode": "\\app\\DataTables\\ValueCardDataTable.php",
+  "SelectedNode": "\\app\\Http\\Controllers\\Admin\\Section\\Team\\TeamTitleController.php",
   "PreviewInSolutionExplorer": false
 }

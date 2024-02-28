@@ -83,7 +83,7 @@ class TeamItemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')->width(50),
             // Column::make('index')->data('DT_RowIndex')->orderable(false)->searchable(false),
             Column::make('name')->title(__('admin/common.name'))->orderable(false)->searchable(false),
             Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
