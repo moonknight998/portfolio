@@ -54,4 +54,5 @@ return [
     'name_preview' => 'Name preview',
     'customer_name_placeholder' => 'Type your customer name',
     'star' => 'star',
+    'logo'=> 'Logo',
 ];

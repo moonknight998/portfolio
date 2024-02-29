@@ -91,6 +91,7 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::put('team_item/change-status', [TeamItemController::class, 'changeStatus'])->name('team_item.change-status');
     Route::resource('team_item', TeamItemController::class);
     Route::resource('client_title', ClientTitleController::class);
+    Route::put('client_item/change-status', [ClientItemController::class, 'changeStatus'])->name('client_item.change-status');
     Route::resource('client_item', ClientItemController::class);
 });
 

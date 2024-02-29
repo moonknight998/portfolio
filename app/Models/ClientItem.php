@@ -10,8 +10,8 @@ class ClientItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "logo",
-        "status",
+        'brand_name',
+        'logo',
+        'status',
     ];
 }

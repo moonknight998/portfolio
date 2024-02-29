@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('client_items', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("brand_name");
             $table->string("logo");
             $table->boolean("status");
             $table->timestamps();

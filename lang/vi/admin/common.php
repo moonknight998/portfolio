@@ -54,4 +54,5 @@ return [
     'name_preview' => 'Tên xem trước',
     'customer_name_placeholder' => 'Nhập tên khách hàng của bạn',
     'star' => 'sao',
+    'logo'=> 'Logo',
 ];

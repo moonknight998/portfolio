@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ClientItem;
 use App\Models\ClientTitle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClientTitleController extends Controller
 {
@@ -32,7 +33,29 @@ class ClientTitleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'section_name'=> ['required','string', 'max:200'],
+            'title'=> ['required','string', 'max:500'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.client_title.index', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $client_title = new ClientTitle();
+        $client_title->section_name = $request->section_name;
+        $client_title->title = $request->title;
+        $client_title->status = $request->status;
+        $client_title->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**
@@ -56,7 +79,30 @@ class ClientTitleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client_title = ClientTitle::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'section_name'=> ['required','string', 'max:200'],
+            'title'=> ['required','string', 'max:500'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.client_title.index', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $client_title->section_name = $request->section_name;
+        $client_title->title = $request->title;
+        $client_title->status = $request->status;
+        $client_title->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**

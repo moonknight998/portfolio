@@ -10,8 +10,8 @@ class ClientTitle extends Model
     use HasFactory;
 
     protected $fillable = [
-        "section_name",
-        "title",
-        "status",
+        'section_name',
+        'title',
+        'status',
     ];
 }
