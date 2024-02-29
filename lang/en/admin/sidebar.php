@@ -28,4 +28,6 @@ return [
     'team_items' => 'Team items',
     'client_section' => 'Client',
     'client_items' => 'Client items',
+    'blog_section' => 'Blog Section',
+    'category' => 'Category',
 ];

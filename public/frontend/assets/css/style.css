@@ -1572,6 +1572,7 @@ section {
 {
     opacity: 0.5;
     transition: 0.3s;
+    object-fit: contain;
 }
 
 .clients .clients-slider .little-item img:hover
@@ -1581,8 +1582,10 @@ section {
 
 .clients .clients-slider .little-item .image-container
 {
-    width: 18%;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    margin: 40px;
 }
 
 .clients .clients-slider .swiper-pagination .swiper-pagination-bullet {

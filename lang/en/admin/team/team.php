@@ -9,6 +9,7 @@ return [
     'section_name' => 'Section name',
     'all_team' => 'All team',
     'create_item' => 'Create new team item',
+    'edit_item' => 'Edit team item',
     'item_created' => 'Create new team item successfully!',
     'name' => 'Manager name',
     'name_placeholder' => 'Type manager name',

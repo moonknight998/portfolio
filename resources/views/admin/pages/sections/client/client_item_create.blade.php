@@ -98,15 +98,13 @@
                                                         <p>{{ShowTextData($client_title, 'title', __('admin/common.title_preview'))}}</p>
                                                     </header>
                                                     <div class="clients-slider swiper">
-                                                        <div class="{{count($client_items) > 6 ? "swiper-wrapper align-items-center" : "container-fluid little-item"}}">
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-1.png')}}" class="img-fluid" alt=""></div>
-                                                            {{-- <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-2.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-3.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-4.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-5.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-6.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-7.png')}}" class="img-fluid" alt=""></div>
-                                                            <div class="{{count($client_items) > 6 ? "swiper-slide" : "image-container"}}"><img src="{{asset('frontend/assets/img/clients/client-8.png')}}" class="img-fluid" alt=""></div> --}}
+                                                        <div class="{{count($client_items) > (MobileDetect()->isMobile() ? 0 : 4) ? "swiper-wrapper align-items-center" : "container-fluid little-item"}}">
+                                                            @if (count($client_items) > 0)
+                                                                @foreach ($client_items as $client_item_local)
+                                                                <div class="{{count($client_items) > (MobileDetect()->isMobile() ? 0 : 4) ? "swiper-slide" : "image-container"}}"><img src="{{$client_item_local->logo}}" class="img-fluid" alt="{{$client_item_local->brand_name}}"></div>
+                                                                @endforeach
+                                                            @endif
+                                                            <div class="{{count($client_items) > (MobileDetect()->isMobile() ? 0 : 4) ? "swiper-slide" : "image-container"}}"><img id="preview_logo" src="{{asset('frontend/assets/img/clients/preview-text-logo.png')}}" class="img-fluid" alt=""></div>
                                                         </div>
                                                         <div class="swiper-pagination"></div>
                                                     </div>

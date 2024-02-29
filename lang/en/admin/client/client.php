@@ -9,4 +9,6 @@ return [
     'item_created' => 'Create new client item successfully!',
     'brand_name'=> 'Company name(brand name)',
     'brand_name_placeholder'=> 'Type company name(brand name)',
+    'edit_item' => 'Edit client item',
+    'item_updated' => 'Update client item successfully!',
 ];

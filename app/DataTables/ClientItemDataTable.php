@@ -42,8 +42,14 @@ class ClientItemDataTable extends DataTable
                 }
                 return $button;
             })
+            ->addColumn('logo', function($query){
+                $logo = '<div class="container" style="display: flex; justify-content: center; width: 80px">
+                            <img class="img-thumbnail" src="'.$query->logo.'" style="object-fit: contain"></img>
+                            </div>';
+                return $logo;
+            })
             ->addIndexColumn()
-            ->rawColumns(['action','status'])
+            ->rawColumns(['action','status', 'logo'])
             ->setRowId('id');
     }
 
@@ -85,9 +91,10 @@ class ClientItemDataTable extends DataTable
         return [
             Column::make('id')->width(50),
             // Column::make('index')->data('DT_RowIndex')->orderable(false)->searchable(false),
-            Column::make('brand_name')->title(__('admin/client/client.brand_name'))->orderable(false)->searchable(false),
+            Column::make('brand_name')->width(750)->title(__('admin/client/client.brand_name'))->orderable(false)->searchable(false),
             // Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
-            Column::make('status')->title(__('admin/common.status'))->orderable(false)->searchable(false),
+            Column::make('logo')->title(__('admin/common.logo'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('admin/common.status'))->width(170)->orderable(false)->searchable(false)->addClass('text-center'),
             // Column::make('created_at')->title(__('admin/common.created_at')),
             // Column::make('updated_at')->title(__('admin/common.updated_at')),
             Column::computed('action')

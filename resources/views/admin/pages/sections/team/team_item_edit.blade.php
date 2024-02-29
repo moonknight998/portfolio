@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.team_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/team/team.create_item')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/team/team.edit_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,7 +24,7 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/team/team.create_item')}}</h2>
+                            <h2>{{__('admin/team/team.edit_item')}}</h2>
                         </div>
                         <form method="POST" action="{{route('admin.team_item.update', $team_item->id)}}" enctype="multipart/form-data">
                             @csrf

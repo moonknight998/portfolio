@@ -28,4 +28,6 @@ return [
     'team_items' => 'Các đội nhóm',
     'client_section' => 'Khách hàng',
     'client_items' => 'Các khách hàng',
+    'blog_section' => 'Blog',
+    'category' => 'Danh mục',
 ];

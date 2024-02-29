@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\ClientItem;
+use App\Models\ClientTitle;
 use App\Models\Count;
 use App\Models\Faq;
 use App\Models\FaqItem;
@@ -101,6 +103,18 @@ class HomeController extends Controller
             }
         }
         #endregion
+        #region Client
+        $client_title = ClientTitle::first();
+        $client_items = ClientItem::all();
+        $client_items_active = array();
+        foreach($client_items as $client_item_local)
+        {
+            if($client_item_local->status == 1)
+            {
+                array_push($client_items_active, $client_item_local);
+            }
+        }
+        #endregion
 
         return
             view('frontend.pages.home.home',
@@ -126,6 +140,8 @@ class HomeController extends Controller
                 'testimonial_items',
                 'team_title',
                 'team_items_active',
+                'client_title',
+                'client_items_active',
             )
         );
     }

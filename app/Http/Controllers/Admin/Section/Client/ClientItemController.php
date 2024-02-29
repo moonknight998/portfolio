@@ -61,7 +61,7 @@ class ClientItemController extends Controller
         $logoPath = HandleUpload('logo', $client_item);
 
         $client_item->brand_name = $request->brand_name;
-        $client_item->logo = isset($logoPath) ? $logoPath : asset('frontend/assets/img/clients/client-1.png');
+        $client_item->logo = isset($logoPath) ? $logoPath : asset('frontend/assets/img/clients/preview-text-logo.png');
         $client_item->status = $request->status;
         $client_item->save();
 
@@ -81,7 +81,10 @@ class ClientItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client_title = ClientTitle::first();
+        $client_items = ClientItem::all();
+        $client_item = ClientItem::findOrFail($id);
+        return view('admin.pages.sections.client.client_item_edit', compact('client_title', 'client_items', 'client_item'));
     }
 
     /**
@@ -89,7 +92,32 @@ class ClientItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client_item = ClientItem::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'brand_name'=> ['required','string', 'max:200'],
+            'logo' => ['mimes:jpeg,bmp,png', 'max:2048'], //2MB max
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.team_item.create', "#$key")->withErrors($validator)->withInput();
+        }
+
+        $logoPath = HandleUpload('logo', $client_item);
+
+        $client_item->brand_name = $request->brand_name;
+        $client_item->logo = isset($logoPath) ? $logoPath : $client_item->logo;
+        $client_item->status = $request->status;
+        $client_item->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**

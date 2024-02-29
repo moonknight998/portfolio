@@ -9,6 +9,7 @@ return [
     'section_name' => 'Tên thành phần',
     'all_team' => 'Tất cả đội nhóm',
     'create_item' => 'Tạo đội nhóm mới',
+    'edit_item' => 'Sửa đội nhóm',
     'item_created' => 'Tạo đội nhóm mới thành công!',
     'name' => 'Tên quản lý(hoặc giám đốc)',
     'name_placeholder' => 'Nhập tên người quản lý(hoặc giám đốc)',
