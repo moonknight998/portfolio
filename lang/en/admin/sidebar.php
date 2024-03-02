@@ -30,4 +30,6 @@ return [
     'client_items' => 'Client items',
     'blog_section' => 'Blog Section',
     'category' => 'Category',
+    'blog_post' => 'Blog post',
+    'thumbnail' => 'Thumbnail',
 ];

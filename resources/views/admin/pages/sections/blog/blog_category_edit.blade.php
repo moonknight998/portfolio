@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.team_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.create_item')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.update_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,10 +24,11 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/blog/blog.create_item')}}</h2>
+                            <h2>{{__('admin/blog/blog.update_item')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_category.store')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('admin.blog_category.update', $blog_category->id)}}" enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             <div class="card-body">
                                 <div class="example">
                                     <ul class="nav nav-tabs" role="tablist">
@@ -47,16 +48,16 @@
                                     <!--Edit Tab-->
                                     <div class="tab-content rounded-bottom" id="content_tab">
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
-                                        @if (session('status') === 'created')
+                                        @if (session('status') === 'updated')
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{__('admin/blog/blog.item_created')}}
+                                            {{__('admin/blog/blog.item_updated')}}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.category_name')}}</label>
                                             <input class="form-control" id="category_name" name="category_name" type="text" placeholder="{{__('admin/blog/blog.category_name_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_category_name')"></input>
+                                            onchange="loadDocument(event, 'preview_category_name')" value="{{$blog_category->category_name}}"></input>
                                             @if ($errors->has('category_name'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('category_name')}}</div>
@@ -88,7 +89,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.create_new')}}</button>
+                                        <button class="btn btn-primary mb-3" type="submit">{{__('admin/common.update')}}</button>
                                     </div>
                                 </div>
                             </div>

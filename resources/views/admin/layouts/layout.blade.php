@@ -327,21 +327,21 @@
 
         <!-- Summernote -->
         <script>
-            $('.summernote-full').summernote({
+            $('#summernote-full').summernote({
               placeholder: '{{__('admin/common.type_your_content')}}',
               tabsize: 2,
-              height: 120,
+              height: 360,
               toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
+                // ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+                // ['view', ['fullscreen', 'codeview', 'help']]
               ]
             });
-            $('.summernote-no-media').summernote({
+            $('#summernote-no-media').summernote({
               placeholder: '{{__('admin/common.type_your_content')}}',
               tabsize: 2,
               height: 120,

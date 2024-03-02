@@ -118,14 +118,26 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-group {{request()->is('*admin/blog_category*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+                <li class="nav-group {{request()->is('*admin/blog_category*') || request()->is('*admin/blog_title*') || request()->is('*admin/blog_post*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
                     <svg class="nav-icon">
                     {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
                     </svg>{{__('admin/sidebar.blog_section')}}</a>
                     <ul class="nav-group-items">
                         <li class="nav-item">
+                            <a class="nav-link {{request()->is('*admin/blog_title*') ? 'active' : ''}}" href="{{route('admin.blog_title.index')}}">
+                                <span class="nav-icon"></span>{{__('admin/blog/blog.blog_title')}}</a>
+                        </li>
+                    </ul>
+                    <ul class="nav-group-items">
+                        <li class="nav-item">
                             <a class="nav-link {{request()->is('*admin/blog_category*') ? 'active' : ''}}" href="{{route('admin.blog_category.index')}}">
                                 <span class="nav-icon"></span>{{__('admin/sidebar.category')}}</a>
+                        </li>
+                    </ul>
+                    <ul class="nav-group-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('*admin/blog_post*') ? 'active' : ''}}" href="{{route('admin.blog_post.index')}}">
+                                <span class="nav-icon"></span>{{__('admin/sidebar.blog_post')}}</a>
                         </li>
                     </ul>
                 </li>

@@ -30,4 +30,6 @@ return [
     'client_items' => 'Các khách hàng',
     'blog_section' => 'Blog',
     'category' => 'Danh mục',
+    'blog_post' => 'Các bài viết',
+    'thumbnail' => 'Hình thu nhỏ',
 ];

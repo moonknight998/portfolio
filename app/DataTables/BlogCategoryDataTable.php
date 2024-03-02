@@ -22,7 +22,28 @@ class BlogCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'blogcategory.action')
+            ->addColumn('action', function($query){
+                $editBtn = '<a href="'.route('admin.blog_category.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('admin.blog_category.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                return $editBtn.$deleteBtn;
+            })
+            ->addColumn('status', function($query){
+                if($query->status == 1)
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" checked data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                else
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                return $button;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
@@ -62,15 +83,17 @@ class BlogCategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            //Column::make('id')->width(50),
+            Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
+            Column::make('category_name')->title(__('admin/blog/blog.category_name'))->orderable(false)->searchable(false),
+            Column::make('slug')->title(__('Slug'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('admin/common.status'))->orderable(false)->searchable(false),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                  ->width(170)
+                  ->addClass('text-center')
+                  ->title(__('admin/common.action')),
         ];
     }
 

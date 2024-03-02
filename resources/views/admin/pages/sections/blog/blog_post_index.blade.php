@@ -10,7 +10,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.blog_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.categories')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.blog_posts')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -25,8 +25,8 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/blog/blog.all_category')}}</h2>
-                            <a href="{{route('admin.blog_category.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
+                            <h2>{{__('admin/blog/blog.all_blog_post')}}</h2>
+                            <a href="{{route('admin.blog_post.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="card-body">
                             {{$dataTable->table()}}
@@ -55,7 +55,7 @@
                 });
 
                 $.ajax({
-                url: "{{route('admin.blog_category.change-status')}}",
+                url: "{{route('admin.client_item.change-status')}}",
                 type: 'PUT',
                 data:{
                     "status": isChecked,

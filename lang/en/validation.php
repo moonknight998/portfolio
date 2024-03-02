@@ -195,6 +195,7 @@ return [
         'button_text'=> 'Button text',
         'title'=> 'Title',
         'summary'=> 'Summary',
+        'category_name' => 'Category name',
     ],
 
 ];

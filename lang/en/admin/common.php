@@ -55,4 +55,5 @@ return [
     'customer_name_placeholder' => 'Type your customer name',
     'star' => 'star',
     'logo'=> 'Logo',
+    'index' => 'Index',
 ];

@@ -55,4 +55,5 @@ return [
     'customer_name_placeholder' => 'Nhập tên khách hàng của bạn',
     'star' => 'sao',
     'logo'=> 'Logo',
+    'index' => 'Số thứ tự',
 ];

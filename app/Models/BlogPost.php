@@ -5,13 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model
+class BlogPost extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'category_name',
-        'slug',
-        'status',
-    ];
 }

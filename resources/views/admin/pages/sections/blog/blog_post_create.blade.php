@@ -8,8 +8,8 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item"><a>{{__('admin/sidebar.team_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.create_item')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.blog_section')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.create_post')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,9 +24,9 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>{{__('admin/blog/blog.create_item')}}</h2>
+                            <h2>{{__('admin/blog/blog.create_post')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_category.store')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('admin.blog_post.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="example">
@@ -49,17 +49,55 @@
                                       <div class="tab-pane p-3 active preview" role="tabpanel" >
                                         @if (session('status') === 'created')
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{__('admin/blog/blog.item_created')}}
+                                            {{__('admin/blog/blog.post_created')}}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.category_name')}}</label>
-                                            <input class="form-control" id="category_name" name="category_name" type="text" placeholder="{{__('admin/blog/blog.category_name_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_category_name')"></input>
-                                            @if ($errors->has('category_name'))
+                                            <label class="form-label">{{__('admin/blog/blog.post_title')}}</label>
+                                            <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
+                                            onchange="loadDocument(event, 'preview_post_title)"></input>
+                                            @if ($errors->has('post_title'))
                                                 <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('category_name')}}</div>
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_title')}}</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">{{__('admin/sidebar.thumbnail')}}</label>
+                                            <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')">
+                                            @if ($errors->has('thumbnail'))
+                                                <div class="row mb-0">
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('thumbnail')}}</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
+                                            <textarea class="form-control" rows="5" id="summernote-full" name="post_content" type="text"
+                                            onchange="loadDocument(event, 'preview_post_content')"
+                                            onkeypress="detectEnterline(event, 'post_content'); loadDocument(event, 'preview_post_content')"></textarea>
+                                            @if ($errors->has('post_content'))
+                                                <div class="row mb-0">
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">{{__('admin/blog/blog.categories')}}</label>
+                                            <select class="form-select" name="blog_category">
+                                                @foreach ($blog_categories as $blog_category)
+                                                    <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">{{__('admin/blog/blog.post_author')}}</label>
+                                            <input class="form-control" name="post_author" type="text" placeholder="{{__('admin/blog/blog.post_author_placeholder')}}"
+                                            onchange="loadDocument(event, 'preview_post_author)"></input>
+                                            @if ($errors->has('post_author'))
+                                                <div class="row mb-0">
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_author')}}</div>
                                                 </div>
                                             @endif
                                         </div>

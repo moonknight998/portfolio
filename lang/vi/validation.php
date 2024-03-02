@@ -196,6 +196,7 @@ return [
         'button_text'=> 'Tên nút',
         'title'=> 'Tiêu đề',
         'summary'=> 'Tóm tắt',
+        'category_name' => 'Tên danh mục',
     ],
 
 ];
