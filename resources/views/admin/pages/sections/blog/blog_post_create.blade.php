@@ -72,11 +72,20 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div class="form-group mb-3">
+                                        {{-- <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
-                                            <textarea class="form-control" rows="5" id="summernote-full" name="post_content" type="text"
+                                            <textarea class="form-control" rows="5" id="summernote-post" name="post_content" type="text"
                                             onchange="loadDocument(event, 'preview_post_content')"
                                             onkeypress="detectEnterline(event, 'post_content'); loadDocument(event, 'preview_post_content')"></textarea>
+                                            @if ($errors->has('post_content'))
+                                                <div class="row mb-0">
+                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
+                                                </div>
+                                            @endif
+                                        </div> --}}
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
+                                            <textarea class="form-control" rows="5" id="ckeditor5" name="post_content" type="text"></textarea>
                                             @if ($errors->has('post_content'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
@@ -361,5 +370,5 @@
     </div>
 </div>
 <!--End Main Part-->
-
+@include('admin.pages.sections.blog.blog_post_ckeditor5')
 @endsection

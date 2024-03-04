@@ -16,6 +16,7 @@
         ],
         callbacks: {
         onChange: function(contents, $editable) {
+            console.log(contents);
             $('#preview_post_content').html(contents);
         }
         }
