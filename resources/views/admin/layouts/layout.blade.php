@@ -1,10 +1,4 @@
-<!DOCTYPE html><!--
-    * CoreUI - Free Bootstrap Admin Template
-    * @version v4.2.2
-    * @link https://coreui.io/product/free-bootstrap-admin-template/
-    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
-    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
-    --><!-- Breadcrumb-->
+<!DOCTYPE html>
     <html lang="en">
       <head>
         <base href="./">
@@ -42,6 +36,9 @@
         <!-- Vendors styles-->
         <link rel="stylesheet" href="{{asset('backend/assets/vendors/simplebar/css/simplebar.css')}}">
         <link rel="stylesheet" href="{{asset('backend/assets/css/vendors/simplebar.css')}}">
+
+        <!-- Google Material Icons-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <!-- This is style for datatable but it'll override main styles below if you move this line below main styles-->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

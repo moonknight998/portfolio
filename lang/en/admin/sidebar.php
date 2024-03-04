@@ -32,4 +32,5 @@ return [
     'category' => 'Category',
     'blog_post' => 'Blog post',
     'thumbnail' => 'Thumbnail',
+    'post' => 'Post',
 ];

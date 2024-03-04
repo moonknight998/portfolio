@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.create_post')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_post.store')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('blog.blog_post.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="example">
@@ -56,7 +56,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_title')}}</label>
                                             <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_title)"></input>
+                                            onchange="loadDocument(event, 'preview_post_title')"></input>
                                             @if ($errors->has('post_title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_title')}}</div>
@@ -84,7 +84,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.categories')}}</label>
+                                            <label class="form-label">{{__('admin/blog/blog.categories_required')}}</label>
                                             <select class="form-select" name="category_id">
                                                 @foreach ($blog_categories as $blog_category)
                                                     <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
@@ -127,35 +127,36 @@
                                                 <div class="col-lg-8 entries">
                                                     <article class="entry entry-single">
                                                         <div class="entry-img">
-                                                        <img id="preview_thumbnail" src="{{asset('frontend/assets/img/blog/blog-1.jpg')}}" alt="" class="img-fluid">
+                                                            <img id="preview_thumbnail" src="{{asset('frontend/assets/img/blog/blog-1.jpg')}}" alt="" class="img-fluid">
                                                         </div>
-                                                        <h2 class="entry-title">
-                                                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                                                            <h2 class="entry-title">
+                                                            <a id="preview_post_title">{{__('admin/blog/blog.post_title_preview')}}</a>
                                                         </h2>
                                                         <div class="entry-meta">
-                                                        <ul>
-                                                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-                                                        </ul>
+                                                            <ul>
+                                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a id="preview_post_author">{{__('admin/blog/blog.post_author_preview')}}</a></li>
+                                                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a ><time>{{date('d-m-Y')}}</time></a></li>
+                                                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="create#blog-comments">12 {{__('admin/blog/blog.comments')}}</a></li>
+                                                            </ul>
                                                         </div>
-                                                        <div class="entry-content">
-                                                        
+                                                        <div id="preview_post_content" class="entry-content">
+                                                            <p>{{__('admin/blog/blog.post_content_preview')}}</p>
+                                                            <!--Post content-->
                                                         </div>
                                                         <div class="entry-footer">
-                                                        <i class="bi bi-folder"></i>
-                                                        <ul class="cats">
-                                                            <li><a href="#">Business</a></li>
-                                                        </ul>
-                                                        <i class="bi bi-tags"></i>
-                                                        <ul class="tags">
-                                                            <li><a href="#">Creative</a></li>
-                                                            <li><a href="#">Tips</a></li>
-                                                            <li><a href="#">Marketing</a></li>
-                                                        </ul>
+                                                            <i class="bi bi-folder"></i>
+                                                            <ul class="cats">
+                                                                <li><a id="preview_category">{{$blog_categories[0]->category_name}}</a></li>
+                                                            </ul>
+                                                            {{-- <i class="bi bi-tags"></i>
+                                                            <ul class="tags">
+                                                                <li><a href="#">Creative</a></li>
+                                                                <li><a href="#">Tips</a></li>
+                                                                <li><a href="#">Marketing</a></li>
+                                                            </ul> --}}
                                                         </div>
                                                     </article><!-- End blog entry -->
-                                                    <div class="blog-author d-flex align-items-center">
+                                                    <div id="blog-author" class="blog-author d-flex align-items-center">
                                                         <img src="{{asset('frontend/assets/img/blog/blog-author.jpg')}}" class="rounded-circle float-left" alt="">
                                                         <div>
                                                         <h4>Jane Smith</h4>
@@ -169,7 +170,7 @@
                                                         </p>
                                                         </div>
                                                     </div><!-- End blog author bio -->
-                                                    <div class="blog-comments">
+                                                    <div id="blog-comments" class="blog-comments">
                                                         <h4 class="comments-count">8 Comments</h4>
                                                         <div id="comment-1" class="comment">
                                                         <div class="d-flex">
@@ -203,9 +204,9 @@
                                                                 <time datetime="2020-01-01">01 Jan, 2020</time>
                                                                 <p>
                                                                 Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-                                            
+
                                                                 Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-                                            
+
                                                                 Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
                                                                 </p>
                                                             </div>
@@ -286,18 +287,15 @@
                                                         <button type="submit"><i class="bi bi-search"></i></button>
                                                       </form>
                                                     </div><!-- End sidebar search formn-->
-                                                    <h3 class="sidebar-title">Categories</h3>
+                                                    <h3 class="sidebar-title">{{__("admin/blog/blog.categories")}}</h3>
                                                     <div class="sidebar-item categories">
                                                       <ul>
-                                                        <li><a href="#">General <span>(25)</span></a></li>
-                                                        <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                                        <li><a href="#">Travel <span>(5)</span></a></li>
-                                                        <li><a href="#">Design <span>(22)</span></a></li>
-                                                        <li><a href="#">Creative <span>(8)</span></a></li>
-                                                        <li><a href="#">Educaion <span>(14)</span></a></li>
+                                                        @foreach ($blog_categories as $blog_category)
+                                                            <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
+                                                        @endforeach
                                                       </ul>
                                                     </div><!-- End sidebar categories-->
-                                                    <h3 class="sidebar-title">Recent Posts</h3>
+                                                    <h3 class="sidebar-title">{{__("admin/blog/blog.recent_posts")}}</h3>
                                                     <div class="sidebar-item recent-posts">
                                                       <div class="post-item clearfix">
                                                         <img src="{{asset('frontend/assets/img/blog/blog-recent-1.jpg')}}" alt="">

@@ -23,8 +23,8 @@ class BlogPostDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $editBtn = '<a href="'.route('admin.blog_post.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
-                $deleteBtn = '<a href="'.route('admin.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                $editBtn = '<a href="'.route('blog.blog_post.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('blog.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
                 return $editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){

@@ -154,7 +154,7 @@
                                                         @if (count($team_items) > 0)
                                                             @foreach ($team_items as $team_item_local)
                                                                 @if ($team_item_local->id == $team_item->id)
-                                                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                                                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="justify-content: center" data-aos="fade-up" data-aos-delay="100">
                                                                     <div class="member">
                                                                         <div class="member-img">
                                                                             <img id="preview_image" src="{{$team_item_local->image}}" class="img-fluid mem-img" alt="">
@@ -174,7 +174,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @else
-                                                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                                                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="justify-content: center" data-aos="fade-up" data-aos-delay="200">
                                                                     <div class="member">
                                                                         <div class="member-img">
                                                                             <img src="{{$team_item_local->image === "" ? asset('frontend/assets/img/team/team-2.jpg') : $team_item_local->image}}" class="img-fluid mem-img" alt="">

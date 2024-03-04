@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.blog_section')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.edit_item')}}</a></li>    
+            <li class="breadcrumb-item active"><a>{{__('admin/blog/blog.edit_item')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.edit_item')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_post.update', $blog_post->id)}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('blog.blog_post.update', $blog_post->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="card-body">
@@ -201,9 +201,9 @@
                                                                     <time datetime="2020-01-01">01 Jan, 2020</time>
                                                                     <p>
                                                                     Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-                                                
+
                                                                     Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-                                                
+
                                                                     Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
                                                                     </p>
                                                                 </div>
@@ -287,7 +287,7 @@
                                                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                                                         <div class="sidebar-item categories">
                                                             <ul>
-                                                                @foreach ($blog_categories as $blog_category)                                                                
+                                                                @foreach ($blog_categories as $blog_category)
                                                                     <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
                                                                 @endforeach
                                                             </ul>

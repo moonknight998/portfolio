@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.update_item')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_category.update', $blog_category->id)}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('blog.blog_category.update', $blog_category->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="card-body">

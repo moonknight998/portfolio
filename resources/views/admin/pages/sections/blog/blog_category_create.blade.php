@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.create_item')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('admin.blog_category.store')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('blog.blog_category.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="example">

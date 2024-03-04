@@ -26,7 +26,7 @@
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.all_category')}}</h2>
-                            <a href="{{route('admin.blog_category.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
+                            <a href="{{route('blog.blog_category.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="card-body">
                             {{$dataTable->table()}}
@@ -55,7 +55,7 @@
                 });
 
                 $.ajax({
-                url: "{{route('admin.blog_category.change-status')}}",
+                url: "{{route('blog.blog_category.change-status')}}",
                 type: 'PUT',
                 data:{
                     "status": isChecked,
