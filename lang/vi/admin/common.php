@@ -56,4 +56,5 @@ return [
     'star' => 'sao',
     'logo'=> 'Logo',
     'index' => 'Số thứ tự',
+    'search' => 'Tìm kiếm',
 ];

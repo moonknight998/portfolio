@@ -70,17 +70,8 @@ class HomeController extends Controller
         #region F.A.Q
         //Faq title
         $faq_title = Faq::first();
-        //Faq items
-        $faq_items = FaqItem::all();
         //Faq active items
-        $faq_items_active = array();
-        foreach($faq_items as $faq_item_local)
-        {
-            if ($faq_item_local->status == 1)
-            {
-                array_push($faq_items_active, $faq_item_local);
-            }
-        }
+        $faq_items_active = FaqItem::all()->where('status', 1);
         #endregion
         #region Testimonial
         //Testimonial title
@@ -91,29 +82,12 @@ class HomeController extends Controller
         #region Team
         //Team title
         $team_title = TeamTitle::first();
-        //Team items
-        $team_items = TeamItem::all();
         //Team active items
-        $team_items_active = array();
-        foreach($team_items as $team_item_local)
-        {
-            if($team_item_local->status == 1)
-            {
-                array_push($team_items_active, $team_item_local);
-            }
-        }
+        $team_items_active = TeamItem::all()->where('status', 1);
         #endregion
         #region Client
         $client_title = ClientTitle::first();
-        $client_items = ClientItem::all();
-        $client_items_active = array();
-        foreach($client_items as $client_item_local)
-        {
-            if($client_item_local->status == 1)
-            {
-                array_push($client_items_active, $client_item_local);
-            }
-        }
+        $client_items_active = ClientItem::all()->where('status', 1);
         #endregion
 
         return

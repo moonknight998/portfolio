@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class BlogPostController extends Controller
@@ -33,10 +34,8 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-        $blog_post = new BlogPost();
-
         $validator = Validator::make($request->all(), [
-            'title'=> ['required', 'string', 'max:250',],
+            'post_title'=> ['required', 'string',],
             'thumbnail' => ['required', 'mimes:jpg,jpeg,png', 'max:2048'],
             'post_content' => ['required'],
             'category_id' => [
@@ -61,51 +60,52 @@ class BlogPostController extends Controller
             return redirect()->route('admin.blog_post.create', "#$key")->withErrors($validator)->withInput();
         }
 
-        $post_content = $request->post_content;
-
-        // Create a new DOMDocument object
-        $dom = new \DOMDocument();
-
-        // Load HTML content from the request into the DOMDocument object, with specific options
-        $dom->loadHtml($post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        // Get all the 'img' elements from the loaded HTML
-        $images = $dom->getElementsByTagName('img');
-
-        // Iterate through each image element
-        foreach ($images as $item => $image) {
-            // Get the 'src' attribute value of the image
-            $data = $image->getAttribute('src');
-
-            // Check if the 'src' attribute value starts with 'data:image'
-            if (strpos($data, 'data:image') === 0) {
-                // Split the 'data' part from the 'data:image' format
-                list($type, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
-
-                // Decode the base64 encoded data
-                $data = base64_decode($data);
-
-                // Generate a unique image name and path
-                $image_name= "/upload/".time().$item.'.png';
-                $path = public_path().$image_name;
-
-                // Save the decoded data to the specified path
-                file_put_contents($path, $data);
-
-                // Remove the 'src' attribute from the image
-                $image->removeAttribute('src');
-
-                // Set the 'src' attribute to the new image path
-                $image->setAttribute('src', $image_name);
-            }
-        }
-
-        $post_content = $dom->saveHTML();
-
+        $blog_post = new BlogPost();
+        
         $thumbnailPath = HandleUpload('thumbnail', $blog_post);
 
-        $blog_post->title = $request->title;
+        // Get the post content from the request
+        $post_content = $request->post_content;
+        
+        // Create a new DOMDocument and load the post content
+        $dom = new \DOMDocument();
+        $dom->loadHTML('<meta charset="utf8">'.$post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING);
+        
+        // Get all image elements from the DOM
+        $image_elements = $dom->getElementsByTagName('img');
+        
+        // Iterate through each image element
+        foreach ($image_elements as $image_element)
+        {
+            // Get the source and data-filename attributes
+            $src = $image_element->getAttribute('src');
+            $image_upload_name = $image_element->getAttribute('data-filename');
+        
+            // Extract the base64 image data
+            if(strpos($src, ';') !== false) // Check if the ';' character exists in the $src string
+            {
+                list($type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list(, $src) = explode(',', $src); // Explode the string by comma and assign the second element to $src
+                $image_scr = base64_decode($src); // Decode the base64 encoded image source
+            
+                // Generate a unique image name and path
+                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.$image_upload_name;
+                $image_path = public_path($image_name);
+            
+                // Save the image to the specified path
+                file_put_contents($image_path, $image_scr);
+            
+                // Remove the src attribute and set it to the new image path
+                $image_element->removeAttribute('src');
+                $image_element->setAttribute('src', $image_name);
+                $src = $image_element->getAttribute('src');
+            }
+        }
+        
+        // Save the modified HTML content
+        $post_content = $dom->saveXML($dom->documentElement, LIBXML_NOEMPTYTAG);;
+        
+        $blog_post->post_title = $request->post_title;
         $blog_post->thumbnail = $thumbnailPath;
         $blog_post->post_content = $post_content;
         $blog_post->category_id = $request->category_id;
@@ -129,7 +129,9 @@ class BlogPostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $blog_categories = BlogCategory::all();
+        $blog_post = BlogPost::findOrFail($id);
+        return view('admin.pages.sections.blog.blog_post_edit', compact('blog_categories', 'blog_post'));
     }
 
     /**
@@ -137,7 +139,146 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $blog_post = BlogPost::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'post_title'=> ['required', 'string',],
+            // 'thumbnail' => ['required', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'post_content' => ['required'],
+            'category_id' => [
+                // The field is required
+                'required',
+                // The field must be a number
+                'numeric',
+                // The field value must exist in the blog_categories table under the id column
+                'exists:blog_categories,id'
+            ],
+            'post_author' => ['required', 'string', 'max:250'],
+            'status' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            $key = '';
+            foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+            {
+                $key = $keyError;
+                break;
+            }
+            return redirect()->route('admin.blog_post.edit', "#$key")->withErrors($validator)->withInput();
+        }
+
+        
+        $thumbnailPath = HandleUpload('thumbnail', $blog_post);
+
+        // Retrieve the post content from the $blog_post object
+        $post_content_present = $blog_post->post_content;
+
+        // Create a new DOMDocument object
+        $dom_present = new \DOMDocument();
+        
+        // Load HTML content into the DOMDocument object with specified options
+        $dom_present->loadHTML($post_content_present, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING);
+
+        // Get all image elements present in the DOM
+        $image_elements_present = $dom_present->getElementsByTagName('img');
+        // Initialize an empty array to store the paths of the present images
+        $image_paths_present = array();
+
+        foreach ($image_elements_present as $image_element_present) 
+        {
+            // Get the 'src' attribute of the image element and add it to the $image_paths_present array
+            $image_paths_present[] = $image_element_present->getAttribute('src');
+        }
+        // Initialize an empty array to hold the image paths to delete
+        $image_paths_to_delete = array();
+
+        // Get the post content from the request
+        $post_content_to_update = $request->post_content;
+        
+        // Create a new DOMDocument and load the post content
+        $dom_to_update = new \DOMDocument();
+
+        // Load HTML content into the DOMDocument object with specified options
+        $dom_to_update->loadHTML('<meta charset="utf8">'.$post_content_to_update, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING);
+        
+        // Get all image elements from the DOM
+        $image_elements = $dom_to_update->getElementsByTagName('img');
+        
+        // Iterate through each image element
+        foreach ($image_elements as $image_element)
+        {
+            // Get the source and data-filename attributes
+            $src = $image_element->getAttribute('src');
+            $image_upload_name = $image_element->getAttribute('data-filename');
+        
+            // Extract the base64 image data
+            if(strpos($src, ';') !== false) // Check if the ';' character exists in the $src string
+            {
+                list($type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list(, $src) = explode(',', $src); // Explode the string by comma and assign the second element to $src
+                $image_scr = base64_decode($src); // Decode the base64 encoded image source
+            
+                // Generate a unique image name and path
+                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.$image_upload_name;
+                $image_path = public_path($image_name);
+            
+                // Save the image to the specified path
+                file_put_contents($image_path, $image_scr);
+            
+                // Remove the src attribute and set it to the new image path
+                $image_element->removeAttribute('src');
+                $image_element->setAttribute('src', $image_name);
+                $src = $image_element->getAttribute('src');
+            }
+        }
+        
+        // Save the modified HTML content
+        $post_content_to_update = $dom_to_update->saveXML($dom_to_update->documentElement, LIBXML_NOEMPTYTAG);
+
+        // Get all image elements after conversion
+        $image_elements_after_convert = $dom_to_update->getElementsByTagName('img');
+
+        //Define an empty array to store source paths
+        $src_path = array();
+
+        // Iterate through each image element after conversion
+        foreach ($image_elements_after_convert as $image_element_after_convert)
+        {
+            // Get the 'src' attribute of the image element and add it to the src_path array
+            $src_path[] = $image_element_after_convert->getAttribute('src');
+        }
+
+        // Iterate through the array of image paths present
+        foreach ($image_paths_present as $image_path_present)
+        {
+            // Check if the image element's src attribute is not present in the array of image paths
+            if(!in_array($image_path_present, $src_path))
+            {
+                // If not present, add the image path to the array of paths to delete
+                $image_paths_to_delete[] = $image_path_present;
+            }
+        }
+
+        // Iterate through the array of image paths to delete
+        foreach ($image_paths_to_delete as $image_path_to_delete)
+        {
+            // Check if the file exists
+            if(File::exists(public_path($image_path_to_delete)))
+            {
+                // If the file exists, delete it
+                File::delete(public_path($image_path_to_delete));
+            }
+        }
+        
+        $blog_post->post_title = $request->post_title;
+        $blog_post->thumbnail = isset($thumbnailPath) ? $thumbnailPath : $blog_post->thumbnail;
+        $blog_post->post_content = $post_content_to_update;
+        $blog_post->category_id = $request->category_id;
+        $blog_post->post_author = $request->post_author;
+        $blog_post->status = $request->status;
+        $blog_post->save();
+
+        return redirect()->back()->with('status', 'updated');
     }
 
     /**

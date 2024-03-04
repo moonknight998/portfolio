@@ -21,4 +21,6 @@ return [
     'post_content' => 'Post content',
     'post_author' => 'Post author',
     'post_author_placeholder' => 'Type post author',
+    'edit_item' => 'Edit post',
+    'post_updated' => 'Update post successfully!',
 ];

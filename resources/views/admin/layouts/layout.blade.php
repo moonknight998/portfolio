@@ -325,7 +325,7 @@
             });
         </script>
 
-        <!-- Summernote -->
+        <!-- Summernote for all page but not using anymore -->
         <script>
             $('#summernote-full').summernote({
               placeholder: '{{__('admin/common.type_your_content')}}',
@@ -336,20 +336,9 @@
                 ['font', ['bold', 'underline', 'clear']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                // ['table', ['table']],
+                ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
-                // ['view', ['fullscreen', 'codeview', 'help']]
-              ]
-            });
-            $('#summernote-no-media').summernote({
-              placeholder: '{{__('admin/common.type_your_content')}}',
-              tabsize: 2,
-              height: 120,
-              toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
+                ['view', ['fullscreen', 'codeview', 'help']]
               ]
             });
         </script>

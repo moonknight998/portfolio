@@ -22,7 +22,34 @@ class BlogPostDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'blogpost.action')
+            ->addColumn('action', function($query){
+                $editBtn = '<a href="'.route('admin.blog_post.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
+                $deleteBtn = '<a href="'.route('admin.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                return $editBtn.$deleteBtn;
+            })
+            ->addColumn('status', function($query){
+                if($query->status == 1)
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" checked data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                else
+                {
+                    $button = '<div class="form-check form-switch">
+                                <input class="form-check-input change-status" data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                </div>';
+                }
+                return $button;
+            })
+            ->addColumn('thumbnail', function($query){
+                $logo = '<div class="container" style="display: flex; justify-content: center; width: 80px">
+                            <img class="img-thumbnail" src="'.$query->thumbnail.'" style="object-fit: contain"></img>
+                            </div>';
+                return $logo;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action','status', 'thumbnail'])
             ->setRowId('id');
     }
 
@@ -62,15 +89,20 @@ class BlogPostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            // Column::make('id')->width(50),
+            Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
+            Column::make('post_title')->width(750)->title(__('admin/blog/blog.post_title'))->orderable(false)->searchable(false),
+            // Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
+            Column::make('thumbnail')->title(__('admin/sidebar.thumbnail'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('admin/common.status'))->width(170)->orderable(false)->searchable(false)->addClass('text-center'),
+            // Column::make('created_at')->title(__('admin/common.created_at')),
+            // Column::make('updated_at')->title(__('admin/common.updated_at')),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                  ->width(170)
+                  ->addClass('text-center')
+                  ->title(__('admin/common.action')),
         ];
     }
 

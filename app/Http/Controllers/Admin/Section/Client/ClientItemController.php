@@ -107,7 +107,7 @@ class ClientItemController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.team_item.create', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('admin.client_item.edit', "#$key")->withErrors($validator)->withInput();
         }
 
         $logoPath = HandleUpload('logo', $client_item);

@@ -90,7 +90,18 @@ var expandable = function(event, expandContentId)
 
 var loadDocument = function(event, previewId) {
     var preview = document.getElementById(previewId);
+    console.log(event.target.value);
     preview.innerHTML = event.target.value;
+};
+
+var loadDocumentInnerHTML = function(event, previewId) {
+    var preview = document.getElementById(previewId);
+    preview.innerHTML = event.target.innerHTML;
+};
+
+var loadDocumentOption = function(event, previewId) {
+    var preview = document.getElementById(previewId);
+    preview.innerHTML = event.target.options[event.target.selectedIndex].text;
 };
 
 var changeAttribute = function(event, previewId, attributeName)

@@ -21,4 +21,6 @@ return [
     'post_content' => 'Nội dung bài viết',
     'post_author' => 'Tên người viết bài',
     'post_author_placeholder' => 'Nhập tên người viết bài',
+    'edit_item' => 'Sửa bài viết',
+    'post_updated' => 'Cập nhật bài viết thành công!',
 ];

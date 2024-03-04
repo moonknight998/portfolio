@@ -56,4 +56,5 @@ return [
     'star' => 'star',
     'logo'=> 'Logo',
     'index' => 'Index',
+    'search' => 'Search',
 ];
