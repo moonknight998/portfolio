@@ -57,4 +57,6 @@ return [
     'logo'=> 'Logo',
     'index' => 'Index',
     'search' => 'Search',
+    'thumbnail' => 'Thumbnail',
+    'thumbnail_required' => 'Thumbnail(*)',
 ];

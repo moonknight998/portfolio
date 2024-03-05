@@ -31,6 +31,5 @@ return [
     'blog_section' => 'Blog',
     'category' => 'Danh mục',
     'blog_post' => 'Các bài viết',
-    'thumbnail' => 'Hình thu nhỏ',
     'post' => 'Bài viết',
 ];

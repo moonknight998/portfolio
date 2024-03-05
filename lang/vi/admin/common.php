@@ -57,4 +57,6 @@ return [
     'logo'=> 'Logo',
     'index' => 'Số thứ tự',
     'search' => 'Tìm kiếm',
+    'thumbnail' => 'Hình thu nhỏ',
+    'thumbnail_required' => 'Hình thu nhỏ(*)',
 ];

@@ -79,17 +79,17 @@ class BlogPostController extends Controller
         {
             // Get the source and data-filename attributes
             $src = $image_element->getAttribute('src');
-            $image_upload_name = $image_element->getAttribute('data-filename');
 
             // Extract the base64 image data
             if(strpos($src, ';') !== false) // Check if the ';' character exists in the $src string
             {
-                list($type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list($data_type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list(, $type) = explode('/', $data_type); // Explode the string by '/' and assign the second part to $type
                 list(, $src) = explode(',', $src); // Explode the string by comma and assign the second element to $src
                 $image_scr = base64_decode($src); // Decode the base64 encoded image source
 
                 // Generate a unique image name and path
-                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.$image_upload_name;
+                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.uniqid().'.'.$type;
                 $image_path = public_path($image_name);
 
                 // Save the image to the specified path
@@ -103,7 +103,7 @@ class BlogPostController extends Controller
         }
 
         // Save the modified HTML content
-        $post_content = $dom->saveXML($dom->documentElement, LIBXML_NOEMPTYTAG);;
+        $post_content = $dom->saveXML($dom->documentElement, LIBXML_NOEMPTYTAG);
 
         $blog_post->post_title = $request->post_title;
         $blog_post->thumbnail = $thumbnailPath;
@@ -207,19 +207,19 @@ class BlogPostController extends Controller
         // Iterate through each image element
         foreach ($image_elements as $image_element)
         {
-            // Get the source and data-filename attributes
+            // Get the source attribute
             $src = $image_element->getAttribute('src');
-            $image_upload_name = $image_element->getAttribute('data-filename');
 
             // Extract the base64 image data
             if(strpos($src, ';') !== false) // Check if the ';' character exists in the $src string
             {
-                list($type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list($data_type, $src) = explode(';', $src); // Explode the $src string by the ';' delimiter and assign the first part to $type and the second part to $src
+                list(, $type) = explode('/', $data_type); // Explode the string by '/' and assign the second part to $type
                 list(, $src) = explode(',', $src); // Explode the string by comma and assign the second element to $src
                 $image_scr = base64_decode($src); // Decode the base64 encoded image source
 
                 // Generate a unique image name and path
-                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.$image_upload_name;
+                $image_name = '/uploads/blogs/'.date("H_i_s").'_'.date('d_m_Y').'_'.uniqid().'.'.$type;
                 $image_path = public_path($image_name);
 
                 // Save the image to the specified path

@@ -93,7 +93,7 @@ class BlogPostDataTable extends DataTable
             Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
             Column::make('post_title')->width(750)->title(__('admin/blog/blog.post_title'))->orderable(false)->searchable(false),
             // Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
-            Column::make('thumbnail')->title(__('admin/sidebar.thumbnail'))->orderable(false)->searchable(false),
+            Column::make('thumbnail')->title(__('admin/common.thumbnail'))->orderable(false)->searchable(false),
             Column::make('status')->title(__('admin/common.status'))->width(170)->orderable(false)->searchable(false)->addClass('text-center'),
             // Column::make('created_at')->title(__('admin/common.created_at')),
             // Column::make('updated_at')->title(__('admin/common.updated_at')),

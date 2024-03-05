@@ -24,9 +24,8 @@
         .create( document.querySelector('#ckeditor5'))
         .then( editor => {
             editor.model.document.on( 'change', () => {
-                console.log(editor.getData());
                 $('#preview_post_content').html(editor.getData());
-            })
+            });
         })
         .catch( error => {
             console.error( error );

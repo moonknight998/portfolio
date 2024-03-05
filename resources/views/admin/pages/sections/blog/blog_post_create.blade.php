@@ -54,7 +54,7 @@
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.post_title')}}</label>
+                                            <label class="form-label">{{__('admin/blog/blog.post_title_required')}}</label>
                                             <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
                                             onchange="loadDocument(event, 'preview_post_title')"></input>
                                             @if ($errors->has('post_title'))
@@ -64,7 +64,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/sidebar.thumbnail')}}</label>
+                                            <label class="form-label">{{__('admin/common.thumbnail_required')}}</label>
                                             <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')">
                                             @if ($errors->has('thumbnail'))
                                                 <div class="row mb-0">
@@ -72,17 +72,6 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        {{-- <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
-                                            <textarea class="form-control" rows="5" id="summernote-post" name="post_content" type="text"
-                                            onchange="loadDocument(event, 'preview_post_content')"
-                                            onkeypress="detectEnterline(event, 'post_content'); loadDocument(event, 'preview_post_content')"></textarea>
-                                            @if ($errors->has('post_content'))
-                                                <div class="row mb-0">
-                                                    <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
-                                                </div>
-                                            @endif
-                                        </div> --}}
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
                                             <textarea class="form-control" rows="5" id="ckeditor5" name="post_content" type="text"></textarea>
@@ -94,7 +83,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.categories_required')}}</label>
-                                            <select class="form-select" name="category_id">
+                                            <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')">
                                                 @foreach ($blog_categories as $blog_category)
                                                     <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
                                                 @endforeach
@@ -103,7 +92,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_author')}}</label>
                                             <input class="form-control" name="post_author" type="text" placeholder="{{__('admin/blog/blog.post_author_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_author)"></input>
+                                            onchange="loadDocument(event, 'preview_post_author');loadDocument(event, 'preview_post_author_2')"></input>
                                             @if ($errors->has('post_author'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_author')}}</div>
@@ -168,7 +157,7 @@
                                                     <div id="blog-author" class="blog-author d-flex align-items-center">
                                                         <img src="{{asset('frontend/assets/img/blog/blog-author.jpg')}}" class="rounded-circle float-left" alt="">
                                                         <div>
-                                                        <h4>Jane Smith</h4>
+                                                        <h4 id="preview_post_author_2">{{__('admin/blog/blog.post_author_preview')}}</h4>
                                                         <div class="social-links">
                                                             <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
                                                             <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
