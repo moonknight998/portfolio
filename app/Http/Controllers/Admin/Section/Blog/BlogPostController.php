@@ -57,7 +57,7 @@ class BlogPostController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.blog_post.create', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('blog.blog_post.create', "#$key")->withErrors($validator)->withInput();
         }
 
         $blog_post = new BlogPost();
@@ -164,7 +164,7 @@ class BlogPostController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.blog_post.edit', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('blog.blog_post.edit', "#$key")->withErrors($validator)->withInput();
         }
 
 

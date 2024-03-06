@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.create_post')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('blog.blog_post.store')}}" enctype="multipart/form-data">
+                        <form class="was-validated" novalidate method="POST" action="{{route('blog.blog_post.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="example">
@@ -56,16 +56,22 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_title_required')}}</label>
                                             <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_title')"></input>
+                                            onchange="loadDocument(event, 'preview_post_title')" required minlength="3" maxlength="500" ></input>
                                             @if ($errors->has('post_title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_title')}}</div>
                                                 </div>
                                             @endif
+                                            <div class="valid-feedback">
+                                                Ổn đó!
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Bạn chưa nhập tiêu đề
+                                            </div>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.thumbnail_required')}}</label>
-                                            <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')">
+                                            <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')" required>
                                             @if ($errors->has('thumbnail'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('thumbnail')}}</div>
