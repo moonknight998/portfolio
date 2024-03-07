@@ -2,9 +2,43 @@ var loadFile = function(event, previewId) {
     var preview = document.getElementById(previewId);
     preview.src = URL.createObjectURL(event.target.files[0]);
     preview.onload = function() {
-    URL.revokeObjectURL(preview.src) // free memory
+        URL.revokeObjectURL(preview.src) // free memory
     }
 };
+
+// Get the file upload field element
+var fileUploadField = document.getElementById("file-upload");
+
+// Add event listener for when the file selection changes
+fileUploadField.onchange = function() {
+    // Get the maximum file size from the file upload field attribute
+    var maxSize = fileUploadField.getAttribute("max-size");
+    // Check if the size of the selected file exceeds the maximum size
+    if (this.files[0].size > maxSize) {
+        // Alert the user with an error message including the maximum size in bytes
+        alert(fileUploadField.getAttribute("max-size-error") + formatBytes(maxSize) + ".");
+        // Clear the file selection
+        this.value = "";
+    }
+}
+
+/**
+ * Format the given number of bytes into a human-readable string representation.
+ * @param {number} bytes - The number of bytes to format.
+ * @param {number} decimals - The number of decimal places to round the result to. Default is 2.
+ * @returns {string} - The formatted string representing the size in bytes, KiB, MiB, GiB, etc.
+ */
+function formatBytes(bytes, decimals = 2) {
+    if (!+bytes) return '0 Bytes'
+
+    const k = 1024
+    const dm = decimals < 0 ? 0 : decimals
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+}
 
 var openTabMultiple = function(event, tabId){
     let i, tabcontents, navlinks;

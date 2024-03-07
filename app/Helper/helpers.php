@@ -72,3 +72,7 @@ function MobileDetect()
     $detect = new MobileDetect();
     return $detect;
 }
+
+function GetMaxFileSizeUpload() : int {
+    return 2097152;
+}

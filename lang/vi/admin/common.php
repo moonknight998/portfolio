@@ -59,4 +59,5 @@ return [
     'search' => 'Tìm kiếm',
     'thumbnail' => 'Hình thu nhỏ',
     'thumbnail_required' => 'Hình thu nhỏ(*)',
+    'file-big-error' => 'Tệp quá lớn. Tối đa là ',
 ];

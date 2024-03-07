@@ -56,22 +56,17 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_title_required')}}</label>
                                             <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_title')" required minlength="3" maxlength="500" ></input>
+                                            onchange="loadDocument(event, 'preview_post_title')" required minlength="3" maxlength="500"></input>
                                             @if ($errors->has('post_title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_title')}}</div>
                                                 </div>
                                             @endif
-                                            <div class="valid-feedback">
-                                                Ổn đó!
-                                            </div>
-                                            <div class="invalid-feedback">
-                                                Bạn chưa nhập tiêu đề
-                                            </div>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.thumbnail_required')}}</label>
-                                            <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')" required>
+                                            <input class="form-control" id="file-upload" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')"
+                                            required accept="image/png, image/jpeg" max-size-error="{{__('admin/common.file-big-error')}}" max-size="{{GetMaxFileSizeUpload()}}"></input>
                                             @if ($errors->has('thumbnail'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('thumbnail')}}</div>
@@ -80,7 +75,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
-                                            <textarea class="form-control" rows="5" id="ckeditor5" name="post_content" type="text"></textarea>
+                                            <textarea class="form-control" rows="5" id="ckeditor5" name="post_content" type="text" required></textarea>
                                             @if ($errors->has('post_content'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
@@ -89,7 +84,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.categories_required')}}</label>
-                                            <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')">
+                                            <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')" required>
                                                 @foreach ($blog_categories as $blog_category)
                                                     <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
                                                 @endforeach
@@ -98,7 +93,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_author')}}</label>
                                             <input class="form-control" name="post_author" type="text" placeholder="{{__('admin/blog/blog.post_author_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_author');loadDocument(event, 'preview_post_author_2')"></input>
+                                            onchange="loadDocument(event, 'preview_post_author');loadDocument(event, 'preview_post_author_2')" required></input>
                                             @if ($errors->has('post_author'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_author')}}</div>

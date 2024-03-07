@@ -59,4 +59,5 @@ return [
     'search' => 'Search',
     'thumbnail' => 'Thumbnail',
     'thumbnail_required' => 'Thumbnail(*)',
+    'file-big-error' => 'File is too big. Maximum file size is ',
 ];
