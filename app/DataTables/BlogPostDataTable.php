@@ -49,7 +49,7 @@ class BlogPostDataTable extends DataTable
                 return $logo;
             })
             ->addIndexColumn()
-            ->rawColumns(['action','status', 'thumbnail'])
+            ->rawColumns(['action', 'status', 'thumbnail'])
             ->setRowId('id');
     }
 

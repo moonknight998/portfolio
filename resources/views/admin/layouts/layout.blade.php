@@ -254,6 +254,7 @@
                                     },
                                     error: function(xhr, status, error)
                                     {
+                                        console.log(xhr);
                                         console.log(error);
                                     },
                                 })

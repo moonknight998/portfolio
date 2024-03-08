@@ -18,4 +18,13 @@ class BlogPost extends Model
     {
         return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
     }
+
+    protected $fillable = [
+        'post_title',
+        'thumbnail',
+        'post_content',
+        'category_id',
+        'post_author',
+        'status',
+    ];
 }

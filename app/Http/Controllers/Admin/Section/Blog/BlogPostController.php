@@ -288,8 +288,11 @@ class BlogPostController extends Controller
     {
         // Find the blog post by its ID
         $blog_post = BlogPost::findOrFail($id);
-        $blog_post->delete();
-        dd($blog_post);
+
+        if($blog_post)
+        {
+            return response(['message' => 'Found blog_post']);
+        }
 
         // // Check if the thumbnail file exists and delete it if it does
         // if(File::exists(public_path($blog_post->thumbnail)))
