@@ -93,7 +93,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_author')}}</label>
                                             <input class="form-control" name="post_author" type="text" placeholder="{{__('admin/blog/blog.post_author_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_author');loadDocument(event, 'preview_post_author_2')" required></input>
+                                            onchange="loadDocument(event, 'preview_post_author');loadDocument(event, 'preview_post_author_2')" required minlength="3" maxlength="100"></input>
                                             @if ($errors->has('post_author'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_author')}}</div>
@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status')}}</label>
-                                            <select class="form-select" id="status" name="status">
+                                            <select class="form-select" id="status" name="status" required>
                                                 <option selected value="1">{{__('admin/common.display')}}</option>
                                                 <option value="0">{{__('admin/common.hide')}}</option>
                                             </select>

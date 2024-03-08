@@ -5,6 +5,7 @@ return [
     'display' => 'Hiển thị',
     'hide' => 'Ẩn',
     'status' => 'Trạng thái',
+    'status_required' => 'Trạng thái(*)',
     'button_text' => 'Tên nút',
     'button_name' => 'Tên nút',
     'image' => 'Hình ảnh',

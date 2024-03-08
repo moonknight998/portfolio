@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.edit_item')}}</h2>
                         </div>
-                        <form method="POST" action="{{route('blog.blog_post.update', $blog_post->id)}}" enctype="multipart/form-data">
+                        <form class="was-validated" novalidate method="POST" action="{{route('blog.blog_post.update', $blog_post->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="card-body">
@@ -55,9 +55,9 @@
                                         </div>
                                         @endif
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.post_title')}}</label>
+                                            <label class="form-label">{{__('admin/blog/blog.post_title_required')}}</label>
                                             <input class="form-control" name="post_title" type="text" placeholder="{{__('admin/blog/blog.post_title_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_title')" value="{{$blog_post->post_title}}"></input>
+                                            onchange="loadDocument(event, 'preview_post_title')" value="{{$blog_post->post_title}}" required minlength="3" maxlength="500"></input>
                                             @if ($errors->has('post_title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_title')}}</div>
@@ -65,8 +65,9 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/sidebar.thumbnail')}}</label>
-                                            <input class="form-control" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')">
+                                            <label class="form-label">{{__('admin/common.thumbnail')}}</label>
+                                            <input class="form-control" id="file-upload" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')"
+                                            accept="image/png, image/jpeg" max-size-error="{{__('admin/common.file-big-error')}}" max-size="{{GetMaxFileSizeUpload()}}"></input>
                                             @if ($errors->has('thumbnail'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('thumbnail')}}</div>
@@ -75,7 +76,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_content')}}</label>
-                                            <textarea class="form-control" rows="5" id="summernote-post" name="post_content" type="text">{!!$blog_post->post_content!!}</textarea>
+                                            <textarea class="form-control" rows="5" id="ckeditor5" name="post_content" type="text" required>{{$blog_post->post_content}}</textarea>
                                             @if ($errors->has('post_content'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_content')}}</div>
@@ -83,8 +84,8 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/blog/blog.categories')}}</label>
-                                            <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')">
+                                            <label class="form-label">{{__('admin/blog/blog.categories_required')}}</label>
+                                            <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')" required>
                                                 @foreach ($blog_categories as $blog_category)
                                                     <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
                                                 @endforeach
@@ -93,7 +94,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/blog/blog.post_author')}}</label>
                                             <input class="form-control" name="post_author" type="text" placeholder="{{__('admin/blog/blog.post_author_placeholder')}}"
-                                            onchange="loadDocument(event, 'preview_post_author')" value="{{$blog_post->post_author}}"></input>
+                                            onchange="loadDocument(event, 'preview_post_author')" value="{{$blog_post->post_author}}" required minlength="3" maxlength="100"></input>
                                             @if ($errors->has('post_author'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('post_author')}}</div>
@@ -101,8 +102,8 @@
                                             @endif
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">{{__('admin/common.status')}}</label>
-                                            <select class="form-select" id="status" name="status">
+                                            <label class="form-label">{{__('admin/common.status_required')}}</label>
+                                            <select class="form-select" id="status" name="status" required>
                                                 <option selected value="1">{{__('admin/common.display')}}</option>
                                                 <option value="0">{{__('admin/common.hide')}}</option>
                                             </select>
@@ -361,5 +362,5 @@
     </div>
 </div>
 <!--End Main Part-->
-@include('admin.pages.sections.blog.blog_post_summernote')
+@include('admin.pages.sections.blog.blog_post_ckeditor5')
 @endsection

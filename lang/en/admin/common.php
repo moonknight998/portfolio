@@ -5,6 +5,7 @@ return [
     'display' => 'Display',
     'hide' => 'Hide',
     'status' => 'Status',
+    'status_required' => 'Status(*)',
     'button_text' => 'Button name',
     'button_name' => 'Button name',
     'image' => 'Image',

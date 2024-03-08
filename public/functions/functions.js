@@ -10,15 +10,18 @@ var loadFile = function(event, previewId) {
 var fileUploadField = document.getElementById("file-upload");
 
 // Add event listener for when the file selection changes
-fileUploadField.onchange = function() {
-    // Get the maximum file size from the file upload field attribute
-    var maxSize = fileUploadField.getAttribute("max-size");
-    // Check if the size of the selected file exceeds the maximum size
-    if (this.files[0].size > maxSize) {
-        // Alert the user with an error message including the maximum size in bytes
-        alert(fileUploadField.getAttribute("max-size-error") + formatBytes(maxSize) + ".");
-        // Clear the file selection
-        this.value = "";
+if (fileUploadField)
+{
+    fileUploadField.onchange = function() {
+        // Get the maximum file size from the file upload field attribute
+        var maxSize = fileUploadField.getAttribute("max-size");
+        // Check if the size of the selected file exceeds the maximum size
+        if (this.files[0].size > maxSize) {
+            // Alert the user with an error message including the maximum size in bytes
+            alert(fileUploadField.getAttribute("max-size-error") + formatBytes(maxSize) + ".");
+            // Clear the file selection
+            this.value = "";
+        }
     }
 }
 

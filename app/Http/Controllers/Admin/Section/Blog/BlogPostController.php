@@ -288,38 +288,40 @@ class BlogPostController extends Controller
     {
         // Find the blog post by its ID
         $blog_post = BlogPost::findOrFail($id);
-
-        // Check if the thumbnail file exists and delete it if it does
-        if(File::exists(public_path($blog_post->thumbnail)))
-        {
-            File::delete(public_path($blog_post->thumbnail));
-        }
-
-        // Load the post content into a DOMDocument
-        $dom = new \DOMDocument();
-        $dom->loadHTML($blog_post->post_content);
-
-        // Get all image elements from the post content
-        $image_elements = $dom->getElementsByTagName('img');
-        $image_paths = array();
-
-        // Extract the src attribute from each image element and store it in the image_paths array
-        foreach ($image_elements as $image_element)
-        {
-            $image_paths[] = $image_element->getAttribute('src');
-        }
-
-        // Iterate through the image paths and delete the files if they exist
-        foreach ($image_paths as $image_path)
-        {
-            if(File::exists(public_path($image_path)))
-            {
-                File::delete(public_path($image_path));
-            }
-        }
-
-        // Delete the blog post
         $blog_post->delete();
+        dd($blog_post);
+
+        // // Check if the thumbnail file exists and delete it if it does
+        // if(File::exists(public_path($blog_post->thumbnail)))
+        // {
+        //     File::delete(public_path($blog_post->thumbnail));
+        // }
+
+        // // Load the post content into a DOMDocument
+        // $dom = new \DOMDocument();
+        // $dom->loadHTML($blog_post->post_content);
+
+        // // Get all image elements from the post content
+        // $image_elements = $dom->getElementsByTagName('img');
+        // $image_paths = array();
+
+        // // Extract the src attribute from each image element and store it in the image_paths array
+        // foreach ($image_elements as $image_element)
+        // {
+        //     $image_paths[] = $image_element->getAttribute('src');
+        // }
+
+        // // Iterate through the image paths and delete the files if they exist
+        // foreach ($image_paths as $image_path)
+        // {
+        //     if(File::exists(public_path($image_path)))
+        //     {
+        //         File::delete(public_path($image_path));
+        //     }
+        // }
+
+        // // Delete the blog post
+        // $blog_post->delete();
     }
 
     public function changeStatus(Request $request)
