@@ -1,3 +1,41 @@
+@if ($blog_title)
+    @if ($blog_title->status == 1)
+        <section class="recent-blog-posts" id="recent-blog-posts">
+            <div class="container" data-aos="fade-up">
+                <header class="section-header">
+                    <h2>{{$blog_title->section_name}}</h2>
+                    <p>{{$blog_title->title}}</p>
+                </header>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="post-box">
+                            <div class="post-img"><img src="{{asset('frontend/assets/img/blog/blog-1.jpg')}}" class="img-fluid" alt="Blog Image 1"></div>
+                            <span class="post-date">Tue, September 15</span>
+                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="post-box">
+                            <div class="post-img"><img src="{{asset('frontend/assets/img/blog/blog-2.jpg')}}" class="img-fluid" alt="Blog Image 2"></div>
+                            <span class="post-date">Fri, August 28</span>
+                            <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="post-box">
+                            <div class="post-img"><img src="{{asset('frontend/assets/img/blog/blog-3.jpg')}}" class="img-fluid" alt="Blog Image 3"></div>
+                            <span class="post-date">Mon, July 11</span>
+                            <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+@else
 <section class="recent-blog-posts" id="recent-blog-posts">
     <div class="container" data-aos="fade-up">
         <header class="section-header">
@@ -32,3 +70,5 @@
         </div>
     </div>
 </section>
+@endif
+

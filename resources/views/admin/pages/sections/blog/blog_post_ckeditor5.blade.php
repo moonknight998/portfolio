@@ -1,6 +1,6 @@
 <style>
     .ck-editor__editable_inline {
-        min-height: 400px;
+        min-height: 600px;
     }
 
     .ck.ck-content ul,
@@ -9,13 +9,11 @@
     }
 
     .ck.ck-content ul {
-    /* Default user agent stylesheet, you can change it to your needs. */
-        padding-left: 40px;
+        padding-left: 19px;
     }
 
     .ck.ck-content ol {
-    /* Default user agent stylesheet, you can change it to your needs. */
-        padding-left: 40px;
+        padding-left: 10px;
     }
 </style>
 @push('scripts')
@@ -25,6 +23,7 @@
         .then( editor => {
             editor.model.document.on( 'change', () => {
                 $('#preview_post_content').html(editor.getData());
+
             });
         })
         .catch( error => {

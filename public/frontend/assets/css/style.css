@@ -1854,6 +1854,11 @@ section {
   line-height: 24px;
 }
 
+.blog .entry .entry-content .image figcaption {
+  display: grid;
+  justify-content: center;
+}
+
 .blog .entry .entry-content .read-more {
   -moz-text-align-last: right;
   text-align-last: right;

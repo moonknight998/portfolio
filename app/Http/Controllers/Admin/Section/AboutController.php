@@ -24,7 +24,7 @@ class AboutController extends Controller
             $arr = [
                 'status' => 'success',
                 'message' => 'Get about data successfully!',
-                'data' => $about,
+                'data' => $about ? $about : 'Seem like there is no data yet!',
             ];
             return response()->json($arr, 200);
         }

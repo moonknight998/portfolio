@@ -138,7 +138,7 @@
                                                                     <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
                                                                 </ul>
                                                             </div>
-                                                            <div id="preview_post_content" class="entry-content">
+                                                            <div id="preview_post_content" class="entry-content" style="display: inline">
                                                             {!!$blog_post->post_content!!}
                                                             </div>
                                                             <div class="entry-footer">

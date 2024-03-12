@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\BlogPost;
+use App\Models\BlogTitle;
 use App\Models\ClientItem;
 use App\Models\ClientTitle;
 use App\Models\Count;
@@ -89,6 +91,10 @@ class HomeController extends Controller
         $client_title = ClientTitle::first();
         $client_items_active = ClientItem::all()->where('status', 1);
         #endregion
+        #region Blog
+        $blog_title = BlogTitle::first();
+        $blog_posts = BlogPost::all()->where('status', 1)->take(3);
+        #endregion
 
         return
             view('frontend.pages.home.home',
@@ -116,6 +122,8 @@ class HomeController extends Controller
                 'team_items_active',
                 'client_title',
                 'client_items_active',
+                'blog_title',
+                'blog_posts',
             )
         );
     }

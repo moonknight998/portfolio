@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.thumbnail_required')}}</label>
-                                            <input class="form-control" id="file-upload" name="thumbnail" type="file" onchange="loadFile(event, 'preview_thumbnail')"
+                                            <input class="form-control" id="file-upload" name="thumbnail" type="file" preview-id="preview_thumbnail"
                                             required accept="image/png, image/jpeg" max-size-error="{{__('admin/common.file-big-error')}}" max-size="{{GetMaxFileSizeUpload()}}"></input>
                                             @if ($errors->has('thumbnail'))
                                                 <div class="row mb-0">
@@ -138,7 +138,7 @@
                                                                 <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="create#blog-comments">12 {{__('admin/blog/blog.comments')}}</a></li>
                                                             </ul>
                                                         </div>
-                                                        <div id="preview_post_content" class="entry-content">
+                                                        <div id="preview_post_content" class="ck-content">
                                                             <p>{{__('admin/blog/blog.post_content_preview')}}</p>
                                                             <!--Post content-->
                                                         </div>

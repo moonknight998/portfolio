@@ -16,7 +16,18 @@ class BlogCategoryController extends Controller
      */
     public function index(BlogCategoryDataTable $dataTable)
     {
-        return $dataTable->render('admin.pages.sections.blog.blog_category_index');
+        $categories = BlogCategory::all();
+        if (request()->is('api/*')) {
+            $arr = [
+                'status' => 'success',
+                'message' => 'Get blog category data successfully!',
+                'data' => count($categories) > 0 ? $categories : 'Seem like there is no data yet!',
+            ];
+            return response()->json($arr, 200);
+        }
+        else {
+            return $dataTable->render('admin.pages.sections.blog.blog_category_index');
+        }
     }
 
     /**

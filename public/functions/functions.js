@@ -15,12 +15,21 @@ if (fileUploadField)
     fileUploadField.onchange = function() {
         // Get the maximum file size from the file upload field attribute
         var maxSize = fileUploadField.getAttribute("max-size");
+        // Get the ID of the preview element from the file upload field
+        // attribute. This ID is used to set the src attribute of the preview
+        // element to display the selected file
+        var previewId = fileUploadField.getAttribute("preview-id"); // preview-id
         // Check if the size of the selected file exceeds the maximum size
         if (this.files[0].size > maxSize) {
             // Alert the user with an error message including the maximum size in bytes
             alert(fileUploadField.getAttribute("max-size-error") + formatBytes(maxSize) + ".");
             // Clear the file selection
             this.value = "";
+        } else {
+            if(previewId)
+            {
+                loadFile(event, previewId);
+            }
         }
     }
 }
