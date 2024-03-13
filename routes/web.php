@@ -43,14 +43,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,'index'])->name('home');
+// Route::get('/', function () {return 'Your web application under maintenance';})->name('home');
 
 Route::get('/blogs', function () {
     return view('frontend.pages.blog.blog');
 })->name('blogs');
 
-Route::get('/blog-details', function(){
-    return view('frontend.pages.blog.blog-details');
-})->name('blog-details');
+Route::get('/blog-details/{id}', [BlogPostController::class, 'show'])->name('blog-details');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

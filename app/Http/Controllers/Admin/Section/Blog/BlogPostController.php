@@ -8,6 +8,8 @@ use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
 class BlogPostController extends Controller
@@ -131,7 +133,9 @@ class BlogPostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $blog_post = BlogPost::findOrFail($id);
+        $blog_categories = BlogCategory::all()->where('status', 1);
+        return view('frontend.pages.blog.blog-details', compact('blog_post'));
     }
 
     /**

@@ -32,6 +32,9 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
 
+    <!--CKEditor css-->
+    <link rel="stylesheet" href="{{asset('assets/vendor/ckeditor5/css/content-styles.css')}}" type="text/css">
+
     <!-- =======================================================
     * Template Name: FlexStart
     * Updated: Sep 18 2023 with Bootstrap v5.3.2

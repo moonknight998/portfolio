@@ -288,9 +288,9 @@
                                                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                                                         <div class="sidebar-item categories">
                                                             <ul>
-                                                                @foreach ($blog_categories as $blog_category)
-                                                                    <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
-                                                                @endforeach
+                                                            @foreach ($blog_categories as $blog_category)
+                                                                <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
+                                                            @endforeach
                                                             </ul>
                                                         </div><!-- End sidebar categories-->
                                                         <h3 class="sidebar-title">Recent Posts</h3>
