@@ -2,6 +2,7 @@
 
 use Detection\MobileDetect;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 
 function HandleUpload($inputName, $model = null)
 {
@@ -75,4 +76,34 @@ function MobileDetect()
 
 function GetMaxFileSizeUpload() : int {
     return 2097152;
+}
+
+function ShowLocaleSetting() : string {
+    $currentLocale = app()->getLocale();
+    switch ($currentLocale) {
+        case 'en':
+            return __('admin/common.english');
+        case 'vi':
+            return __('admin/common.vietnamese');
+        default:
+            return __('admin/common.vietnamese');
+    }
+}
+
+function ShowLocaleDropdown() : string {
+    $currentLocale = app()->getLocale();
+    switch ($currentLocale) {
+        case 'en':
+            return __('admin/common.vietnamese');
+        case 'vi':
+            return __('admin/common.english');
+        default:
+            return __('admin/common.vietnamese');
+    }
+}
+
+function RefeshLocale($locale)
+{
+    app()->setLocale($locale);
+    redirect(Route::currentRouteName());
 }

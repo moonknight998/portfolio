@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+#region None middleware
 Route::get('/', [HomeController::class,'index'])->name('home');
 // Route::get('/', function () {return 'Your web application under maintenance';})->name('home');
 
@@ -52,6 +53,9 @@ Route::get('/blogs', function () {
 Route::get('/blog-details/{id}', [BlogPostController::class, 'show'])->name('blog-details');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
+#endregion
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
