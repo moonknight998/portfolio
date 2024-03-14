@@ -63,4 +63,12 @@ return [
     'file-big-error' => 'File is too big. Maximum file size is ',
     'english' => 'English',
     'vietnamese' => 'Vietnamese',
+    'leave_a_comment' => 'Leave a comment',
+    'your_name' => 'Your name',
+    'your_name_required' => 'Your name(*)',
+    'your_email' => 'Your email',
+    'your_email_required' => 'Your email(*)',
+    'your_comment' => 'Your comment',
+    'your_comment_required' => 'Your comment(*)',
+    'info_not_published' => 'Your email address will not be published. Required fields are marked (*)',
 ];

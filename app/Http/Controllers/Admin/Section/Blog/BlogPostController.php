@@ -122,6 +122,7 @@ class BlogPostController extends Controller
         $blog_post->post_content = $post_content;
         $blog_post->category_id = $request->category_id;
         $blog_post->post_author = $request->post_author;
+        $blog_post->user_id = auth()->user()->id;
         $blog_post->status = $request->status;
         $blog_post->save();
 
@@ -289,6 +290,7 @@ class BlogPostController extends Controller
         $blog_post->post_content = $post_content_to_update;
         $blog_post->category_id = $request->category_id;
         $blog_post->post_author = $request->post_author;
+        $blog_post->user_id = auth()->user()->id;
         $blog_post->status = $request->status;
         $blog_post->save();
 
@@ -310,21 +312,21 @@ class BlogPostController extends Controller
             {
                 File::delete(public_path($blog_post->thumbnail));
             }
-    
+
             // Load the post content into a DOMDocument
             $dom = new \DOMDocument();
             $dom->loadHTML($blog_post->post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING);;
-    
+
             // Get all image elements from the post content
             $image_elements = $dom->getElementsByTagName('img');
             $image_paths = array();
-    
+
             // Extract the src attribute from each image element and store it in the image_paths array
             foreach ($image_elements as $image_element)
             {
                 $image_paths[] = $image_element->getAttribute('src');
             }
-    
+
             // Iterate through the image paths and delete the files if they exist
             foreach ($image_paths as $image_path)
             {
@@ -333,7 +335,7 @@ class BlogPostController extends Controller
                     File::delete(public_path($image_path));
                 }
             }
-    
+
             // Delete the blog post
             $blog_post->delete();
         }

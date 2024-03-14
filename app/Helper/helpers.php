@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use Detection\MobileDetect;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -106,4 +108,52 @@ function RefeshLocale($locale)
 {
     app()->setLocale($locale);
     redirect(Route::currentRouteName());
+}
+
+
+/**
+ * Returns a collection of the most recent published blog posts.
+ *
+ * @param int $limit The number of posts to return
+ *
+ * @return Illuminate\Support\Collection
+ */
+function GetMostRecentBlogPosts($limit = 3)
+{
+    // Get all published blog posts, ordered by creation date
+    $all_active_posts = BlogPost::where('status', 1)->latest('created_at')->get();
+    $blog_posts = array();
+    foreach ($all_active_posts as $post) {
+        $category_activate = BlogCategory::find($post->category_id)->status == 1 ? true : false;
+        if ($category_activate)
+        {
+            if (count($blog_posts) < $limit)
+            {
+                array_push($blog_posts, $post);
+            }
+        }
+    }
+    return collect($blog_posts);
+}
+
+
+/**
+ * Returns the CSS property pointer-events for the delete category button.
+ *
+ * @param int $id Id of the category to check
+ *
+ * @return string
+ */
+function ActiveDeleteCategoryButton($id)
+{
+    $category_oldest = BlogCategory::oldest('created_at')->first();
+    /**
+     * If the category with the given id is the oldest one,
+     * the button should be disabled.
+     */
+    if ($category_oldest->id == $id) {
+        return 'display: none;';
+    }
+
+    return 'display: inline;';
 }

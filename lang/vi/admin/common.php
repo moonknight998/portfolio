@@ -63,4 +63,12 @@ return [
     'file-big-error' => 'Tệp quá lớn. Tối đa là ',
     'english' => 'Tiếng Anh',
     'vietnamese' => 'Tiếng Việt',
+    'leave_a_comment' => 'Để lại bình luận',
+    'your_name' => 'Tên của bạn',
+    'your_name_required' => 'Tên của bạn(*)',
+    'your_email' => 'Email của bạn',
+    'your_email_required' => 'Email của bạn(*)',
+    'your_comment' => 'Bình luận của bạn',
+    'your_comment_required' => 'Bình luận của bạn(*)',
+    'info_not_published' => 'Email của bạn là thông tin được bảo mật. Các trường bắt buộc được đánh dấu (*)',
 ];

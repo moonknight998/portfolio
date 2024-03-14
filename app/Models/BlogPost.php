@@ -24,12 +24,18 @@ class BlogPost extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function published()
+    {
+        return $this->status == 1;
+    }
+
     protected $fillable = [
         'post_title',
         'thumbnail',
         'post_content',
         'category_id',
         'post_author',
+        'user_id',
         'status',
     ];
 }

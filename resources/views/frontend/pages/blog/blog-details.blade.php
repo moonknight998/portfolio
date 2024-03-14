@@ -49,36 +49,36 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                             <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
                         </div>
                         <p>
-                            Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+                            {{__('admin/common.description_preview')}}
                         </p>
                         </div>
                     </div><!-- End blog author bio -->
                     <div class="blog-comments">
-                        <h4 class="comments-count">8 Comments</h4>
+                        <h4 class="comments-count">8 {{__('admin/blog/blog.comments')}}</h4>
                         <div id="comment-1" class="comment">
-                        <div class="d-flex">
-                            <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-1.jpg')}}" alt=""></div>
-                            <div>
-                            <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                            <p>
-                                Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
-                                Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                            </p>
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-1.jpg')}}" alt=""></div>
+                                <div>
+                                <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                <time datetime="2020-01-01">01 Jan, 2020</time>
+                                <p>
+                                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
+                                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                                </p>
+                                </div>
                             </div>
-                        </div>
                         </div><!-- End comment #1 -->
                         <div id="comment-2" class="comment">
-                        <div class="d-flex">
-                            <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-2.jpg')}}" alt=""></div>
-                            <div>
-                            <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                            <p>
-                                Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                            </p>
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-2.jpg')}}" alt=""></div>
+                                <div>
+                                <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                <time datetime="2020-01-01">01 Jan, 2020</time>
+                                <p>
+                                    Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
+                                </p>
+                                </div>
                             </div>
-                        </div>
                         <div id="comment-reply-1" class="comment comment-reply">
                             <div class="d-flex">
                             <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-3.jpg')}}" alt=""></div>
@@ -109,54 +109,49 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                         </div><!-- End comment reply #1-->
                         </div><!-- End comment #2-->
                         <div id="comment-3" class="comment">
-                        <div class="d-flex">
-                            <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-5.jpg')}}" alt=""></div>
-                            <div>
-                            <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                            <p>
-                                Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia nihil ut accusantium tempore. Nesciunt expedita id dolor exercitationem aspernatur aut quam ut. Voluptatem est accusamus iste at.
-                                Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea est consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus et optio veniam. Quam officia sit nostrum dolorem.
-                            </p>
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-5.jpg')}}" alt=""></div>
+                                <div>
+                                <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                <time datetime="2020-01-01">01 Jan, 2020</time>
+                                <p>
+                                    Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia nihil ut accusantium tempore. Nesciunt expedita id dolor exercitationem aspernatur aut quam ut. Voluptatem est accusamus iste at.
+                                    Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea est consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus et optio veniam. Quam officia sit nostrum dolorem.
+                                </p>
+                                </div>
                             </div>
-                        </div>
                         </div><!-- End comment #3 -->
                         <div id="comment-4" class="comment">
-                        <div class="d-flex">
-                            <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-6.jpg')}}" alt=""></div>
-                            <div>
-                            <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                            <p>
-                                Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit tempore. Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in fugiat.
-                            </p>
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="{{asset('frontend/assets/img/blog/comments-6.jpg')}}" alt=""></div>
+                                <div>
+                                <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                <time datetime="2020-01-01">01 Jan, 2020</time>
+                                <p>
+                                    Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit tempore. Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in fugiat.
+                                </p>
+                                </div>
                             </div>
-                        </div>
                         </div><!-- End comment #4 -->
                         <div class="reply-form">
-                        <h4>Leave a Reply</h4>
-                        <p>Your email address will not be published. Required fields are marked * </p>
-                        <form action="" class="was-validated" novalidate>
-                            <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input name="name" type="text" class="form-control" placeholder="Your Name*" required min="3" max="100">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <input name="email" type="email" class="form-control" placeholder="Your Email*" required>
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col form-group">
-                                <input name="website" type="text" class="form-control" placeholder="Your Website">
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col form-group">
-                                <textarea name="comment" class="form-control" placeholder="Your Comment*" required min="3"></textarea>
-                            </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Post Comment</button>
-                        </form>
+                            <h4>{{__('admin/common.leave_a_comment')}}</h4>
+                            <p>{{__('admin/common.info_not_published')}}</p>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <textarea name="comment" class="form-control" placeholder="{{__('admin/blog/blog.comments')}}"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
+                            </form>
                         </div>
                     </div><!-- End blog comments -->
                 </div><!-- End blog entries list -->
@@ -179,7 +174,7 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                         </div><!-- End sidebar categories-->
                         <h3 class="sidebar-title">{{__('admin/blog/blog.recent_posts')}}</h3>
                         <div class="sidebar-item recent-posts">
-                        @foreach ($blog_posts_recent as $blog_post_recent)                  
+                        @foreach ($blog_posts_recent as $blog_post_recent)
                             <div class="post-item clearfix">
                                 <img src="{{asset($blog_post_recent->thumbnail)}}" alt="">
                                 <h4><a href="{{route('blog-details', $blog_post_recent->id)}}">{{$blog_post_recent->post_title}}</a></h4>

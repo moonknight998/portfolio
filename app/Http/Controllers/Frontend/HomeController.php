@@ -94,12 +94,8 @@ class HomeController extends Controller
         #endregion
         #region Blog
         $blog_title = BlogTitle::first();
-        $all_blog_posts = BlogPost::all();
-        $blog_posts = array();
-        foreach($all_blog_posts as $blog_post) {
-            if($blog_post->user_id == $user_id) {
-            $category = $blog_post;
-        }
+        //Get most recent 3 blog posts
+        $blog_posts = GetMostRecentBlogPosts(3);
         #endregion
 
         return

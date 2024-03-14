@@ -87,7 +87,7 @@
                                             <label class="form-label">{{__('admin/blog/blog.categories_required')}}</label>
                                             <select class="form-select" name="category_id" onchange="loadDocumentOption(event, 'preview_category')" required>
                                                 @foreach ($blog_categories as $blog_category)
-                                                    <option @selected($loop->index == 0) value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
+                                                    <option {{$blog_post->category_id == $blog_category->id ? 'selected' : ''}} value="{{$blog_category->id}}">{{$blog_category->category_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -164,7 +164,7 @@
                                                                 <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
                                                             </div>
                                                             <p>
-                                                                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+                                                                {{__('admin/common.description_preview')}}
                                                             </p>
                                                             </div>
                                                         </div><!-- End blog author bio -->
@@ -249,29 +249,27 @@
                                                             </div>
                                                             </div><!-- End comment #4 -->
                                                             <div class="reply-form">
-                                                            <h4>Leave a Reply</h4>
-                                                            <p>Your email address will not be published. Required fields are marked * </p>
-                                                            <form action="">
-                                                                <div class="row">
-                                                                <div class="col-md-6 form-group">
-                                                                    <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                                                                </div>
-                                                                <div class="col-md-6 form-group">
-                                                                    <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                                                                </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                <div class="col form-group">
-                                                                    <input name="website" type="text" class="form-control" placeholder="Your Website">
-                                                                </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                <div class="col form-group">
-                                                                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                                                                </div>
-                                                                </div>
-                                                                <button type="submit" class="btn btn-primary">Post Comment</button>
-                                                            </form>
+                                                                <h4>{{__('admin/common.leave_a_comment')}}</h4>
+                                                                <p>{{__('admin/common.info_not_published')}}</p>
+                                                                <form class="was-validated" novalidate action="">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 form-group">
+                                                                            <input name="name" type="text" class="form-control"
+                                                                            placeholder="{{__('admin/common.your_name_required')}}}" required minlength="3" maxlength="100">
+                                                                        </div>
+                                                                        <div class="col-md-6 form-group">
+                                                                            <input name="email" type="text" class="form-control"
+                                                                            placeholder="{{__('admin/common.your_email')}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col form-group">
+                                                                            <textarea name="comment" class="form-control"
+                                                                            placeholder="{{__('admin/common.your_comment_required')}}" required minlength="3" maxlength="1000"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
+                                                                </form>
                                                             </div>
                                                         </div><!-- End blog comments -->
                                                     </div><!-- End blog entries list -->
