@@ -18,6 +18,18 @@ class SetLocale
         if (session()->has('locale')) {
             app()->setLocale(session()->get('locale'));
         }
+        
+        if (!$request->user()) {
+            return $next($request);
+        }
+
+        $language = $request->user()->language;
+
+        if (isset($language)) {
+            app()->setLocale($language);
+            return $next($request);
+        }
+
 
         return $next($request);
     }

@@ -2,6 +2,13 @@
 
 @section('content')
 
+<?php
+
+$blog_posts_recent = \App\Models\BlogPost::all()->where('status', 1)->take(3);
+$blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
+
+?>
+
 <main id="main">
     <!-- ======= Blog Single Section ======= -->
     <section id="blog" class="blog">
@@ -129,13 +136,13 @@
                         <div class="reply-form">
                         <h4>Leave a Reply</h4>
                         <p>Your email address will not be published. Required fields are marked * </p>
-                        <form action="">
+                        <form action="" class="was-validated" novalidate>
                             <div class="row">
                             <div class="col-md-6 form-group">
-                                <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                                <input name="name" type="text" class="form-control" placeholder="Your Name*" required min="3" max="100">
                             </div>
                             <div class="col-md-6 form-group">
-                                <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                                <input name="email" type="email" class="form-control" placeholder="Your Email*" required>
                             </div>
                             </div>
                             <div class="row">
@@ -145,7 +152,7 @@
                             </div>
                             <div class="row">
                             <div class="col form-group">
-                                <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                                <textarea name="comment" class="form-control" placeholder="Your Comment*" required min="3"></textarea>
                             </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Post Comment</button>
@@ -161,61 +168,25 @@
                             <input type="text">
                             <button type="submit"><i class="bi bi-search"></i></button>
                         </form>
-                        </div><!-- End sidebar search formn-->
-                        <h3 class="sidebar-title">Categories</h3>
+                        </div><!-- End sidebar search form-->
+                        <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                         <div class="sidebar-item categories">
-                        <ul>
-                            <li><a href="#">General <span>(25)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(5)</span></a></li>
-                            <li><a href="#">Design <span>(22)</span></a></li>
-                            <li><a href="#">Creative <span>(8)</span></a></li>
-                            <li><a href="#">Educaion <span>(14)</span></a></li>
-                        </ul>
+                            <ul>
+                            @foreach ($blog_categories as $blog_category)
+                                <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
+                            @endforeach
+                            </ul>
                         </div><!-- End sidebar categories-->
-                        <h3 class="sidebar-title">Recent Posts</h3>
+                        <h3 class="sidebar-title">{{__('admin/blog/blog.recent_posts')}}</h3>
                         <div class="sidebar-item recent-posts">
-                        <div class="post-item clearfix">
-                            <img src="{{asset('frontend/assets/img/blog/blog-recent-1.jpg')}}" alt="">
-                            <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                        <div class="post-item clearfix">
-                            <img src="{{asset('frontend/assets/img/blog/blog-recent-2.jpg')}}" alt="">
-                            <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                        <div class="post-item clearfix">
-                            <img src="{{asset('frontend/assets/img/blog/blog-recent-3.jpg')}}" alt="">
-                            <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                        <div class="post-item clearfix">
-                            <img src="{{asset('frontend/assets/img/blog/blog-recent-4.jpg')}}" alt="">
-                            <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                        <div class="post-item clearfix">
-                            <img src="{{asset('frontend/assets/img/blog/blog-recent-5.jpg')}}" alt="">
-                            <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
+                        @foreach ($blog_posts_recent as $blog_post_recent)                  
+                            <div class="post-item clearfix">
+                                <img src="{{asset($blog_post_recent->thumbnail)}}" alt="">
+                                <h4><a href="{{route('blog-details', $blog_post_recent->id)}}">{{$blog_post_recent->post_title}}</a></h4>
+                                <time>{{date('d-m-Y', strtotime($blog_post->created_at))}}</time>
+                            </div>
+                        @endforeach
                         </div><!-- End sidebar recent posts-->
-                        <h3 class="sidebar-title">Tags</h3>
-                        <div class="sidebar-item tags">
-                        <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
                         </div><!-- End sidebar tags-->
                     </div><!-- End sidebar -->
                 </div><!-- End blog sidebar -->

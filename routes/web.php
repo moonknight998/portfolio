@@ -54,6 +54,7 @@ Route::get('/blog-details/{id}', [BlogPostController::class, 'show'])->name('blo
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 #endregion
 

@@ -91,7 +91,7 @@ class BlogCategoryDataTable extends DataTable
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(170)
+                  ->width(200)
                   ->addClass('text-center')
                   ->title(__('admin/common.action')),
         ];

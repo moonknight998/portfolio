@@ -138,7 +138,7 @@
                                                                     <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
                                                                 </ul>
                                                             </div>
-                                                            <div id="preview_post_content" class="entry-content" style="display: inline">
+                                                            <div id="preview_post_content" class="ck-content">
                                                             {!!$blog_post->post_content!!}
                                                             </div>
                                                             <div class="entry-footer">
@@ -284,7 +284,7 @@
                                                             <input type="text">
                                                             <button type="submit"><i class="bi bi-search"></i></button>
                                                           </form>
-                                                        </div><!-- End sidebar search formn-->
+                                                        </div><!-- End sidebar search form-->
                                                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                                                         <div class="sidebar-item categories">
                                                             <ul>

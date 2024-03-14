@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\BlogTitle;
 use App\Models\ClientItem;
@@ -93,7 +94,12 @@ class HomeController extends Controller
         #endregion
         #region Blog
         $blog_title = BlogTitle::first();
-        $blog_posts = BlogPost::all()->where('status', 1)->take(3);
+        $all_blog_posts = BlogPost::all();
+        $blog_posts = array();
+        foreach($all_blog_posts as $blog_post) {
+            if($blog_post->user_id == $user_id) {
+            $category = $blog_post;
+        }
         #endregion
 
         return
