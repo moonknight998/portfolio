@@ -20,11 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('request_token', [AuthTokenController::class, 'requestToken']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'v1', 'as' => 'v1.'], function () {
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
     Route::resource('about', AboutController::class);
 
     Route::resource('blog_category', BlogCategoryController::class);
