@@ -58,6 +58,7 @@ return [
     'logo'=> 'Logo',
     'index' => 'Số thứ tự',
     'search' => 'Tìm kiếm',
+    'search_placeholder' => 'Nhập gì đó để tìm kiếm',
     'thumbnail' => 'Hình thu nhỏ',
     'thumbnail_required' => 'Hình thu nhỏ(*)',
     'file-big-error' => 'Tệp quá lớn. Tối đa là ',

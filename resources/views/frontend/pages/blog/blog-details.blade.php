@@ -4,7 +4,7 @@
 
 <?php
 
-$blog_posts_recent = \App\Models\BlogPost::all()->where('status', 1)->take(3);
+$blog_posts_recent = GetMostRecentBlogPosts(3);
 $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
 
 ?>
@@ -35,7 +35,7 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                         <div class="entry-footer">
                         <i class="bi bi-folder"></i>
                         <ul class="cats">
-                            <li><a id="preview_category" href="#">{{$blog_post->category->category_name}}</a></li>
+                            <li><a href="#">{{$blog_post->category->category_name}}</a></li>
                         </ul>
                         </div>
                     </article><!-- End blog entry -->
@@ -153,17 +153,20 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                                 <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
                             </form>
                         </div>
-                    </div><!-- End blog comments -->
-                </div><!-- End blog entries list -->
+                    </div>
+                    <!-- End blog comments -->
+                </div>
+                <!-- End blog entries list -->
                 <div class="col-lg-4">
                     <div class="sidebar">
-                        <h3 class="sidebar-title">Search</h3>
+                        <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
                         <form action="">
                             <input type="text">
                             <button type="submit"><i class="bi bi-search"></i></button>
                         </form>
-                        </div><!-- End sidebar search form-->
+                        </div>
+                        <!-- End sidebar search form-->
                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                         <div class="sidebar-item categories">
                             <ul>
@@ -171,23 +174,28 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                                 <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
                             @endforeach
                             </ul>
-                        </div><!-- End sidebar categories-->
+                        </div>
+                        <!-- End sidebar categories-->
                         <h3 class="sidebar-title">{{__('admin/blog/blog.recent_posts')}}</h3>
                         <div class="sidebar-item recent-posts">
                         @foreach ($blog_posts_recent as $blog_post_recent)
                             <div class="post-item clearfix">
                                 <img src="{{asset($blog_post_recent->thumbnail)}}" alt="">
                                 <h4><a href="{{route('blog-details', $blog_post_recent->id)}}">{{$blog_post_recent->post_title}}</a></h4>
-                                <time>{{date('d-m-Y', strtotime($blog_post->created_at))}}</time>
+                                <time>{{$blog_post_recent->created_at->format('d-m-Y')}}</time>
                             </div>
                         @endforeach
-                        </div><!-- End sidebar recent posts-->
-                        </div><!-- End sidebar tags-->
-                    </div><!-- End sidebar -->
-                </div><!-- End blog sidebar -->
+                        </div>
+                        <!-- End sidebar recent posts-->
+                    </div>
+                    <!-- End sidebar tags-->
+                </div>
+                <!-- End sidebar -->
             </div>
+            <!-- End blog sidebar -->
         </div>
-    </section><!-- End Blog Single Section -->
+    </section>
+    <!-- End Blog Single Section -->
 
 </main><!-- End #main -->
 

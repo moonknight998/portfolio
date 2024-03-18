@@ -157,3 +157,42 @@ function ActiveDeleteCategoryButton($id)
 
     return 'display: inline;';
 }
+
+
+function GetBlogPostsPerPage($post_per_page = 5)
+{
+    $all_active_posts = BlogPost::where('status', 1)->latest('created_at')->get();
+    $blog_posts = array();
+    foreach ($all_active_posts as $post) {
+        $category_activate = BlogCategory::find($post->category_id)->status == 1 ? true : false;
+        if ($category_activate)
+        {
+            array_push($blog_posts, $post);
+        }
+    }
+    $blog_posts_match = collect($blog_posts);
+    $blog_posts_per_page = $blog_posts_match->paginate($post_per_page);
+    return $blog_posts_per_page;
+}
+
+
+function PostContentParse($post_content)
+{
+    $dom = new \DOMDocument();
+
+    @$dom->loadHTML($post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR | LIBXML_NOWARNING);
+
+    $paragrahps = $dom->getElementsByTagName('p');
+
+    $post_content_parse = '';
+
+    foreach ($paragrahps as $paragrahp) {
+        if ($paragrahp->hasChildNodes())
+        {
+            $post_content_parse .= $paragrahp->nodeValue.' ';
+        }
+    }
+
+    return $post_content_parse;
+}
+

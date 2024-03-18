@@ -28,6 +28,6 @@ return [
     'post_title_preview' => 'Tên bài viết xem trước',
     'post_author_preview' => 'Tên người viết bài xem trước',
     'comments' => 'Bình luận',
-    'recent_posts' => 'Bài Viết Gần Đây',
+    'recent_posts' => 'Bài viết gần đây',
     'post_content_preview' => 'Nội dung bài viết xem trước',
 ];

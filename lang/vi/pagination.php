@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'previous' => '&laquo; Trang trước',
+    'next' => 'Trang kế &raquo;',
     'previous_datatable'=> 'Trang trước',
     'next_datatable'=> 'Trang kế',
 ];

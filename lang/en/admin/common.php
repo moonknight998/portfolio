@@ -58,6 +58,7 @@ return [
     'logo'=> 'Logo',
     'index' => 'Index',
     'search' => 'Search',
+    'search_placeholder' => 'Type something to search',
     'thumbnail' => 'Thumbnail',
     'thumbnail_required' => 'Thumbnail(*)',
     'file-big-error' => 'File is too big. Maximum file size is ',

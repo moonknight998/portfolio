@@ -28,6 +28,6 @@ return [
     'post_title_preview' => 'Post title preview',
     'post_author_preview' => 'Post author preview',
     'comments' => 'Comments',
-    'recent_posts' => 'Recent Posts',
+    'recent_posts' => 'Recent posts',
     'post_content_preview' => 'Post content preview',
 ];
