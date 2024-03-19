@@ -285,7 +285,7 @@ var changeBackgroundWithColorName = function(event, previewId, colorName)
 };
 
 /**
- * Get all forms with class 'needs-validation' and add event listener to each form for 'submit' event.
+ * Get all forms with class 'was-validated' and add event listener to each form for 'submit' event.
  * @type {NodeListOf<HTMLElementTagNameMap[*]>}
  */
 const validationForms = document.querySelectorAll('.was-validated');
@@ -304,7 +304,6 @@ validationForms.forEach(form => {
  */
 function handleFormSubmit(event) {
     const form = event.currentTarget;
-
     if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();

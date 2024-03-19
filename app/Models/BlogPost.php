@@ -72,6 +72,7 @@ class BlogPost extends Model implements Searchable
 
     protected $fillable = [
         'post_title',
+        'slug',
         'thumbnail',
         'post_content',
         'category_id',

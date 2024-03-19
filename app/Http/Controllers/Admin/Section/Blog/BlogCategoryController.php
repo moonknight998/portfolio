@@ -55,12 +55,12 @@ class BlogCategoryController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.blog_category.create', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('blog.blog_category.create', "#$key")->withErrors($validator)->withInput();
         }
 
         $blog_category = new BlogCategory();
         $blog_category->category_name = $request->category_name;
-        $blog_category->slug = Str::slug($request->category_name);
+        $blog_category->slug = Str::slug($request->category_name).'-'.time().'-'.Str::random(10);
         $blog_category->status = $request->status;
         $blog_category->save();
 
@@ -102,11 +102,11 @@ class BlogCategoryController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.blog_category.create', "#$key")->withErrors($validator)->withInput();
+            return redirect()->route('blog.blog_category.edit', "#$key")->withErrors($validator)->withInput();
         }
 
+        $blog_category->slug = $blog_category->category_name === $request->category_name ? $blog_category->slug : Str::slug($request->category_name).'-'.time().'-'.Str::random(10);
         $blog_category->category_name = $request->category_name;
-        $blog_category->slug = Str::slug($request->category_name);
         $blog_category->status = $request->status;
         $blog_category->save();
 

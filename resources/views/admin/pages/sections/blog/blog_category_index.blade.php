@@ -26,6 +26,12 @@
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
                             <h2>{{__('admin/blog/blog.all_category')}}</h2>
+                            @if (session('status') === 'required')
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{__('admin/blog/blog.category_empty')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
                             <a href="{{route('blog.blog_category.create')}}" class="btn btn-success">{{__('admin/common.create_new')}} <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="card-body">

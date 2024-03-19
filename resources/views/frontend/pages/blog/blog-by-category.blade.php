@@ -3,16 +3,16 @@
 @section('content')
 
 <?php
-$blog_posts = GetBlogPostsPerPageByCategory($blog_category, 5);
-$blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
-$blog_posts_recent = GetMostRecentBlogPosts(3);
-$all_posts = GetAllActiveBlogPosts();
+    $blog_posts = GetBlogPostsPerPageByCategory($blog_category, 5);
+    $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
+    $blog_posts_recent = GetMostRecentBlogPosts(3);
+    $all_posts = GetAllActiveBlogPosts();
 ?>
 
 <main id="main">
     <section class="breadcrumbs" style="background: rgb(182, 182, 182)">
         <div class="container">
-          <h2>{{__('admin/sidebar.category').': '.$blog_category->category_name}}</h2> 
+          <h2>{{__('admin/sidebar.category').': '.$blog_category->category_name}}</h2>
         </div>
     </section>
     <!-- ======= Blog Section ======= -->
@@ -25,36 +25,31 @@ $all_posts = GetAllActiveBlogPosts();
                     @foreach ($blog_posts as $blog_post_local)
                         <article class="entry">
                             <div class="entry-img">
-                            <img src="{{$blog_post_local->thumbnail}}" alt="" class="img-fluid">
+                                <img class="post-thumbnail" src="{{$blog_post_local->thumbnail}}" alt="">
                             </div>
                             <h2 class="entry-title">
-                            <a href="{{route('blog-details', Crypt::encryptString($blog_post_local->id))}}">{{$blog_post_local->post_title}}</a>
+                                <a href="{{route('blog-details', $blog_post_local->slug)}}">{{$blog_post_local->post_title}}</a>
                             </h2>
                             <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$blog_post_local->post_author}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$blog_post_local->created_at->format('d-m-Y')}}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>12 {{__('admin/blog/blog.comments')}}</a></li>
-                            </ul>
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$blog_post_local->post_author}}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$blog_post_local->created_at->format('d-m-Y')}}</time></a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>3 {{__('admin/blog/blog.comments')}}</a></li>
+                                </ul>
                             </div>
                             <div class="entry-content">
-                            <p>
-                                {!!Str::limit(PostContentParse($blog_post_local->post_content), 400)!!}
-                            </p>
-                            <div class="read-more">
-                                <a href="{{route('blog-details', Crypt::encryptString($blog_post_local->id))}}">{{__('admin/common.read_more')}}</a>
-                            </div>
+                                <p>
+                                    {!!Str::limit(PostContentParse($blog_post_local->post_content), 400)!!}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{route('blog-details', $blog_post_local->slug)}}">{{__('admin/common.read_more')}}</a>
+                                </div>
                             </div>
                         </article>
                     @endforeach
                     <!-- End blog entry -->
                     <!-- Blog pagniation -->
                     <div class="blog-pagination">
-                        {{-- <ul class="justify-content-center">
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul> --}}
                         {!!$blog_posts->links('vendor.pagination.core-ui')!!}
                     </div>
                     <!-- End blog pagniation -->
@@ -66,8 +61,8 @@ $all_posts = GetAllActiveBlogPosts();
                         <!-- Sidebar search form -->
                         <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
-                            <form action="">
-                                <input type="text" name="search_key" placeholder="{{__('admin/common.search_placeholder')}}">
+                            <form method="GET" action="{{route('blogs.search-results')}}">
+                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}">
                                 <button type="submit"><i class="bi bi-search"></i></button>
                             </form>
                         </div>
@@ -78,7 +73,7 @@ $all_posts = GetAllActiveBlogPosts();
                             <ul>
                                 <li><a href="{{route('blogs')}}">{{__('admin/common.all_post')}}<span>({{count($all_posts)}})</span></a></li>
                                 @foreach ($blog_categories as $blog_category)
-                                    <li><a href="{{route('blogs.by-category', Crypt::encryptString($blog_category->id))}}">{{$blog_category->category_name}}<span>({{$blog_category->posts->where('status', 1)->count()}})</span></a></li>
+                                    <li><a href="{{route('blogs.by-category', $blog_category->slug)}}">{{$blog_category->category_name}}<span>({{$blog_category->posts->where('status', 1)->count()}})</span></a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -89,7 +84,7 @@ $all_posts = GetAllActiveBlogPosts();
                             @foreach ($blog_posts_recent as $blog_post_recent)
                                 <div class="post-item clearfix">
                                     <img src="{{asset($blog_post_recent->thumbnail)}}" alt="">
-                                    <h4><a href="{{route('blog-details', Crypt::encryptString($blog_post_recent->id))}}">{{$blog_post_recent->post_title}}</a></h4>
+                                    <h4><a href="{{route('blog-details', $blog_post_recent->slug)}}">{{$blog_post_recent->post_title}}</a></h4>
                                     <time>{{$blog_post_recent->created_at->format('d-m-Y')}}</time>
                                 </div>
                             @endforeach

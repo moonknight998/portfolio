@@ -71,7 +71,7 @@ class BlogPostDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0, 'desc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -89,8 +89,8 @@ class BlogPostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            // Column::make('id')->width(50),
-            Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
+            Column::make('id')->width(50),
+            // Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
             Column::make('post_title')->width(750)->title(__('admin/blog/blog.post_title'))->orderable(false)->searchable(false),
             // Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
             Column::make('thumbnail')->title(__('admin/common.thumbnail'))->orderable(false)->searchable(false),

@@ -7,10 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class BlogPostController extends Controller
 {
@@ -19,6 +18,8 @@ class BlogPostController extends Controller
      */
     public function index(BlogPostDataTable $dataTable)
     {
+        $blog_categories = BlogCategory::all();
+
         if (request()->is('api/*')) {
             $arr = [
                 'status' => 'success',
@@ -27,7 +28,13 @@ class BlogPostController extends Controller
             ];
             return response()->json($arr, 200);
         }
-        else {
+        else
+        {
+            if ($blog_categories->count() == 0)
+            {
+                return redirect()->route('blog.blog_category.index')->with('status', 'required');
+            }
+
             return $dataTable->render('admin.pages.sections.blog.blog_post_index');
         }
     }
@@ -38,6 +45,10 @@ class BlogPostController extends Controller
     public function create()
     {
         $blog_categories = BlogCategory::all();
+        if ($blog_categories->count() == 0)
+        {
+            return redirect()->route('blog.blog_category.index')->with('status', 'required');
+        }
         return view('admin.pages.sections.blog.blog_post_create', compact('blog_categories'));
     }
 
@@ -118,6 +129,7 @@ class BlogPostController extends Controller
         $post_content = $dom->saveXML($dom->documentElement, LIBXML_NOEMPTYTAG);
 
         $blog_post->post_title = $request->post_title;
+        $blog_post->slug = Str::slug($request->post_title).'-'.time().'-'.Str::random(10);
         $blog_post->thumbnail = $thumbnailPath;
         $blog_post->post_content = $post_content;
         $blog_post->category_id = $request->category_id;
@@ -134,7 +146,7 @@ class BlogPostController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
@@ -283,6 +295,7 @@ class BlogPostController extends Controller
             }
         }
 
+        $blog_post->slug = $blog_post->post_title === $request->post_title ? $blog_post->slug : Str::slug($request->post_title).'-'.time().'-'.Str::random(10);
         $blog_post->post_title = $request->post_title;
         $blog_post->thumbnail = isset($thumbnailPath) ? $thumbnailPath : $blog_post->thumbnail;
         $blog_post->post_content = $post_content_to_update;

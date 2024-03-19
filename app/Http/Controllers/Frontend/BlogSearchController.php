@@ -20,7 +20,7 @@ class BlogSearchController extends Controller
             $model_search_aspect->addSearchableAttribute('post_title')
             ->addExactSearchableAttribute('post_content')
             ->where('status', 1);
-            
+
         })
         // ->registerModel(BlogCategory::class, function (ModelSearchAspect $model_search_aspect) {
         //     $model_search_aspect->addSearchableAttribute('category_name');

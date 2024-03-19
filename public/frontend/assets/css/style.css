@@ -1799,9 +1799,16 @@ section {
 }
 
 .blog .entry .entry-img {
-  max-height: 440px;
-  margin: -30px -30px 20px -30px;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    max-height: 440px;
+    margin: -30px -30px 20px -30px;
+    overflow: hidden;
+}
+
+.blog .entry .entry-img .post-thumbnail {
+    object-fit: cover;
+    transition: 0.5s;
 }
 
 .blog .entry .entry-title {

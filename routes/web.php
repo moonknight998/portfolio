@@ -54,9 +54,8 @@ Route::get('/blogs', function () {
     return view('frontend.pages.blog.blog');
 })->name('blogs');
 
-Route::get('/blogs/category={category_id}', function (string $category_id) {
-    $category_id_decrypt = Crypt::decryptString($category_id);
-    $blog_category = BlogCategory::findOrFail($category_id_decrypt);
+Route::get('/blogs/category={slug}', function (string $slug) {
+    $blog_category = BlogCategory::where('slug', $slug)->first();
     $posts_by_category = $blog_category->posts->where('status', 1);
     return view('frontend.pages.blog.blog-by-category', compact('posts_by_category', 'blog_category'));
 
@@ -64,9 +63,8 @@ Route::get('/blogs/category={category_id}', function (string $category_id) {
 
 Route::get('blogs/search-results', [BlogSearchController::class, 'search'])->name('blogs.search-results');
 
-Route::get('/blog-details/{id}', function (string $blog_post_id_encrypt){
-    $blog_post_id_decrypt = Crypt::decryptString($blog_post_id_encrypt);
-    $blog_post = BlogPost::findOrFail($blog_post_id_decrypt);
+Route::get('/blog-details/{slug}', function (string $slug){
+    $blog_post = BlogPost::where('slug', $slug)->first();
     $blog_categories = BlogCategory::all()->where('status', 1);
     return view('frontend.pages.blog.blog-details', compact('blog_post', 'blog_categories'));
 })->name('blog-details');

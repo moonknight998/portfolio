@@ -196,6 +196,11 @@ function GetBlogPostsPerPageByCategory($category, $post_per_page = 5)
     return $blog_posts_per_page;
 }
 
+function GetBlogPostsPerPageByCollect($blog_post_collection, $post_per_page = 5)
+{
+    $blog_posts_per_page = $blog_post_collection->paginate($post_per_page);
+    return $blog_posts_per_page;
+}
 
 function PostContentParse($post_content)
 {
@@ -216,5 +221,19 @@ function PostContentParse($post_content)
     }
 
     return $post_content_parse;
+}
+
+function GetBlogPostSearchResult($search_results)
+{
+    $blog_posts = array();
+    foreach ($search_results as $result) {
+        $category_activate = BlogCategory::find($result->searchable->category_id)->status == 1 ? true : false;
+        if ($category_activate)
+        {
+            array_push($blog_posts, $result);
+        }
+    }
+    collect($blog_posts);
+    return $blog_posts;
 }
 
