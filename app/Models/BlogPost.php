@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class BlogPost extends Model
+class BlogPost extends Model implements Searchable
 {
     use HasFactory;
 
@@ -27,6 +30,44 @@ class BlogPost extends Model
     public function published()
     {
         return $this->status == 1;
+    }
+
+    /**
+     * Get all active blog posts by category
+     *
+     * @return array
+     */
+    public function postActiveByCategory()
+    {
+        // Get all active categories
+        $categories = BlogCategory::all()->where('status', 1);
+
+        // Initialize array to store active posts
+        $blog_posts = array();
+
+        // Loop through each active category
+        foreach ($categories as $category) {
+
+            // Get all active posts of each category
+            $posts = $category->posts->where('status', 1);
+
+            // Loop through each active post of each category
+            foreach ($posts as $post) {
+
+                // Add active post to array
+                array_push($blog_posts, $post);
+            }
+        }
+
+        // Return array of active posts
+        return $blog_posts;
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('blog-details', Crypt::encryptString($this->id));
+
+        return new SearchResult($this, $this->post_title, $url);
     }
 
     protected $fillable = [

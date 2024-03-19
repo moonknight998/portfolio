@@ -18,6 +18,14 @@ class HeroController extends Controller
     {
         $detect = new MobileDetect();
         $hero = Hero::first();
+        if (request()->is('api/*')) {
+            $arr = [
+                'status' => 'success',
+                'message' => 'Get hero section data successfully!',
+                'data' => isset($hero) ? $hero : empty('No data yet!'),
+            ];
+            return response()->json($arr, 200);
+        }
         return view('admin.pages.sections.hero.index', compact('hero', 'detect'));
     }
 

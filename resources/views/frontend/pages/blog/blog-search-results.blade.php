@@ -12,7 +12,7 @@ $all_posts = GetAllActiveBlogPosts();
 <main id="main">
     <section class="breadcrumbs" style="background: rgb(182, 182, 182)">
         <div class="container">
-          <h2>{{__('admin/blog/blog.all_blog_post')}}</h2> 
+          <h2>{{__('admin/common.search').': '.$blog_search_keyword}}</h2> 
         </div>
     </section>
     <!-- ======= Blog Section ======= -->
@@ -21,33 +21,53 @@ $all_posts = GetAllActiveBlogPosts();
             <div class="row" style="margin-top: 50pt">
                 <!-- Blog entries list -->
                 <div class="col-lg-8 entries">
-                    <!-- Blog entry -->
-                    @foreach ($blog_posts as $blog_post_local)
-                        <article class="entry">
-                            <div class="entry-img">
-                            <img src="{{$blog_post_local->thumbnail}}" alt="" class="img-fluid">
-                            </div>
-                            <h2 class="entry-title">
-                            <a href="{{route('blog-details', Crypt::encryptString($blog_post_local->id))}}">{{$blog_post_local->post_title}}</a>
-                            </h2>
-                            <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$blog_post_local->post_author}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$blog_post_local->created_at->format('d-m-Y')}}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>12 {{__('admin/blog/blog.comments')}}</a></li>
-                            </ul>
-                            </div>
-                            <div class="entry-content">
-                            <p>
-                                {!!Str::limit(PostContentParse($blog_post_local->post_content), 400)!!}
-                            </p>
-                            <div class="read-more">
-                                <a href="{{route('blog-details', Crypt::encryptString($blog_post_local->id))}}">{{__('admin/common.read_more')}}</a>
-                            </div>
-                            </div>
-                        </article>
-                    @endforeach
-                    <!-- End blog entry -->
+                    @php
+                        $search_results_active = array();
+                    @endphp
+                    @if (isset($search_results))
+                        @if ($search_results->isEmpty())
+                        <h2>{{__('admin/blog/blog.no_post_found')}}</h2>
+                        @else
+                            @foreach ($search_results as $search_result_local)
+                                @if (App\Models\BlogCategory::findOrFail($search_result_local->searchable->category_id)->status == 1)                            
+                                    @php
+                                        array_push($search_results_active, $search_result_local);
+                                    @endphp
+                                @endif
+                            @endforeach
+                            @if (count($search_results_active) > 0)
+                                @foreach ($search_results_active as $search_result)
+                                    <article class="entry">
+                                        <div class="entry-img">
+                                        <img src="{{$search_result->searchable->thumbnail}}" alt="" class="img-fluid">
+                                        </div>
+                                        <h2 class="entry-title">
+                                        <a href="{{route('blog-details', Crypt::encryptString($search_result->searchable->id))}}">{{$search_result->searchable->post_title}}</a>
+                                        </h2>
+                                        <div class="entry-meta">
+                                        <ul>
+                                            <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$search_result->searchable->post_author}}</a></li>
+                                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$search_result->searchable->created_at->format('d-m-Y')}}</time></a></li>
+                                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>12 {{__('admin/blog/blog.comments')}}</a></li>
+                                        </ul>
+                                        </div>
+                                        <div class="entry-content">
+                                        <p>
+                                            {!!Str::limit(PostContentParse($search_result->searchable->post_content), 400)!!}
+                                        </p>
+                                        <div class="read-more">
+                                            <a href="{{route('blog-details', Crypt::encryptString($search_result->searchable->id))}}">{{__('admin/common.read_more')}}</a>
+                                        </div>
+                                        </div>
+                                    </article>
+                                @endforeach
+                            @else
+                                <h2>{{__('admin/blog/blog.no_post_found')}}</h2>
+                            @endif
+                        @endif
+                    @else
+                        <h2>{{__('admin/blog/blog.no_post_found')}}</h2>
+                    @endif
                     <!-- Blog pagniation -->
                     <div class="blog-pagination">
                         {{-- <ul class="justify-content-center">

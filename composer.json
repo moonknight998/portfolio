@@ -14,6 +14,7 @@
         "maatwebsite/excel": "^3.1",
         "mobiledetect/mobiledetectlib": "^4.8",
         "spatie/laravel-collection-macros": "^7.12",
+        "spatie/laravel-searchable": "^1.12",
         "yajra/laravel-datatables": "10.0"
     },
     "require-dev": {

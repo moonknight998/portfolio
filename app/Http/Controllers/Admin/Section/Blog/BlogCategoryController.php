@@ -21,7 +21,7 @@ class BlogCategoryController extends Controller
             $arr = [
                 'status' => 'success',
                 'message' => 'Get blog category data successfully!',
-                'data' => count($categories) > 0 ? $categories : 'Seem like there is no data yet!',
+                'data' => count($categories) > 0 ? $categories : empty('No data found!'),
             ];
             return response()->json($arr, 200);
         }

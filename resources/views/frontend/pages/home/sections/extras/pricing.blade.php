@@ -27,25 +27,23 @@
                         @endif
                     @endforeach
                 @else
-                <div class="row gy-4" data-aos="fade-left">
-                    <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100" style="display: flex">
-                        <div class="box">
-                            <h3 style="color: #07d5c0;">{{__('admin/pricing/pricing.pricing_name')}}</h3>
-                            <div class="price">
-                                <span style="font-size: 1.5rem; color:rgb(65, 65, 65); font-weight:bold;">0</span>
-                                <sup>USD</sup>
-                                <span> / {{__('admin/common.month')}}</span>
-                            </div>
-                            <img src="{{asset('frontend/assets/img/pricing-free.png')}}" class="img-fluid" alt="">
-                            <ul>
-                                <li>{{__('admin/pricing/pricing.benefit')}} 1</li>
-                                <li>{{__('admin/pricing/pricing.benefit')}} 2</li>
-                                <li>{{__('admin/pricing/pricing.benefit')}} 3</li>
-                                <li>{{__('admin/pricing/pricing.benefit')}} 4</li>
-                                <li>{{__('admin/pricing/pricing.benefit')}} 5</li>
-                            </ul>
-                            <a href="#" class="btn-buy">{{__('admin/common.buy_now')}}</a>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100" style="display: flex">
+                    <div class="box">
+                        <h3 style="color: #07d5c0;">{{__('admin/pricing/pricing.pricing_name')}}</h3>
+                        <div class="price">
+                            <span style="font-size: 1.5rem; color:rgb(65, 65, 65); font-weight:bold;">0</span>
+                            <sup>USD</sup>
+                            <span> / {{__('admin/common.month')}}</span>
                         </div>
+                        <img src="{{asset('frontend/assets/img/pricing-free.png')}}" class="img-fluid" alt="">
+                        <ul>
+                            <li>{{__('admin/pricing/pricing.benefit')}} 1</li>
+                            <li>{{__('admin/pricing/pricing.benefit')}} 2</li>
+                            <li>{{__('admin/pricing/pricing.benefit')}} 3</li>
+                            <li>{{__('admin/pricing/pricing.benefit')}} 4</li>
+                            <li>{{__('admin/pricing/pricing.benefit')}} 5</li>
+                        </ul>
+                        <a href="#" class="btn-buy">{{__('admin/common.buy_now')}}</a>
                     </div>
                 </div>
                 @endif

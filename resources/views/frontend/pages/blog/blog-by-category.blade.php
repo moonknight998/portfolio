@@ -3,7 +3,7 @@
 @section('content')
 
 <?php
-$blog_posts = GetBlogPostsPerPage(5);
+$blog_posts = GetBlogPostsPerPageByCategory($blog_category, 5);
 $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
 $blog_posts_recent = GetMostRecentBlogPosts(3);
 $all_posts = GetAllActiveBlogPosts();
@@ -12,7 +12,7 @@ $all_posts = GetAllActiveBlogPosts();
 <main id="main">
     <section class="breadcrumbs" style="background: rgb(182, 182, 182)">
         <div class="container">
-          <h2>{{__('admin/blog/blog.all_blog_post')}}</h2> 
+          <h2>{{__('admin/sidebar.category').': '.$blog_category->category_name}}</h2> 
         </div>
     </section>
     <!-- ======= Blog Section ======= -->
@@ -66,8 +66,8 @@ $all_posts = GetAllActiveBlogPosts();
                         <!-- Sidebar search form -->
                         <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
-                            <form method="GET" action="{{route('blogs.search-results')}}">
-                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}">
+                            <form action="">
+                                <input type="text" name="search_key" placeholder="{{__('admin/common.search_placeholder')}}">
                                 <button type="submit"><i class="bi bi-search"></i></button>
                             </form>
                         </div>
@@ -76,9 +76,9 @@ $all_posts = GetAllActiveBlogPosts();
                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                         <div class="sidebar-item categories">
                             <ul>
-                                    <li><a href="{{route('blogs')}}">{{__('admin/common.all_post')}}<span>({{count($all_posts)}})</span></a></li>
+                                <li><a href="{{route('blogs')}}">{{__('admin/common.all_post')}}<span>({{count($all_posts)}})</span></a></li>
                                 @foreach ($blog_categories as $blog_category)
-                                    <li><a href="{{route('blogs.by-category', Crypt::encryptString($blog_category->id))}}">{{$blog_category->category_name}}<span>({{ $blog_category->posts->where('status', 1)->count()}})</span></a></li>
+                                    <li><a href="{{route('blogs.by-category', Crypt::encryptString($blog_category->id))}}">{{$blog_category->category_name}}<span>({{$blog_category->posts->where('status', 1)->count()}})</span></a></li>
                                 @endforeach
                             </ul>
                         </div>

@@ -6,6 +6,7 @@
 
 $blog_posts_recent = GetMostRecentBlogPosts(3);
 $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
+$all_posts = GetAllActiveBlogPosts();
 
 ?>
 
@@ -170,8 +171,9 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                         <h3 class="sidebar-title">{{__('admin/blog/blog.categories')}}</h3>
                         <div class="sidebar-item categories">
                             <ul>
+                                <li><a href="{{route('blogs')}}">{{__('admin/common.all_post')}}<span>({{count($all_posts)}})</span></a></li>
                             @foreach ($blog_categories as $blog_category)
-                                <li><a href="#">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
+                                <li><a href="{{route('blogs.by-category', Crypt::encryptString($blog_category->id))}}">{{$blog_category->category_name}}<span>({{ $blog_category->posts->count()}})</span></a></li>
                             @endforeach
                             </ul>
                         </div>
@@ -181,7 +183,7 @@ $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
                         @foreach ($blog_posts_recent as $blog_post_recent)
                             <div class="post-item clearfix">
                                 <img src="{{asset($blog_post_recent->thumbnail)}}" alt="">
-                                <h4><a href="{{route('blog-details', $blog_post_recent->id)}}">{{$blog_post_recent->post_title}}</a></h4>
+                                <h4><a href="{{route('blog-details', Crypt::encryptString($blog_post_recent->id))}}">{{$blog_post_recent->post_title}}</a></h4>
                                 <time>{{$blog_post_recent->created_at->format('d-m-Y')}}</time>
                             </div>
                         @endforeach

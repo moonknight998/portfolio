@@ -28,7 +28,11 @@ use App\Http\Controllers\Admin\Section\Testimonial\TestimonialItemController;
 use App\Http\Controllers\Admin\Section\Testimonial\TestimonialTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
 use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
+use App\Http\Controllers\Frontend\BlogSearchController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +54,22 @@ Route::get('/blogs', function () {
     return view('frontend.pages.blog.blog');
 })->name('blogs');
 
-Route::get('/blog-details/{id}', [BlogPostController::class, 'show'])->name('blog-details');
+Route::get('/blogs/category={category_id}', function (string $category_id) {
+    $category_id_decrypt = Crypt::decryptString($category_id);
+    $blog_category = BlogCategory::findOrFail($category_id_decrypt);
+    $posts_by_category = $blog_category->posts->where('status', 1);
+    return view('frontend.pages.blog.blog-by-category', compact('posts_by_category', 'blog_category'));
+
+})->name('blogs.by-category');
+
+Route::get('blogs/search-results', [BlogSearchController::class, 'search'])->name('blogs.search-results');
+
+Route::get('/blog-details/{id}', function (string $blog_post_id_encrypt){
+    $blog_post_id_decrypt = Crypt::decryptString($blog_post_id_encrypt);
+    $blog_post = BlogPost::findOrFail($blog_post_id_decrypt);
+    $blog_categories = BlogCategory::all()->where('status', 1);
+    return view('frontend.pages.blog.blog-details', compact('blog_post', 'blog_categories'));
+})->name('blog-details');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

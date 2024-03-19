@@ -284,38 +284,34 @@ var changeBackgroundWithColorName = function(event, previewId, colorName)
     document.getElementById(previewId).style.color = colorName;
 };
 
-(function () {
-    'use strict';
+/**
+ * Get all forms with class 'needs-validation' and add event listener to each form for 'submit' event.
+ * @type {NodeListOf<HTMLElementTagNameMap[*]>}
+ */
+const validationForms = document.querySelectorAll('.was-validated');
 
-    /**
-     * Get all forms with class 'needs-validation' and add event listener to each form for 'submit' event.
-     * @type {NodeListOf<HTMLElementTagNameMap[*]>}
-     */
-    const validationForms = document.querySelectorAll('.needs-validation');
+/**
+ * Loop through each form and add event listener for 'submit' event.
+ * Call handleFormSubmit function when an event is triggered.
+ */
+validationForms.forEach(form => {
+    form.addEventListener('submit', handleFormSubmit);
+});
 
-    /**
-     * Loop through each form and add event listener for 'submit' event.
-     * Call handleFormSubmit function when an event is triggered.
-     */
-    validationForms.forEach(form => {
-        form.addEventListener('submit', handleFormSubmit);
-    });
+/**
+ * Handle form validation and add class 'was-validated' if form is valid.
+ * @param {Event} event
+ */
+function handleFormSubmit(event) {
+    const form = event.currentTarget;
 
-    /**
-     * Handle form validation and add class 'was-validated' if form is valid.
-     * @param {Event} event
-     */
-    function handleFormSubmit(event) {
-        const form = event.currentTarget;
-
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        /**
-         * Add class 'was-validated' to form if it is valid.
-         */
-        form.classList.add('was-validated');
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
     }
-})();
+
+    /**
+     * Add class 'was-validated' to form if it is valid.
+     */
+    // form.classList.add('was-validated');
+}

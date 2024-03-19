@@ -134,9 +134,7 @@ class BlogPostController extends Controller
      */
     public function show(string $id)
     {
-        $blog_post = BlogPost::findOrFail($id);
-        $blog_categories = BlogCategory::all()->where('status', 1);
-        return view('frontend.pages.blog.blog-details', compact('blog_post'));
+        
     }
 
     /**

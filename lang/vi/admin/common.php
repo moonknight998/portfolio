@@ -72,4 +72,5 @@ return [
     'your_comment' => 'Bình luận của bạn',
     'your_comment_required' => 'Bình luận của bạn(*)',
     'info_not_published' => 'Email của bạn là thông tin được bảo mật. Các trường bắt buộc được đánh dấu (*)',
+    'all_post' => 'Tất cả bài viết',
 ];

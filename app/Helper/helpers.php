@@ -158,6 +158,20 @@ function ActiveDeleteCategoryButton($id)
     return 'display: inline;';
 }
 
+function GetAllActiveBlogPosts()
+{
+    $all_active_posts = BlogPost::where('status', 1)->latest('created_at')->get();
+    $blog_posts = array();
+    foreach ($all_active_posts as $post) {
+        $category_activate = BlogCategory::find($post->category_id)->status == 1 ? true : false;
+        if ($category_activate)
+        {
+            array_push($blog_posts, $post);
+        }
+    }
+    collect($blog_posts);
+    return $blog_posts;
+}
 
 function GetBlogPostsPerPage($post_per_page = 5)
 {
@@ -175,6 +189,13 @@ function GetBlogPostsPerPage($post_per_page = 5)
     return $blog_posts_per_page;
 }
 
+function GetBlogPostsPerPageByCategory($category, $post_per_page = 5)
+{
+    $all_active_posts = $category->posts()->where('status', 1)->latest('created_at')->get();
+    $blog_posts_per_page = $all_active_posts->paginate($post_per_page);
+    return $blog_posts_per_page;
+}
+
 
 function PostContentParse($post_content)
 {
@@ -186,11 +207,12 @@ function PostContentParse($post_content)
 
     $post_content_parse = '';
 
-    foreach ($paragrahps as $paragrahp) {
-        if ($paragrahp->hasChildNodes())
-        {
-            $post_content_parse .= $paragrahp->nodeValue.' ';
-        }
+    foreach ($paragrahps as $paragraph) {
+        // if ($paragrahp->hasChildNodes())
+        // {
+        //     $post_content_parse .= $paragrahp->nodeValue.' ';
+        // }
+        $post_content_parse .= $paragraph->nodeValue.' ';
     }
 
     return $post_content_parse;

@@ -72,4 +72,5 @@ return [
     'your_comment' => 'Your comment',
     'your_comment_required' => 'Your comment(*)',
     'info_not_published' => 'Your email address will not be published. Required fields are marked (*)',
+    'all_post' => 'All post',
 ];

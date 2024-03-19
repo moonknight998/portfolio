@@ -30,4 +30,5 @@ return [
     'comments' => 'Comments',
     'recent_posts' => 'Recent posts',
     'post_content_preview' => 'Post content preview',
+    'no_post_found' => 'No post found',
 ];
