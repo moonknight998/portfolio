@@ -151,6 +151,14 @@
                                 <span class="nav-icon"></span>{{__('admin/sidebar.blog_post')}}</a>
                         </li>
                     </ul>
+                    <!--Test-->
+                    <ul class="nav-group-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('*blog/blog_post_2*') ? 'active' : ''}}" href="{{route('blog.blog_post_2')}}">
+                                <span class="nav-icon"></span>Blog 2</a>
+                        </li>
+                    </ul>
+                    <!--End test-->
                 </li>
             </ul>
         </li>

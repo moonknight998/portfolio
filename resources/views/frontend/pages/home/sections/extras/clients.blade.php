@@ -25,7 +25,7 @@
 <section id="clients" class="clients">
     <div class="container" data-aos="fade-up">
         <header class="section-header">
-            <h2>{{__('admin/common.section_name_preview')}}/h2>
+            <h2>{{__('admin/common.section_name_preview')}}</h2>
             <p>{{__('admin/common.title_preview')}}</p>
         </header>
         <div class="clients-slider swiper">

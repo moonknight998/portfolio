@@ -80,7 +80,7 @@ class HomeController extends Controller
         //Testimonial title
         $testimonial_title = TestimonialTitle::first();
         //Testimonial items
-        $testimonial_items = TestimonialItem::all();
+        $testimonial_items = TestimonialItem::all()->where('status', 1);
         #endregion
         #region Team
         //Team title

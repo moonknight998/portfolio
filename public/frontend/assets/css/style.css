@@ -50,6 +50,7 @@ section {
   padding-bottom: 40px;
 }
 
+
 .section-header h2 {
   font-size: 13px;
   letter-spacing: 1px;
@@ -74,6 +75,26 @@ section {
     line-height: 32px;
   }
 }
+
+/*--------------------------------------------------------------
+# Blog page header
+--------------------------------------------------------------*/
+
+.blog-header {
+  margin-top: 84px;
+  padding: 15px 0;
+  background-color: #012970;
+}
+
+.blog-header .container{
+  display: flex;
+  justify-content: start;
+}
+
+.blog-header h2{
+  color: #fff;
+}
+
 
 /*--------------------------------------------------------------
 # Breadcrumbs
@@ -1372,6 +1393,15 @@ section {
   margin-bottom: 15px;
 }
 
+.testimonials .container-fluid{
+    display: flex;
+    justify-content: center;
+}
+
+.testimonials .image-container {
+  width: 400px;
+}
+
 .testimonials .testimonial-item .stars i {
   color: #ffc107;
   margin: 0 1px;
@@ -1625,6 +1655,7 @@ section {
 .recent-blog-posts .post-box .post-img img {
   object-fit: cover;
   height: 250px;
+  width: 100%;
   transition: 0.5s;
 }
 
@@ -1811,6 +1842,7 @@ section {
 .blog .entry .entry-img .post-thumbnail {
     object-fit: cover;
     transition: 0.5s;
+    max-width: 100%;
 }
 
 .blog .entry .entry-title {

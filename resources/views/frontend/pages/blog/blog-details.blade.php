@@ -103,13 +103,20 @@ $all_posts = GetAllActiveBlogPosts();
                         <div class="reply-form">
                             <h4>{{__('admin/common.leave_a_comment')}}</h4>
                             <p>{{__('admin/common.info_not_published')}}</p>
-                            <form action="">
+                            <form method="POST" action="{{route('blogs.comment.store')}}">
+                                @csrf
                                 <div class="row">
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-4 form-group">
                                         <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}">
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                    <div class="col-md-4 form-group">
+                                        <input name="phone_number" type="tel" class="form-control" placeholder="{{__('admin/common.phone_number')}}">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input name="email" type="email" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                    </div>
+                                    <div class="col-md-4 form-group" style="display: none">
+                                        <input name="blog_post_id" type="number" class="form-control" value="{{$blog_post->id}}">
                                     </div>
                                 </div>
                                     <div class="row">

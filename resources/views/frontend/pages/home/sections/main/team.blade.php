@@ -59,7 +59,7 @@
     <div class="container" data-aos="fade-up">
         <header class="section-header">
             <h2>{{__('admin/common.section_name_preview')}}</h2>
-            <p>{{__('admin/common.title_preview')}}/p>
+            <p>{{__('admin/common.title_preview')}}</p>
         </header>
         <div class="row gy-4" style="justify-content: center">
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="justify-content: center" data-aos="fade-up" data-aos-delay="100">

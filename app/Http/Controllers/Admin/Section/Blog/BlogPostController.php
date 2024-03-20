@@ -6,6 +6,7 @@ use App\DataTables\BlogPostDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\BlogTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +19,7 @@ class BlogPostController extends Controller
      */
     public function index(BlogPostDataTable $dataTable)
     {
+        $blog_title = BlogTitle::first();
         $blog_categories = BlogCategory::all();
 
         if (request()->is('api/*')) {
@@ -30,6 +32,11 @@ class BlogPostController extends Controller
         }
         else
         {
+            if ($blog_title == null)
+            {
+                return redirect()->route('admin.blog_title.index')->with('status', 'required');
+            }
+
             if ($blog_categories->count() == 0)
             {
                 return redirect()->route('blog.blog_category.index')->with('status', 'required');
@@ -37,6 +44,17 @@ class BlogPostController extends Controller
 
             return $dataTable->render('admin.pages.sections.blog.blog_post_index');
         }
+    }
+
+    public function index2()
+    {
+        $blog_categories = BlogCategory::all();
+        $blog_posts = BlogPost::all();
+        if ($blog_categories->count() == 0)
+        {
+            return redirect()->route('blog.blog_category.index')->with('status', 'required');
+        }
+        return view('admin.pages.sections.blog.blog_post_index_2', compact('blog_posts'));
     }
 
     /**

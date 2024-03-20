@@ -10,11 +10,11 @@ $all_posts = GetAllActiveBlogPosts();
 ?>
 
 <main id="main">
-    <section class="breadcrumbs" style="background: rgb(182, 182, 182)">
+    <div class="blog-header">
         <div class="container">
           <h2>{{__('admin/blog/blog.all_blog_post')}}</h2>
         </div>
-    </section>
+    </div>
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-down">

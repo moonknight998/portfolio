@@ -105,8 +105,8 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status_required')}}</label>
                                             <select class="form-select" id="status" name="status" required>
-                                                <option selected value="1">{{__('admin/common.display')}}</option>
-                                                <option value="0">{{__('admin/common.hide')}}</option>
+                                                <option {{$blog_post->status == 1 ? 'selected' : ''}} value="1">{{__('admin/common.display')}}</option>
+                                                <option {{$blog_post->status == 0 ? 'selected' : ''}} value="0">{{__('admin/common.hide')}}</option>
                                             </select>
                                         </div>
                                       </div>

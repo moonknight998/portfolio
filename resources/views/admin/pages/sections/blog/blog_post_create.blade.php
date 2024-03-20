@@ -211,7 +211,7 @@
                                                             <div class="reply-form">
                                                                 <h4>{{__('admin/common.leave_a_comment')}}</h4>
                                                                 <p>{{__('admin/common.info_not_published')}}</p>
-                                                                <form action="" novalidate>
+                                                                <form action="">
                                                                     <div class="row">
                                                                         <div class="col-md-4 form-group">
                                                                             <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}" value="@lang('admin/common.name_preview')">

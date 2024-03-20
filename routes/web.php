@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Section\AboutController;
@@ -58,7 +59,6 @@ Route::get('/blogs/category={slug}', function (string $slug) {
     $blog_category = BlogCategory::where('slug', $slug)->first();
     $posts_by_category = $blog_category->posts->where('status', 1);
     return view('frontend.pages.blog.blog-by-category', compact('posts_by_category', 'blog_category'));
-
 })->name('blogs.by-category');
 
 Route::get('blogs/search-results', [BlogSearchController::class, 'search'])->name('blogs.search-results');
@@ -69,9 +69,10 @@ Route::get('/blog-details/{slug}', function (string $slug){
     return view('frontend.pages.blog.blog-details', compact('blog_post', 'blog_categories'));
 })->name('blog-details');
 
+Route::post('/blogs/comment', [BlogCommentController::class, 'store'])->name('blogs.comment.store');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 #endregion
 
@@ -124,6 +125,7 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'blog', 'as' => 'blog.'], fun
     Route::put('blog_category/change-status', [BlogCategoryController::class, 'changeStatus'])->name('blog_category.change-status');
     Route::resource('blog_category', BlogCategoryController::class);
     Route::put('blog_post/change-status', [BlogPostController::class, 'changeStatus'])->name('blog_post.change-status');
+    Route::get('blog_post_2', [BlogPostController::class, 'index2'])->name('blog_post_2');
     Route::resource('blog_post', BlogPostController::class);
 });
 

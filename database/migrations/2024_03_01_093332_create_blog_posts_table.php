@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('slug');
             $table->string('thumbnail');
             $table->longText('post_content');
-            $table->integer('category_id');
+            $table->foreignId('category_id')->constrained('blog_categories')->cascadeOnDelete();
             $table->string('post_author');
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('status');
             $table->timestamps();
         });

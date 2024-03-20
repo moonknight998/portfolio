@@ -38,7 +38,7 @@
 <section class="recent-blog-posts" id="recent-blog-posts">
     <div class="container" data-aos="fade-up">
         <header class="section-header">
-            <h2>{{__('admin/common.section_name_preview')}}</h2>
+        <h2>{{__('admin/common.section_name_preview')}}</h2>
             <p>{{__('admin/common.title_preview')}}</p>
         </header>
         <div class="row" style="justify-content: center">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Section\Blog;
 use App\DataTables\BlogCategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use App\Models\BlogTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class BlogCategoryController extends Controller
      */
     public function index(BlogCategoryDataTable $dataTable)
     {
+        $blog_title = BlogTitle::first();
         $categories = BlogCategory::all();
         if (request()->is('api/*')) {
             $arr = [
@@ -26,6 +28,10 @@ class BlogCategoryController extends Controller
             return response()->json($arr, 200);
         }
         else {
+            if ($blog_title == null)
+            {
+                return redirect()->route('admin.blog_title.index')->with('status', 'required');
+            }
             return $dataTable->render('admin.pages.sections.blog.blog_category_index');
         }
     }

@@ -7,22 +7,22 @@
                     <p>{{$testimonial_title && $testimonial_title->title !== '' ? $testimonial_title->title : __('admin/common.title_preview')}}</p>
                 </header>
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
-                    <div class="swiper-wrapper">
+                    <div class="{{count($testimonial_items) > (MobileDetect()->isMobile() ? 1 : 3) ? "swiper-wrapper align-items-center" : "container-fluid"}}">
                         @if (count($testimonial_items) > 0)
                             @foreach ($testimonial_items as $testimonial_item_local)
-                                <div class="swiper-slide">
+                                <div class="{{count($testimonial_items) > (MobileDetect()->isMobile() ? 1 : 3) ? "swiper-slide" : "image-container"}}">
                                     <div class="testimonial-item">
-                                    <div class="stars">
-                                        @for ($star = 1; $star <= $testimonial_item_local->rated; $star++)
-                                        <i class="bi bi-star-fill"></i>
-                                        @endfor
-                                    </div>
+                                        <div class="stars">
+                                            @for ($star = 1; $star <= $testimonial_item_local->rated; $star++)
+                                            <i class="bi bi-star-fill"></i>
+                                            @endfor
+                                        </div>
                                     <p>{{$testimonial_item_local->feedback}}</p>
-                                    <div class="profile mt-auto">
-                                        <img style="object-fit:cover; width:82px; height:82px;" src="{{$testimonial_item_local->image !== '' ? $testimonial_item_local->image : asset('frontend/assets/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
-                                        <h3>{{$testimonial_item_local->name}}</h3>
-                                        <h4>{{$testimonial_item_local->career}}</h4>
-                                    </div>
+                                        <div class="profile mt-auto">
+                                            <img style="object-fit:cover; width:82px; height:82px;" src="{{$testimonial_item_local->image !== '' ? $testimonial_item_local->image : asset('frontend/assets/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+                                            <h3>{{$testimonial_item_local->name}}</h3>
+                                            <h4>{{$testimonial_item_local->career}}</h4>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -55,8 +55,8 @@
                 <p>{{__('admin/common.title_preview')}}</p>
             </header>
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                <div class="container-fluid">
+                    <div class="image-container">
                         <div class="testimonial-item">
                         <div class="stars">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
