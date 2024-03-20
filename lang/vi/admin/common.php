@@ -73,4 +73,7 @@ return [
     'your_comment_required' => 'Bình luận của bạn(*)',
     'info_not_published' => 'Email của bạn là thông tin được bảo mật. Các trường bắt buộc được đánh dấu (*)',
     'all_post' => 'Tất cả bài viết',
+    'email_preview' => 'example@email.com',
+    'comment_preview' => 'Bình luận xem trước',
+    'phone_number' => 'Số điện thoại',
 ];

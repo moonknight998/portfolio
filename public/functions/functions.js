@@ -304,6 +304,7 @@ validationForms.forEach(form => {
  */
 function handleFormSubmit(event) {
     const form = event.currentTarget;
+    console.log(form.checkValidity());
     if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();

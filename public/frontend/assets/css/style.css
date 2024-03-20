@@ -1623,6 +1623,8 @@ section {
 }
 
 .recent-blog-posts .post-box .post-img img {
+  object-fit: cover;
+  height: 250px;
   transition: 0.5s;
 }
 

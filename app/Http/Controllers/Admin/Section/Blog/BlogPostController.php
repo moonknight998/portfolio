@@ -85,7 +85,7 @@ class BlogPostController extends Controller
 
         $blog_post = new BlogPost();
 
-        $thumbnailPath = HandleUpload('thumbnail', $blog_post);
+        $thumbnailPath = HandleUploadWithPath('thumbnail', 'blogs', $blog_post);
 
         // Get the post content from the request
         $post_content = $request->post_content;
@@ -193,7 +193,7 @@ class BlogPostController extends Controller
         }
 
 
-        $thumbnailPath = HandleUpload('thumbnail', $blog_post);
+        $thumbnailPath = HandleUploadWithPath('thumbnail', 'blogs', $blog_post);
 
         // Retrieve the post content from the $blog_post object
         $post_content_present = $blog_post->post_content;

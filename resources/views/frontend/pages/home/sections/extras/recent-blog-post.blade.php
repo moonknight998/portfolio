@@ -13,7 +13,7 @@
                                 <div class="post-box">
                                     <div class="post-img">
                                         <img src="{{$blog_post_local->thumbnail ? asset($blog_post_local->thumbnail) : asset('frontend/assets/img/blog/blog-1.jpg')}}"
-                                        class="img-fluid" alt="Blog Image 1" style="object-fit: contain; height: 200px; width: 100%"></div>
+                                        class="img-fluid" alt="Blog Image 1"></div>
                                     <span class="post-date">{{date('d-m-Y', strtotime($blog_post_local->created_at))}}</span>
                                     <h3 class="post-title">{{$blog_post_local->post_title}}</h3>
                                     <a href="{{route('blog-details', $blog_post_local->id)}}" class="readmore stretched-link mt-auto"><span>{{__('admin/common.read_more')}}</span><i class="bi bi-arrow-right"></i></a>

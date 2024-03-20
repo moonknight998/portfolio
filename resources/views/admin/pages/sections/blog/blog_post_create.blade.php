@@ -211,21 +211,24 @@
                                                             <div class="reply-form">
                                                                 <h4>{{__('admin/common.leave_a_comment')}}</h4>
                                                                 <p>{{__('admin/common.info_not_published')}}</p>
-                                                                <form action="">
+                                                                <form action="" novalidate>
                                                                     <div class="row">
-                                                                        <div class="col-md-6 form-group">
-                                                                            <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}">
+                                                                        <div class="col-md-4 form-group">
+                                                                            <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}" value="@lang('admin/common.name_preview')">
                                                                         </div>
-                                                                        <div class="col-md-6 form-group">
-                                                                            <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                                                        <div class="col-md-4 form-group">
+                                                                            <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}" value="@lang('admin/common.email_preview')">
+                                                                        </div>
+                                                                        <div class="col-md-4 form-group">
+                                                                            <input name="phone_number" type="tel" class="form-control" placeholder="{{__('admin/common.phone_number')}}" value="@lang('admin/common.email_preview')">
                                                                         </div>
                                                                     </div>
                                                                         <div class="row">
                                                                             <div class="col form-group">
-                                                                                <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}"></textarea>
+                                                                                <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}">@lang('admin/common.comment_preview')</textarea>
                                                                             </div>
                                                                         </div>
-                                                                    <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
+                                                                    <button type="submit" class="btn btn-primary" disabled>{{__('admin/blog/blog.comments')}}</button>
                                                                 </form>
                                                             </div>
                                                         </div><!-- End blog comments -->

@@ -1,6 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('content')
+
 <!--Breadcrumb-->
 <header class="header header-sticky mb-4" style="z-index: 0">
     <div class="container-fluid m-1">
@@ -210,21 +211,21 @@
                                                                 <div class="reply-form">
                                                                     <h4>{{__('admin/common.leave_a_comment')}}</h4>
                                                                     <p>{{__('admin/common.info_not_published')}}</p>
-                                                                    <form action="">
+                                                                    <form action="" novalidate>
                                                                         <div class="row">
                                                                             <div class="col-md-6 form-group">
-                                                                                <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}">
+                                                                                <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}" value="{{__('admin/common.name_preview')}}">
                                                                             </div>
                                                                             <div class="col-md-6 form-group">
-                                                                                <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                                                                <input name="email" type="text" class="form-control" placeholder="{{__('admin/common.your_email')}}" value="{{__('admin/common.email_preview')}}">
                                                                             </div>
                                                                         </div>
                                                                             <div class="row">
                                                                                 <div class="col form-group">
-                                                                                    <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}"></textarea>
+                                                                                    <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}">@lang('admin/common.comment_preview')</textarea>
                                                                                 </div>
                                                                             </div>
-                                                                        <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
+                                                                        <button type="submit" class="btn btn-primary" disabled>{{__('admin/blog/blog.comments')}}</button>
                                                                     </form>
                                                                 </div>
                                                             </div><!-- End blog comments -->

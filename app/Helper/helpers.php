@@ -5,6 +5,7 @@ use App\Models\BlogPost;
 use Detection\MobileDetect;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Faker\Generator as Faker;
 
 function HandleUpload($inputName, $model = null)
 {
@@ -22,6 +23,32 @@ function HandleUpload($inputName, $model = null)
             $file->move(public_path('/uploads'), $fileName);
 
             $filePath = "/uploads/".$fileName;
+
+            return $filePath;
+        }
+    }
+    catch(\Exception $e)
+    {
+        throw $e;
+    }
+}
+
+function HandleUploadWithPath($inputName, $path, $model = null)
+{
+    try
+    {
+        if(request()->hasFile($inputName))
+        {
+            if(File::exists(public_path($model->{$inputName})))
+            {
+                File::delete(public_path($model->{$inputName}));
+            }
+
+            $file = request()->file($inputName);
+            $fileName = rand().$file->getClientOriginalName();
+            $file->move(public_path('/uploads'.'/'.$path), $fileName);
+
+            $filePath = "/uploads/".$path."/".$fileName;
 
             return $filePath;
         }
@@ -235,5 +262,10 @@ function GetBlogPostSearchResult($search_results)
     }
     collect($blog_posts);
     return $blog_posts;
+}
+
+function faker()
+{
+    return new Faker();
 }
 

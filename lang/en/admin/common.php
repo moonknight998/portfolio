@@ -73,4 +73,10 @@ return [
     'your_comment_required' => 'Your comment(*)',
     'info_not_published' => 'Your email address will not be published. Required fields are marked (*)',
     'all_post' => 'All post',
+    'email_preview' => 'example@email.com',
+    'comment_preview' => 'Comment preview',
+    'phone_number' => 'Phone Number',
+    'phone_number_required' => 'Phone Number(*)',
+    'phone_number_placeholder' => 'Type your phone number',
+    'phone_number_preview' => '0123456789',
 ];
