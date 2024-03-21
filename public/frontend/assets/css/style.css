@@ -2061,8 +2061,21 @@ section {
   position: relative;
 }
 
-.blog .blog-comments .comment .comment-img {
+/* .blog .blog-comments .comment .comment-img {
   margin-right: 14px;
+} */
+
+.blog .blog-comments .comment .comment-img {
+  margin: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  line-height: 60px;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .blog .blog-comments .comment .comment-img img {
@@ -2195,6 +2208,12 @@ section {
   margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .blog .sidebar {
+    margin: 0 0 0 0;
+  }
 }
 
 .blog .sidebar .sidebar-title {

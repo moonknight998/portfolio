@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->text('comment');
             $table->foreignId('blog_post_id')->constrained('blog_posts')->cascadeOnDelete();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

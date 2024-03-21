@@ -79,4 +79,5 @@ return [
     'phone_number_required' => 'Phone Number(*)',
     'phone_number_placeholder' => 'Type your phone number',
     'phone_number_preview' => '0123456789',
+    'no_post' => 'There are no posts yet!',
 ];

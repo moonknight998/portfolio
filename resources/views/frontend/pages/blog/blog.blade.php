@@ -22,31 +22,35 @@ $all_posts = GetAllActiveBlogPosts();
                 <!-- Blog entries list -->
                 <div class="col-lg-8 entries">
                     <!-- Blog entry -->
-                    @foreach ($blog_posts as $blog_post_local)
-                        <article class="entry">
-                            <div class="entry-img">
-                            <img class="post-thumbnail" src="{{$blog_post_local->thumbnail}}" alt="">
-                            </div>
-                            <h2 class="entry-title">
-                            <a href="{{route('blog-details', $blog_post_local->slug)}}">{{$blog_post_local->post_title}}</a>
-                            </h2>
-                            <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$blog_post_local->post_author}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$blog_post_local->created_at->format('d-m-Y')}}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>12 {{__('admin/blog/blog.comments')}}</a></li>
-                            </ul>
-                            </div>
-                            <div class="entry-content">
-                            <p>
-                                {!!Str::limit(PostContentParse($blog_post_local->post_content), 400)!!}
-                            </p>
-                            <div class="read-more">
-                                <a href="{{route('blog-details', $blog_post_local->slug)}}">{{__('admin/common.read_more')}}</a>
-                            </div>
-                            </div>
-                        </article>
-                    @endforeach
+                    @if (count($blog_posts) > 0)                
+                        @foreach ($blog_posts as $blog_post_local)
+                            <article class="entry">
+                                <div class="entry-img">
+                                <img class="post-thumbnail" src="{{$blog_post_local->thumbnail}}" alt="">
+                                </div>
+                                <h2 class="entry-title">
+                                <a href="{{route('blog-details', $blog_post_local->slug)}}">{{$blog_post_local->post_title}}</a>
+                                </h2>
+                                <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>{{$blog_post_local->post_author}}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$blog_post_local->created_at->format('d-m-Y')}}</time></a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i><a>12 {{__('admin/blog/blog.comments')}}</a></li>
+                                </ul>
+                                </div>
+                                <div class="entry-content">
+                                <p>
+                                    {!!Str::limit(PostContentParse($blog_post_local->post_content), 400)!!}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{route('blog-details', $blog_post_local->slug)}}">{{__('admin/common.read_more')}}</a>
+                                </div>
+                                </div>
+                            </article>
+                        @endforeach
+                    @else
+                    <h2>@lang('admin/common.no_post')</h2>
+                    @endif
                     <!-- End blog entry -->
                     <!-- Blog pagniation -->
                     <div class="blog-pagination">

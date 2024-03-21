@@ -76,4 +76,5 @@ return [
     'email_preview' => 'example@email.com',
     'comment_preview' => 'Bình luận xem trước',
     'phone_number' => 'Số điện thoại',
+    'no_post' => 'Chưa có bài viết nào!',
 ];
