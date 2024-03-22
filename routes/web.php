@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Section\AboutController;
 use App\Http\Controllers\Admin\Section\Blog\BlogCategoryController;
+use App\Http\Controllers\Admin\Section\Blog\BlogCommentController;
 use App\Http\Controllers\Admin\Section\Blog\BlogPostController;
 use App\Http\Controllers\Admin\Section\Blog\BlogTitleController;
 use App\Http\Controllers\Admin\Section\Client\ClientItemController;
@@ -69,7 +69,7 @@ Route::get('/blog-details/{slug}', function (string $slug){
     return view('frontend.pages.blog.blog-details', compact('blog_post', 'blog_categories'));
 })->name('blog-details');
 
-Route::post('/blogs/comment', [BlogCommentController::class, 'store'])->name('blogs.comment.store');
+Route::post('/blog/blog_comment', [BlogCommentController::class, 'store'])->name('blog.blog_comment.store');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -126,7 +126,10 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'blog', 'as' => 'blog.'], fun
     Route::resource('blog_category', BlogCategoryController::class);
     Route::put('blog_post/change-status', [BlogPostController::class, 'changeStatus'])->name('blog_post.change-status');
     Route::get('blog_post_2', [BlogPostController::class, 'index2'])->name('blog_post_2');
+    Route::get('blog_post/comment_of={slug}', [BlogPostController::class, 'comment'])->name('blog_post.comment');
     Route::resource('blog_post', BlogPostController::class);
+    Route::resource('blog_comment', BlogCommentController::class)->except(['index', 'create', 'store', 'show', 'edit', 'update',]);
+    Route::put('blog_comment/change-status', [BlogCommentController::class, 'changeStatus'])->name('blog_comment.change-status');
 });
 
 require __DIR__.'/auth.php';

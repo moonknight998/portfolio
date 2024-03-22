@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Section\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogComment;
-use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +14,7 @@ class BlogCommentController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -87,6 +86,16 @@ class BlogCommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blog_comment = BlogComment::findOrFail($id);
+        $blog_comment->delete();
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $blog_comment = BlogComment::findOrFail($request->id);
+        $blog_comment->status = $request->status == 'true' ? 1 : 0;
+        $blog_comment->save();
+
+        return response(['message' => 'Status has been updated']);
     }
 }

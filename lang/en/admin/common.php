@@ -87,4 +87,5 @@ return [
     'comment_missing' => 'Please fill in all required fields(*)',
     'search_missing' => 'Please type something to search!!!',
     'show_all' => 'Show all',
+    'view_comment' => 'View comment',
 ];

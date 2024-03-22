@@ -84,4 +84,5 @@ return [
     'comment_missing' => 'Vui lòng nhập các trường bắt buộc(*)',
     'search_missing' => 'Vui lòng nhập gì đó để tìm kiếm!!!',
     'show_all' => 'Xem tất cả',
+    'view_comment' => 'Xem bình luận',
 ];

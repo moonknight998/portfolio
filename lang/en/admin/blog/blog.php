@@ -32,4 +32,5 @@ return [
     'post_content_preview' => 'Post content preview',
     'no_post_found' => 'No post found',
     'category_empty' => 'You need create at least one category first!!!',
+    'blog_comments_from' => 'Blog comments from: ',
 ];

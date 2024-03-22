@@ -8,7 +8,6 @@ $blog_posts_recent = GetMostRecentBlogPosts(3);
 $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
 $all_posts = GetAllActiveBlogPosts();
 $blog_comments = $blog_post->comments->where('status', 1);
-
 ?>
 
 <main id="main">
@@ -60,7 +59,7 @@ $blog_comments = $blog_post->comments->where('status', 1);
                         <div class="reply-form">
                             <h4>{{__('admin/common.leave_a_comment')}}</h4>
                             <p>{{__('admin/common.info_not_published')}}</p>
-                            <form id="comment-form" novalidate method="POST" action="{{route('blogs.comment.store')}}">
+                            <form id="comment-form" novalidate method="POST" action="{{route('blog.blog_comment.store')}}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 form-group">
@@ -80,7 +79,7 @@ $blog_comments = $blog_post->comments->where('status', 1);
                                     <div class="col form-group">
                                         <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}" required></textarea>
                                     </div>
-                                </div>                         
+                                </div>
                                 <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
                             </form>
                         </div>
@@ -91,7 +90,7 @@ $blog_comments = $blog_post->comments->where('status', 1);
                             </a>
                         </div>
                         <div class="collapse" id="collapse-comments">
-                        @foreach ($blog_comments as $blog_comment)           
+                        @foreach ($blog_comments as $blog_comment)
                             <div id="comment-{{$blog_comment->id}}" class="comment">
                                 <div class="d-flex">
                                     <div class="comment-img">{{Str::limit($blog_comment->name, 1, '')}}</div>
@@ -105,7 +104,7 @@ $blog_comments = $blog_post->comments->where('status', 1);
                                 </div>
                             </div>
                         @endforeach
-                        </div>                       
+                        </div>
                     </div>
                     <!-- End blog comments -->
                 </div>

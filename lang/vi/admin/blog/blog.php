@@ -32,4 +32,5 @@ return [
     'post_content_preview' => 'Nội dung bài viết xem trước',
     'no_post_found' => 'Không tìm thấy bài viết nào',
     'category_empty' => 'Bạn cần tạo ít nhất một danh mục trước!!!',
+    'blog_comments_from' => 'Bình luận từ: ',
 ];

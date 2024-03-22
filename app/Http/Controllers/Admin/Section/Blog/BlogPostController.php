@@ -6,6 +6,7 @@ use App\DataTables\BlogCommentDataTable;
 use App\DataTables\BlogPostDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Models\BlogPost;
 use App\Models\BlogTitle;
 use Illuminate\Http\Request;
@@ -366,6 +367,13 @@ class BlogPostController extends Controller
                 }
             }
 
+            $blog_comments = BlogComment::where('blog_post_id', $blog_post->id)->get();
+
+            foreach ($blog_comments as $blog_comment)
+            {
+                $blog_comment->delete();
+            }
+
             // Delete the blog post
             $blog_post->delete();
         }
@@ -381,11 +389,11 @@ class BlogPostController extends Controller
         return response(['message' => 'Status has been updated']);
     }
 
-    public function comment(BlogCommentDataTable $dataTable, $id)
+    public function comment(Request $request)
     {
-        $blog_post = BlogPost::findOrFail($id);
-        $blog_comments = $blog_post->comments();
+        $blog_post = BlogPost::where('slug', $request->slug)->first();
+        $blog_comments = BlogComment::orderBy('created_at', 'desc')->get();
 
-        return $dataTable->render('admin.pages.sections.blog.blog_post_comment', compact('blog_comments', 'blog_post'));
+        return view('admin.pages.sections.blog.blog_comment_index', compact('blog_comments', 'blog_post'));
     }
 }

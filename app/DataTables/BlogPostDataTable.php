@@ -23,20 +23,21 @@ class BlogPostDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
+                $viewCommentBtn = '<a href="'.route('blog.blog_post.comment', $query->slug).'" class="btn btn-info mr-2">'.__('admin/common.view_comment').' <i class="fas fa-eye"></i></a>';
                 $editBtn = '<a href="'.route('blog.blog_post.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
                 $deleteBtn = '<a href="'.route('blog.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
-                return $editBtn.$deleteBtn;
+                return $viewCommentBtn.$editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
                 if($query->status == 1)
                 {
-                    $button = '<div class="form-check form-switch">
+                    $button = '<div class="form-check form-switch" style="display: flex; justify-content: center;">
                                 <input class="form-check-input change-status" checked data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                                 </div>';
                 }
                 else
                 {
-                    $button = '<div class="form-check form-switch">
+                    $button = '<div class="form-check form-switch" style="display: flex; justify-content: center;">
                                 <input class="form-check-input change-status" data-id="'.$query->id.'" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                                 </div>';
                 }
@@ -89,18 +90,18 @@ class BlogPostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->width(50),
+            Column::make('id')->width(20)->orderable(true)->searchable(false),
             // Column::make('index')->title(__('admin/common.index'))->data('DT_RowIndex')->width(100)->orderable(false)->searchable(false),
-            Column::make('post_title')->width(750)->title(__('admin/blog/blog.post_title'))->orderable(false)->searchable(false),
+            Column::make('post_title')->width(450)->title(__('admin/blog/blog.post_title'))->orderable(false)->searchable(true),
             // Column::make('work_title')->title(__('admin/team/team.work_title'))->orderable(false)->searchable(false),
-            Column::make('thumbnail')->title(__('admin/common.thumbnail'))->orderable(false)->searchable(false),
-            Column::make('status')->title(__('admin/common.status'))->width(170)->orderable(false)->searchable(false)->addClass('text-center'),
+            Column::make('thumbnail')->width(130)->title(__('admin/common.thumbnail'))->orderable(false)->searchable(false),
+            Column::make('status')->width(60)->title(__('admin/common.status'))->orderable(false)->searchable(false)->addClass('text-center'),
             // Column::make('created_at')->title(__('admin/common.created_at')),
             // Column::make('updated_at')->title(__('admin/common.updated_at')),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(170)
+                  ->width(230)
                   ->addClass('text-center')
                   ->title(__('admin/common.action')),
         ];
