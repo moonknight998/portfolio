@@ -7,6 +7,7 @@
 $blog_posts_recent = GetMostRecentBlogPosts(3);
 $blog_categories = \App\Models\BlogCategory::all()->where('status', 1);
 $all_posts = GetAllActiveBlogPosts();
+$blog_comments = $blog_post->comments->where('status', 1);
 
 ?>
 
@@ -27,7 +28,7 @@ $all_posts = GetAllActiveBlogPosts();
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a id="preview_post_author">{{$blog_post->post_author}}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a><time>{{date('d-m-Y', strtotime($blog_post->created_at))}}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#comments-count">{{count($blog_comments).' '.__('admin/blog/blog.comments')}}</a></li>
                             </ul>
                         </div>
                         <div class="ck-content">
@@ -36,7 +37,7 @@ $all_posts = GetAllActiveBlogPosts();
                         <div class="entry-footer">
                             <i class="bi bi-folder"></i>
                             <ul class="cats">
-                                <li><a href="#">{{$blog_post->category->category_name}}</a></li>
+                                <li><a href="{{route('blogs.by-category', $blog_post->category->slug)}}">{{$blog_post->category->category_name}}</a></li>
                             </ul>
                         </div>
                     </article><!-- End blog entry -->
@@ -56,48 +57,55 @@ $all_posts = GetAllActiveBlogPosts();
                     </div>
                     <!-- End blog author bio -->
                     <div id="blog-comments" class="blog-comments">
-                        <h4 class="comments-count">3 {{__('admin/blog/blog.comments')}}</h4>
-                        <div id="comment-2" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img">C</div>
-                                <div>
-                                    <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                                    <p>
-                                        {{__('admin/common.comment_preview')}}
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- End comment reply #1-->
-                        </div>
-                        <!-- End comment #2-->
                         <div class="reply-form">
                             <h4>{{__('admin/common.leave_a_comment')}}</h4>
                             <p>{{__('admin/common.info_not_published')}}</p>
-                            <form method="POST" action="{{route('blogs.comment.store')}}">
+                            <form id="comment-form" novalidate method="POST" action="{{route('blogs.comment.store')}}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 form-group">
-                                        <input name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}">
+                                        <input id="name" name="name" type="text" class="form-control" placeholder="{{__('admin/common.your_name_required')}}" required>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input name="phone_number" type="tel" class="form-control" placeholder="{{__('admin/common.phone_number')}}">
+                                        <input id="phone_number" name="phone_number" type="tel" class="form-control" placeholder="{{__('admin/common.phone_number')}}">
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input name="email" type="email" class="form-control" placeholder="{{__('admin/common.your_email')}}">
+                                        <input id="email" name="email" type="email" class="form-control" placeholder="{{__('admin/common.your_email')}}">
                                     </div>
                                     <div class="col-md-4 form-group" style="display: none">
-                                        <input name="blog_post_id" type="number" class="form-control" value="{{$blog_post->id}}">
+                                        <input id="blog_post_id" name="blog_post_id" type="number" class="form-control" value="{{$blog_post->id}}">
                                     </div>
                                 </div>
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}"></textarea>
-                                        </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <textarea name="comment" class="form-control" placeholder="{{__('admin/common.your_comment_required')}}" required></textarea>
                                     </div>
+                                </div>                         
                                 <button type="submit" class="btn btn-primary">{{__('admin/blog/blog.comments')}}</button>
                             </form>
                         </div>
+                        <div class="col">
+                            <h4 id="comments-count" class="comments-count">{{count($blog_comments).' '.__('admin/blog/blog.comments')}}</h4>
+                            <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapse-comments" role="button" aria-expanded="false" aria-controls="collapse-comments">
+                                @lang('admin/common.show_all')
+                            </a>
+                        </div>
+                        <div class="collapse" id="collapse-comments">
+                        @foreach ($blog_comments as $blog_comment)           
+                            <div id="comment-{{$blog_comment->id}}" class="comment">
+                                <div class="d-flex">
+                                    <div class="comment-img">{{Str::limit($blog_comment->name, 1, '')}}</div>
+                                    <div>
+                                        <h5><a href="">{{$blog_comment->name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                        <time>{{$blog_comment->created_at->format('d-m-Y H:i:s')}}</time>
+                                        <p>
+                                            {{$blog_comment->comment}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>                       
                     </div>
                     <!-- End blog comments -->
                 </div>
@@ -106,8 +114,8 @@ $all_posts = GetAllActiveBlogPosts();
                     <div class="sidebar">
                         <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
-                            <form method="GET" action="{{route('blogs.search-results')}}">
-                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}">
+                            <form id="search-form" novalidate method="GET" action="{{route('blogs.search-results')}}">
+                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}" required>
                                 <button type="submit"><i class="bi bi-search"></i></button>
                             </form>
                         </div>
@@ -139,6 +147,7 @@ $all_posts = GetAllActiveBlogPosts();
                 <!-- End sidebar -->
             </div>
             <!-- End blog sidebar -->
+            @include('frontend.pages.blog.blog-toaster')
         </div>
     </section>
     <!-- End Blog Single Section -->

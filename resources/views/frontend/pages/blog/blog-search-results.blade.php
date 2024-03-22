@@ -64,8 +64,8 @@ $blog_post_search_result_paginate = GetBlogPostsPerPage(5);
                         <!-- Sidebar search form -->
                         <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
-                            <form method="GET" action="{{route('blogs.search-results')}}">
-                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}">
+                            <form id="search-form" novalidate method="GET" action="{{route('blogs.search-results')}}">
+                                <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}" required>
                                 <button type="submit"><i class="bi bi-search"></i></button>
                             </form>
                         </div>
@@ -98,6 +98,7 @@ $blog_post_search_result_paginate = GetBlogPostsPerPage(5);
                 </div>
                 <!-- End blog sidebar -->
             </div>
+            @include('frontend.pages.blog.blog-toaster')
         </div>
     </section>
     <!-- End Blog Section -->

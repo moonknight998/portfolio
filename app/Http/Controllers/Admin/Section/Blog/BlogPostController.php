@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Section\Blog;
 
+use App\DataTables\BlogCommentDataTable;
 use App\DataTables\BlogPostDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
@@ -378,5 +379,13 @@ class BlogPostController extends Controller
         $blog_post->save();
 
         return response(['message' => 'Status has been updated']);
+    }
+
+    public function comment(BlogCommentDataTable $dataTable, $id)
+    {
+        $blog_post = BlogPost::findOrFail($id);
+        $blog_comments = $blog_post->comments();
+
+        return $dataTable->render('admin.pages.sections.blog.blog_post_comment', compact('blog_comments', 'blog_post'));
     }
 }

@@ -77,4 +77,11 @@ return [
     'comment_preview' => 'Bình luận xem trước',
     'phone_number' => 'Số điện thoại',
     'no_post' => 'Chưa có bài viết nào!',
+    'just_now' => 'Vừa xong',
+    'success' => 'Thành công',
+    'failed' => 'Thất bại',
+    'comment_successfully' => 'Bình luận thành công!',
+    'comment_missing' => 'Vui lòng nhập các trường bắt buộc(*)',
+    'search_missing' => 'Vui lòng nhập gì đó để tìm kiếm!!!',
+    'show_all' => 'Xem tất cả',
 ];

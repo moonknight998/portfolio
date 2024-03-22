@@ -32,6 +32,11 @@ class BlogPost extends Model implements Searchable
         return $this->status == 1;
     }
 
+    public function comments()
+    {
+        return $this->hasMany(BlogComment::class, 'blog_post_id', 'id')->orderBy('created_at', 'desc');
+    }
+
     /**
      * Get all active blog posts by category
      *

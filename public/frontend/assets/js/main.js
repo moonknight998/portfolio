@@ -292,4 +292,75 @@
    */
   new PureCounter();
 
+  const toastTrigger = document.getElementById('liveToastBtn')
+  const toastLiveExample = document.getElementById('liveToast')
+
+  if (toastTrigger) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+      toastBootstrap.show()
+    })
+  }
+
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+
+
+  /**
+   * Toast when comment success
+   */
+  window.addEventListener('DOMContentLoaded', () => {
+    let toastSuccess = document.getElementById('toast-comment-success')
+    if (toastSuccess) {
+      console.log('toastSuccess', toastSuccess);
+      let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSuccess);
+      toastBootstrap.show();
+    }
+  });
+
+  /**
+   * Toast when comment fail
+   */
+  window.addEventListener('DOMContentLoaded', () => {
+    var commentform = document.getElementById('comment-form');
+    let toastfail = document.getElementById('toast-comment-fail');
+    if (commentform) {
+      commentform.addEventListener('submit', function (e) {
+        if(!commentform.checkValidity())
+        {
+          e.preventDefault();
+          if (toastfail) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastfail);
+            toastBootstrap.show();
+          }
+        }
+      })
+    }
+  })
+
+  /** 
+   * Tost when search fail
+  */
+  window.addEventListener('DOMContentLoaded', () => {
+    var searchform = document.getElementById('search-form');
+    let toastfail = document.getElementById('toast-search-fail');
+    if (searchform) {
+      searchform.addEventListener('submit', function (e) {
+        if(!searchform.checkValidity())
+        {
+          e.preventDefault();
+          if (toastfail) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastfail);
+            toastBootstrap.show();
+          }
+        }
+      })
+    }
+  })
+
 })();

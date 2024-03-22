@@ -61,7 +61,7 @@
                         <!-- Sidebar search form -->
                         <h3 class="sidebar-title">{{__('admin/common.search')}}</h3>
                         <div class="sidebar-item search-form">
-                            <form method="GET" action="{{route('blogs.search-results')}}">
+                            <form id="search-form" method="GET" action="{{route('blogs.search-results')}}">
                                 <input type="text" name="keyword" placeholder="{{__('admin/common.search_placeholder')}}">
                                 <button type="submit"><i class="bi bi-search"></i></button>
                             </form>
@@ -95,6 +95,7 @@
                 </div>
                 <!-- End blog sidebar -->
             </div>
+            @include('frontend.pages.blog.blog-toaster')
         </div>
     </section>
     <!-- End Blog Section -->

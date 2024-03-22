@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogComment;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +44,7 @@ class BlogCommentController extends Controller
                 $key = $keyError;
                 break;
             }
-            return redirect()->route('admin.blog_comment.index', "#$key")->withErrors($validator)->withInput();
+            return redirect(url()->previous()."#$key")->withErrors($validator)->withInput();
         }
 
         $blog_comment = new BlogComment();
