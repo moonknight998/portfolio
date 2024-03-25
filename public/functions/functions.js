@@ -284,34 +284,35 @@ var changeBackgroundWithColorName = function(event, previewId, colorName)
     document.getElementById(previewId).style.color = colorName;
 };
 
-/**
- * Get all forms with class 'was-validated' and add event listener to each form for 'submit' event.
- * @type {NodeListOf<HTMLElementTagNameMap[*]>}
- */
-const validationForms = document.querySelectorAll('.was-validated');
 
-/**
- * Loop through each form and add event listener for 'submit' event.
- * Call handleFormSubmit function when an event is triggered.
- */
-validationForms.forEach(form => {
-    form.addEventListener('submit', handleFormSubmit);
-});
-
-/**
- * Handle form validation and add class 'was-validated' if form is valid.
- * @param {Event} event
- */
-function handleFormSubmit(event) {
-    const form = event.currentTarget;
-    console.log(form.checkValidity());
-    if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
+window.addEventListener('DOMContentLoaded', () => {
+    //For created successfully
+    let toastcreated = document.getElementById('toast-created');
+    if (toastcreated)
+    {
+        let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastcreated);
+        toastBootstrap.show();
     }
-
-    /**
-     * Add class 'was-validated' to form if it is valid.
-     */
-    // form.classList.add('was-validated');
-}
+    //For updated successfully
+    let toastupdated = document.getElementById('toast-updated');
+    if (toastupdated)
+    {
+        let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastupdated);
+        toastBootstrap.show();
+    }
+    //Get input form
+    var dataform = document.getElementById('data-form');
+    let toastfailed = document.getElementById('toast-failed');
+    if (dataform) {
+        dataform.addEventListener('submit', function (e) {
+        if(!dataform.checkValidity())
+        {
+            e.preventDefault();
+            if (toastfailed) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastfailed);
+            toastBootstrap.show();
+            }
+        }
+        })
+    }
+})

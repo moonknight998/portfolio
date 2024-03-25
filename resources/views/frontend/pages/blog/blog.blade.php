@@ -54,7 +54,7 @@ $all_posts = GetAllActiveBlogPosts();
                     <!-- End blog entry -->
                     <!-- Blog pagniation -->
                     <div class="blog-pagination">
-                        {!!$blog_posts->links('vendor.pagination.core-ui')!!}
+                        {!!$blog_posts->links('vendor.pagination.flex-start')!!}
                     </div>
                     <!-- End blog pagniation -->
                 </div>

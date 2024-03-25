@@ -223,7 +223,7 @@ function GetBlogPostsPerPageByCategory($category, $post_per_page = 5)
     return $blog_posts_per_page;
 }
 
-function GetBlogPostsPerPageByCollect($blog_post_collection, $post_per_page = 5)
+function GetPaginateByCollection($blog_post_collection, $post_per_page = 5)
 {
     $blog_posts_per_page = $blog_post_collection->paginate($post_per_page);
     return $blog_posts_per_page;
@@ -262,10 +262,5 @@ function GetBlogPostSearchResult($search_results)
     }
     collect($blog_posts);
     return $blog_posts;
-}
-
-function faker()
-{
-    return new Faker();
 }
 

@@ -312,15 +312,21 @@
 
 
   /**
-   * Toast when comment success
+   * Toast when success
    */
   window.addEventListener('DOMContentLoaded', () => {
-    let toastSuccess = document.getElementById('toast-comment-success')
-    if (toastSuccess) {
-      console.log('toastSuccess', toastSuccess);
-      let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSuccess);
+    let toastCommentSuccess = document.getElementById('toast-comment-success')
+    if (toastCommentSuccess) {
+      let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastCommentSuccess);
       toastBootstrap.show();
     }
+
+    let toastMessageSuccess = document.getElementById('toast-message-success')
+    if (toastMessageSuccess) {
+      let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMessageSuccess);
+      toastBootstrap.show();
+    }
+    
   });
 
   /**
@@ -328,7 +334,7 @@
    */
   window.addEventListener('DOMContentLoaded', () => {
     var commentform = document.getElementById('comment-form');
-    let toastfail = document.getElementById('toast-comment-fail');
+    let toastcommentfail = document.getElementById('toast-comment-fail');
     if (commentform) {
       commentform.addEventListener('submit', function (e) {
         if(!commentform.checkValidity())
@@ -341,14 +347,9 @@
         }
       })
     }
-  })
 
-  /** 
-   * Tost when search fail
-  */
-  window.addEventListener('DOMContentLoaded', () => {
     var searchform = document.getElementById('search-form');
-    let toastfail = document.getElementById('toast-search-fail');
+    let toastsearchfail = document.getElementById('toast-search-fail');
     if (searchform) {
       searchform.addEventListener('submit', function (e) {
         if(!searchform.checkValidity())
@@ -361,6 +362,22 @@
         }
       })
     }
+
+    var messageform = document.getElementById('message-form');
+    let toastmessagefail = document.getElementById('toast-message-fail');
+    if (messageform) {
+      messageform.addEventListener('submit', function (e) {
+        if(!messageform.checkValidity())
+        {
+          e.preventDefault();
+          if (toastmessagefail) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastmessagefail);
+            toastBootstrap.show();
+          }
+        }
+      })
+    }
+
   })
 
 })();

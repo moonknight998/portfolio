@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\Section\Blog\BlogPostController;
 use App\Http\Controllers\Admin\Section\Blog\BlogTitleController;
 use App\Http\Controllers\Admin\Section\Client\ClientItemController;
 use App\Http\Controllers\Admin\Section\Client\ClientTitleController;
+use App\Http\Controllers\Admin\Section\Contact\ContactItemController;
+use App\Http\Controllers\Admin\Section\Contact\ContactMessageController;
+use App\Http\Controllers\Admin\Section\Contact\ContactTitleController;
 use App\Http\Controllers\Admin\Section\CountController;
 use App\Http\Controllers\Admin\Section\Faq\FaqItemController;
 use App\Http\Controllers\Admin\Section\Faq\FaqTitleController;
@@ -74,6 +77,13 @@ Route::post('/blog/blog_comment', [BlogCommentController::class, 'store'])->name
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
+
+Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+Route::get('/all_message', function ()
+{
+    return view('admin.pages.sections.contact.contact_message_item');
+    
+});
 #endregion
 
 Route::middleware('auth')->group(function () {
@@ -119,6 +129,10 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::put('client_item/change-status', [ClientItemController::class, 'changeStatus'])->name('client_item.change-status');
     Route::resource('client_item', ClientItemController::class);
     Route::resource('blog_title', BlogTitleController::class);
+    Route::resource('contact_title', ContactTitleController::class);
+    Route::put('contact_item/change-status', [ContactItemController::class, 'changeStatus'])->name('contact_item.change-status');
+    Route::resource('contact_item', ContactItemController::class);
+    Route::resource('contact_message', ContactMessageController::class)->only(['index', 'show']);
 });
 
 Route::group(['middleware'=> ['auth'], 'prefix' => 'blog', 'as' => 'blog.'], function(){

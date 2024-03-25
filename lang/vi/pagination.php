@@ -17,4 +17,8 @@ return [
     'next' => 'Trang kế &raquo;',
     'previous_datatable'=> 'Trang trước',
     'next_datatable'=> 'Trang kế',
+    'showing' => 'Hiển thị',
+    'to' => 'đến',
+    'of' => 'của',
+    'results' => 'kết quả',
 ];

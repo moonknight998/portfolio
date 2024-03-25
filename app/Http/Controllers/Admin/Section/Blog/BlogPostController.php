@@ -48,17 +48,6 @@ class BlogPostController extends Controller
         }
     }
 
-    public function index2()
-    {
-        $blog_categories = BlogCategory::all();
-        $blog_posts = BlogPost::all();
-        if ($blog_categories->count() == 0)
-        {
-            return redirect()->route('blog.blog_category.index')->with('status', 'required');
-        }
-        return view('admin.pages.sections.blog.blog_post_index_2', compact('blog_posts'));
-    }
-
     /**
      * Show the form for creating a new resource.
      */

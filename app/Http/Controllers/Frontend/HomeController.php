@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
-use App\Models\BlogCategory;
-use App\Models\BlogPost;
 use App\Models\BlogTitle;
 use App\Models\ClientItem;
 use App\Models\ClientTitle;
+use App\Models\ContactItem;
+use App\Models\ContactTitle;
 use App\Models\Count;
 use App\Models\Faq;
 use App\Models\FaqItem;
@@ -97,6 +97,8 @@ class HomeController extends Controller
         //Get most recent 3 blog posts
         $blog_posts = GetMostRecentBlogPosts(3);
         #endregion
+        $contact_title = ContactTitle::first();
+        $contact_items_active = ContactItem::all()->where('status', 1);
 
         return
             view('frontend.pages.home.home',
@@ -126,6 +128,8 @@ class HomeController extends Controller
                 'client_items_active',
                 'blog_title',
                 'blog_posts',
+                'contact_title',
+                'contact_items_active',
             )
         );
     }

@@ -32,4 +32,6 @@ return [
     'category' => 'Category',
     'blog_post' => 'Blog post',
     'post' => 'Post',
+    'contact_section' => 'Contact Section',
+    'contact_items' => 'Contact info',
 ];

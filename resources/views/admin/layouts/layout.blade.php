@@ -51,6 +51,8 @@
         <!-- Main styles for this application-->
         <link href="{{asset('backend/assets/css/style.css')}}" rel="stylesheet">
 
+        <link rel="stylesheet" href="{{asset('css/custom_style.css')}}">
+
       </head>
       <body>
         <!--Start Sidebar-->
@@ -60,7 +62,7 @@
         <!--Start Main Part-->
         <div class="wrapper d-flex flex-column min-vh-100 bg-light">
             <!--Start Header-->
-            <header class="header header-sticky">
+            <header class="header header-sticky" style="z-index: 1500">
                 <div class="container-fluid">
                     <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
                         <svg class="icon icon-lg">

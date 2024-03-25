@@ -17,4 +17,8 @@ return [
     'next' => 'Next &raquo;',
     'previous_datatable'=> 'Previous',
     'next_datatable'=> 'Next',
+    'showing' => 'Showing',
+    'to' => 'to',
+    'of' => 'of',
+    'results' => 'results',
 ];

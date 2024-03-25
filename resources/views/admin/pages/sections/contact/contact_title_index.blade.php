@@ -8,8 +8,8 @@
                 <ol class="breadcrumb my-0 ms-2">
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.components') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.home') }}</a></li>
-                    <li class="breadcrumb-item"><a>{{ __('admin/sidebar.blog_section') }}</a></li>
-                    <li class="breadcrumb-item active"><a>{{ __('admin/client/client.title') }}</a></li>
+                    <li class="breadcrumb-item"><a>{{ __('admin/sidebar.contact_section') }}</a></li>
+                    <li class="breadcrumb-item active"><a>{{ __('admin/contact/contact.title') }}</a></li>
                 </ol>
             </nav>
         </div>
@@ -24,13 +24,13 @@
                     <div class="card-group d-block d-md-flex row">
                         <div class="card col-md-7 p-2 mb-4">
                             <div class="card-header">
-                                <h2>{{ __('admin/team/team.update_title') }}</h2>
+                                <h2>{{ __('admin/contact/contact.update_title') }}</h2>
                             </div>
-                            <form method="POST" class="was-validated" novalidate id="data-form"
-                                action="{{ $blog_title == null ? route('admin.blog_title.store') : route('admin.blog_title.update', $blog_title->id) }}"
+                            <form method="POST" id="data-form" class="was-validated" novalidate
+                                action="{{ $contact_title == null ? route('admin.contact_title.store') : route('admin.contact_title.update', $contact_title->id) }}"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @if ($blog_title)
+                                @if ($contact_title)
                                     @method('PATCH')
                                 @endif
                                 <div class="card-body">
@@ -61,7 +61,7 @@
                                                 @if (session('status') === 'updated')
                                                     <div class="alert alert-success alert-dismissible fade show"
                                                         role="alert">
-                                                        {{ __('admin/blog/blog.title_updated') }}
+                                                        {{ __('admin/contact/contact.title_updated') }}
                                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -69,18 +69,17 @@
                                                 @if (session('status') === 'required')
                                                     <div class="alert alert-warning alert-dismissible fade show"
                                                         role="alert">
-                                                        {{ __('admin/blog/blog.title_required') }}
+                                                        {{ __('admin/contact/contact.title_required') }}
                                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                             aria-label="Close"></button>
                                                     </div>
                                                 @endif
                                                 <div class="form-group mb-3">
-                                                    <label
-                                                        class="form-label">{{ __('admin/common.section_name_required') }}</label>
+                                                    <label class="form-label">@lang('admin/common.section_name_required')</label>
                                                     <input class="form-control" id="section_name" name="section_name"
                                                         type="text"
                                                         placeholder="{{ __('admin/common.section_name_placeholder') }}"
-                                                        value="{{ ShowFormValue($blog_title, 'section_name') }}"
+                                                        value="{{ ShowFormValue($contact_title, 'section_name') }}"
                                                         onchange="loadDocument(event, 'preview_section_name')" required>
                                                     @if ($errors->has('section_name'))
                                                         <div class="row mb-0">
@@ -90,12 +89,10 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <label
-                                                        class="form-label">{{ __('admin/common.title_required') }}</label>
+                                                    <label class="form-label">@lang('admin/common.title_required')</label>
                                                     <textarea class="form-control" rows="5" id="title" name="title" type="text"
                                                         placeholder="{{ __('admin/common.title_placeholder') }}" onchange="loadDocument(event, 'preview_title')"
-                                                        onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')"
-                                                        required>{{ ShowFormValue($blog_title, 'title') }}</textarea>
+                                                        onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')" required>{{ ShowFormValue($contact_title, 'title') }}</textarea>
                                                     @if ($errors->has('title'))
                                                         <div class="row mb-0">
                                                             <div class="invalid-feedback" style="display: inline;">
@@ -104,13 +101,13 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">{{ __('admin/common.status_required') }}</label>
+                                                    <label class="form-label">@lang('admin/common.status_required')</label>
                                                     <select class="form-select" id="status" name="status" required>
                                                         <option
-                                                            {{ $blog_title ? ($blog_title->status == 1 ? 'selected' : '') : 'selected' }}
+                                                            {{ $contact_title ? ($contact_title->status == 1 ? 'selected' : '') : 'selected' }}
                                                             value="1">{{ __('admin/common.display') }}</option>
                                                         <option
-                                                            {{ $blog_title ? ($blog_title->status == 0 ? 'selected' : '') : '' }}
+                                                            {{ $contact_title ? ($contact_title->status == 0 ? 'selected' : '') : '' }}
                                                             value="0">{{ __('admin/common.hide') }}</option>
                                                     </select>
                                                 </div>
@@ -126,63 +123,74 @@
                                                         {{ __('admin/common.about_mobile_warning') }}
                                                     </div>
                                                 @endif
-                                                <section class="recent-blog-posts" id="recent-blog-posts">
+                                                <section id="contact" class="contact">
                                                     <div class="container" data-aos="fade-up">
                                                         <header class="section-header">
                                                             <h2 id="preview_section_name">
-                                                                {{ ShowTextData($blog_title, 'section_name', __('admin/common.section_name_preview')) }}
+                                                                {{ ShowTextData($contact_title, 'section_name', __('admin/common.section_name_preview')) }}
                                                             </h2>
                                                             <p id="preview_title">
-                                                                {{ ShowTextData($blog_title, 'title', __('admin/common.title_preview')) }}
+                                                                {{ ShowTextData($contact_title, 'title', __('admin/common.title_preview')) }}
                                                             </p>
                                                         </header>
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="post-box">
-                                                                    <div class="post-img"><img
-                                                                            src="{{ asset('frontend/assets/img/blog/blog-1.jpg') }}"
-                                                                            class="img-fluid" alt="Blog Image 1"></div>
-                                                                    <span class="post-date">Tue, September 15</span>
-                                                                    <h3 class="post-title">Eum ad dolor et. Autem aut
-                                                                        fugiat debitis voluptatem consequuntur sit</h3>
-                                                                    <a href="blog-single.html"
-                                                                        class="readmore stretched-link mt-auto"><span>Read
-                                                                            More</span><i
-                                                                            class="bi bi-arrow-right"></i></a>
+                                                        <div class="row gy-4">
+                                                            <div class="col-lg-6">
+                                                                <div class="row gy-4">
+                                                                    <div class="col-md-6">
+                                                                        <div class="info-box">
+                                                                            <i class="bi bi-geo-alt"></i>
+                                                                            <h3>Address</h3>
+                                                                            <p>A108 Adam Street,<br>New York, NY 535022</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="info-box">
+                                                                            <i class="bi bi-telephone"></i>
+                                                                            <h3>Call Us</h3>
+                                                                            <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="info-box">
+                                                                            <i class="bi bi-envelope"></i>
+                                                                            <h3>Email Us</h3>
+                                                                            <p>info@example.com<br>contact@example.com</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="info-box">
+                                                                            <i class="bi bi-clock"></i>
+                                                                            <h3>Open Hours</h3>
+                                                                            <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="post-box">
-                                                                    <div class="post-img"><img
-                                                                            src="{{ asset('frontend/assets/img/blog/blog-2.jpg') }}"
-                                                                            class="img-fluid" alt="Blog Image 2"></div>
-                                                                    <span class="post-date">Fri, August 28</span>
-                                                                    <h3 class="post-title">Et repellendus molestiae qui est
-                                                                        sed omnis voluptates magnam</h3>
-                                                                    <a href="blog-single.html"
-                                                                        class="readmore stretched-link mt-auto"><span>Read
-                                                                            More</span><i
-                                                                            class="bi bi-arrow-right"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="post-box">
-                                                                    <div class="post-img"><img
-                                                                            src="{{ asset('frontend/assets/img/blog/blog-3.jpg') }}"
-                                                                            class="img-fluid" alt="Blog Image 3"></div>
-                                                                    <span class="post-date">Mon, July 11</span>
-                                                                    <h3 class="post-title">Quia assumenda est et veritatis
-                                                                        aut quae</h3>
-                                                                    <a href="blog-single.html"
-                                                                        class="readmore stretched-link mt-auto"><span>Read
-                                                                            More</span><i
-                                                                            class="bi bi-arrow-right"></i></a>
+                                                            <div class="col-lg-6">
+                                                                <div class="row gy-4">
+                                                                    <div class="col-md-4">
+                                                                        <input type="text" class="form-control" name="name" placeholder="@lang('admin/common.your_name_required')">
+                                                                    </div>
+                                                                    <div class="col-md-4 ">
+                                                                        <input type="email" class="form-control" name="email" placeholder="@lang('admin/common.your_email_required')">
+                                                                    </div>
+                                                                    <div class="col-md-4 ">
+                                                                        <input type="tel" class="form-control" name="phone_number" placeholder="@lang('admin/common.phone_number_required')">
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control" name="title_message" placeholder="@lang('admin/common.title_required')">
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <textarea class="form-control" name="message" rows="6" placeholder="@lang('admin/common.message_required')"></textarea>
+                                                                    </div>
+                                                                    <div class="col-md-12 text-center">
+                                                                        <button disabled class="preview_send_message">Send Message</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </section>
-
                                             </div>
                                         </div>
                                         <!--End Preview Tab-->

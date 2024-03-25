@@ -32,4 +32,6 @@ return [
     'category' => 'Danh mục',
     'blog_post' => 'Các bài viết',
     'post' => 'Bài viết',
+    'contact_section' => 'Liên hệ',
+    'contact_items' => 'Các thông tin',
 ];

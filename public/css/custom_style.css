@@ -1,0 +1,61 @@
+.me-1{
+    display: flex;
+    margin-bottom: 0;
+    margin-left: 10px;
+    align-items: end;
+}
+
+.email-list-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #172340;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+.email-list-item.email-list-item--unread {
+    background-color: rgba(101,113,255,.09);
+}
+
+.email-list-item .email-list-actions {
+    width: 40px;
+    vertical-align: top;
+    display: table-cell;
+}
+
+.email-list-item .email-list-detail {
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.email-list-item .email-list-detail .content {
+    overflow: hidden;
+}
+
+.email-list-item.email-list-item--unread .content .from {
+    font-weight: 500;
+}
+.email-list-item .email-list-detail .content .from {
+    display: block;
+    margin: 0 0 1px 0;
+    color: #5a5a5a;
+}
+
+.email-list-item.email-list-item--unread .content .msg {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.email-list-item .email-list-detail .content .msg {
+    width: 97%;
+    color: #7b8391;
+    font-size: .8rem;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0;
+}

@@ -14,6 +14,7 @@ return [
     'title_updated' => 'Cập nhật tiêu đề blog thành công!',
     'title_required' => 'Bạn cần cập nhật tiêu đề blog trước!!!',
     'blog_posts' => 'Các bài viết',
+    'blog_post' => 'Bài viết',
     'all_blog_post' => 'Tất cả bài viết',
     'create_post' => 'Tạo bài viết mới',
     'post_created' => 'Tạo bài viết mới thành công!',

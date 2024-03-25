@@ -128,6 +128,21 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-group {{request()->is('*admin/contact_title*') || request()->is('*admin/contact_item*') ? 'show' : ''}}" aria-expanded="true"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                    {{-- <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home')}}"></use> --}}
+                    </svg>{{__('admin/sidebar.contact_section')}}</a>
+                    <ul class="nav-group-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('*admin/contact_title*') ? 'active' : ''}}" href="{{route('admin.contact_title.index')}}">
+                                <span class="nav-icon"></span>{{__('admin/contact/contact.title')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('*admin/contact_item*') ? 'active' : ''}}" href="{{route('admin.contact_item.index')}}">
+                                <span class="nav-icon"></span>{{__('admin/sidebar.contact_items')}}</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li class="nav-group {{request()->is('*blog*') ? 'show' : ''}}">
@@ -151,14 +166,6 @@
                                 <span class="nav-icon"></span>{{__('admin/sidebar.blog_post')}}</a>
                         </li>
                     </ul>
-                    <!--Test-->
-                    <ul class="nav-group-items">
-                        <li class="nav-item">
-                            <a class="nav-link {{request()->is('*blog/blog_post_2*') ? 'active' : ''}}" href="{{route('blog.blog_post_2')}}">
-                                <span class="nav-icon"></span>Blog 2</a>
-                        </li>
-                    </ul>
-                    <!--End test-->
                 </li>
             </ul>
         </li>

@@ -14,6 +14,7 @@ return [
     'title_updated' => 'Update blog title successfully!',
     'title_required' => 'You need update blog title first!!!',
     'blog_posts' => 'Blog posts',
+    'blog_post' => 'Blog post',
     'all_blog_post' => 'All blog post',
     'create_post' => 'Create new post',
     'post_created' => 'Create new post successfully!',
