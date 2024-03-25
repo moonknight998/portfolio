@@ -15,7 +15,11 @@
 
 
 .email-list-item.email-list-item--unread {
-    background-color: rgba(101,113,255,.09);
+    background-color: rgba(194, 219, 255, 0.15);
+}
+
+.email-list-item.email-list-item--seen {
+    background-color: rgba(255, 255, 255, 0.09);
 }
 
 .email-list-item .email-list-actions {
@@ -40,6 +44,11 @@
 .email-list-item.email-list-item--unread .content .from {
     font-weight: 500;
 }
+
+.email-list-item.email-list-item--read .content .from {
+    font-weight: 300;
+}
+
 .email-list-item .email-list-detail .content .from {
     display: block;
     margin: 0 0 1px 0;
@@ -50,6 +59,12 @@
     font-weight: 700;
     margin-bottom: 0;
 }
+
+.email-list-item.email-list-item--read .content .msg {
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
 .email-list-item .email-list-detail .content .msg {
     width: 97%;
     color: #7b8391;

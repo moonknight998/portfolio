@@ -321,12 +321,13 @@
       toastBootstrap.show();
     }
 
-    let toastMessageSuccess = document.getElementById('toast-message-success')
-    if (toastMessageSuccess) {
-      let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMessageSuccess);
-      toastBootstrap.show();
-    }
-    
+    // Replace with jQuery
+    // let toastMessageSuccess = document.getElementById('toast-message-success')
+    // if (toastMessageSuccess) {
+    //   let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMessageSuccess);
+    //   toastBootstrap.show();
+    // }
+
   });
 
   /**
@@ -340,8 +341,8 @@
         if(!commentform.checkValidity())
         {
           e.preventDefault();
-          if (toastfail) {
-            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastfail);
+          if (toastcommentfail) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastcommentfail);
             toastBootstrap.show();
           }
         }
@@ -355,28 +356,29 @@
         if(!searchform.checkValidity())
         {
           e.preventDefault();
-          if (toastfail) {
-            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastfail);
+          if (toastsearchfail) {
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastsearchfail);
             toastBootstrap.show();
           }
         }
       })
     }
 
-    var messageform = document.getElementById('message-form');
-    let toastmessagefail = document.getElementById('toast-message-fail');
-    if (messageform) {
-      messageform.addEventListener('submit', function (e) {
-        if(!messageform.checkValidity())
-        {
-          e.preventDefault();
-          if (toastmessagefail) {
-            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastmessagefail);
-            toastBootstrap.show();
-          }
-        }
-      })
-    }
+    // Replace with jQuery
+    // var messageform = document.getElementById('message-form');
+    // let toastmessagefail = document.getElementById('toast-message-fail');
+    // if (messageform) {
+    //   messageform.addEventListener('submit', function (e) {
+    //     if(!messageform.checkValidity())
+    //     {
+    //       e.preventDefault();
+    //       if (toastmessagefail) {
+    //         let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastmessagefail);
+    //         toastBootstrap.show();
+    //       }
+    //     }
+    //   })
+    // }
 
   })
 

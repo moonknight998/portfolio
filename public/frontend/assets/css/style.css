@@ -2594,3 +2594,17 @@ section {
     transition: 0.4s;
     border-radius: 4px;
 }
+
+.contact .message-form {
+    background: #fafbff;
+    padding: 30px;
+    height: 100%;
+}
+
+.contact .error {
+    /* display: block; */
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: var(--bs-form-invalid-color);
+}

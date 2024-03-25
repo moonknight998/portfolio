@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('message_title');
+            $table->text('message_title');
+            $table->text('slug');
             $table->text('message');
             $table->string('status')->default(MessageStatusEnum::SENT->value);
             $table->timestamps();

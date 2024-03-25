@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ContactMessageController extends Controller
 {
@@ -15,7 +16,8 @@ class ContactMessageController extends Controller
      */
     public function index()
     {
-        //
+        $contact_messages = ContactMessage::orderBy('created_at', 'desc');
+        return view('admin.pages.sections.contact.contact_message_item', compact('contact_messages'));
     }
 
     /**
@@ -52,6 +54,7 @@ class ContactMessageController extends Controller
         $contact_message->email = $request->email;
         $contact_message->phone_number = $request->phone_number;
         $contact_message->message_title = $request->message_title;
+        $contact_message->slug = Str::slug($request->message_title).'-'.time().'-'.Str::random(10);
         $contact_message->message = $request->message;
         $contact_message->status = MessageStatusEnum::SENT->value;
         $contact_message->save();
@@ -65,6 +68,14 @@ class ContactMessageController extends Controller
     public function show(string $id)
     {
         //
+    }
+
+    public function messageDetails(Request $request)
+    {
+        $contact_message = ContactMessage::where('slug', $request->slug)->first();
+        $contact_message->status = MessageStatusEnum::SEEN->value;
+        $contact_message->save();
+        return view('admin.pages.sections.contact.contact_message_details', compact('contact_message'));
     }
 
     /**

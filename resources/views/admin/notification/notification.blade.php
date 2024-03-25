@@ -1,4 +1,4 @@
-<div class="toast-container position-fixed top-0 end-0 p-3">
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1600">
     @if (session('status') === 'created')
     <div id="toast-created" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -10,7 +10,7 @@
         <div class="toast-body">
             @lang('admin/common.created_successfully')
         </div>
-    </div>                     
+    </div>
     @endif
     @if (session('status') === 'updated')
     <div id="toast-updated" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -23,7 +23,7 @@
         <div class="toast-body">
             @lang('admin/common.updated_successfully')
         </div>
-    </div>                     
+    </div>
     @endif
     <div id="toast-failed" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">

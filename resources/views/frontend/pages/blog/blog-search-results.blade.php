@@ -53,7 +53,7 @@ $blog_post_search_result_paginate = GetBlogPostsPerPage(5);
                     @endif
                     <!-- Blog pagniation -->
                     <div class="blog-pagination">
-                        {!!$blog_post_search_result_paginate->links('vendor.pagination.core-ui')!!}
+                        {!!$blog_post_search_result_paginate->links('vendor.pagination.flex-start')!!}
                     </div>
                     <!-- End blog pagniation -->
                 </div>
