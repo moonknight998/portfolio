@@ -19,11 +19,12 @@
 @push('scripts')
 <script>
     ClassicEditor
-        .create( document.querySelector('#ckeditor5'))
+        .create( document.querySelector('#ckeditor5'), {
+            mediaEmbed: {previewsInData: true}
+        })
         .then( editor => {
             editor.model.document.on( 'change', () => {
                 $('#preview_content').html(editor.getData());
-
             });
         })
         .catch( error => {

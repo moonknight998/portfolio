@@ -187,7 +187,9 @@ return [
     */
 
     'attributes' => [
-        'password' => 'password',
+        'current_password' => 'Current password',
+        'password' => 'Password',
+        'new_password' => 'New password',
         'slogan' => 'Slogan',
         'short_description' => 'Short description',
         'image' => 'Image',

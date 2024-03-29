@@ -35,4 +35,5 @@ return [
     'contact_section' => 'Liên hệ',
     'contact_items' => 'Các thông tin',
     'terms_of_service' => 'Điều khoản dịch vụ',
+    'privacy_policy' => 'Chính sách bảo mật',
 ];

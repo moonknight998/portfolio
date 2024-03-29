@@ -36,11 +36,11 @@
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{Route::currentRouteName() === 'home' ? '#hero' : route('home')}}">@lang('frontend/header.home')</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{Route::currentRouteName() === 'home' ? '#about' : route('home').'#about'}}">@lang('frontend/header.about')</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{Route::currentRouteName() === 'home' ? '#services' : route('home').'#services'}}">@lang('frontend/header.services')</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{Route::currentRouteName() === 'home' ? route('terms-of-service') : '#'}}">@lang('frontend/footer.terms_of_service')</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{Route::currentRouteName() === 'home' ? route('privacy-policy') : '#'}}">@lang('frontend/footer.privacy_policy')</a></li>
             </ul>
           </div>
 

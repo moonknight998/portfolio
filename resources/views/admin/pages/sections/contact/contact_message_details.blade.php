@@ -39,14 +39,14 @@
                                     <div
                                         class="d-flex align-items-center justify-content-between flex-wrap px-3 py-2 border-bottom">
                                         <div class="d-flex align-items-center">
-                                            <div class="me-2">
+                                            <div class="avatar">
                                                 <img src="{{ asset('backend/assets/img/avatars/blank_avatar.jpg') }}"
                                                     width="32" height="32" alt="Avatar"
-                                                    class="rounded-circle img-xs">
+                                                    class="avatar-img">
                                             </div>
-                                            <div class="d-flex align-items-center">
-                                                <a class="text-body">{{$contact_message->name}}</a>
-                                                <span class="text-muted px-2">{{$contact_message->email}}</span>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a class="text-center text-decoration-none px-2">{{$contact_message->name}}</a>
+                                                <span class="text-muted px-2 d-none d-md-inline">{{$contact_message->email}}</span>
                                                 <div class="actions dropdown">
                                                     <a href="#" data-bs-toggle="dropdown"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -65,7 +65,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tx-13 text-muted mt-2 mt-sm-0">{{$contact_message->created_at->format('d-m-Y')}}</div></div>
+                                        <div class="tx-13 text-muted mt-sm-0">{{$contact_message->created_at->format('d-m-Y')}}</div></div>
                                     </div>
                                     <div class="p-4 border-bottom">
                                         <p class="mb-0 tx-13">{{$contact_message->message}}</p>

@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\Section\Testimonial\TestimonialItemController;
 use App\Http\Controllers\Admin\Section\Testimonial\TestimonialTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
 use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
+use App\Http\Controllers\Admin\SinglePage\PrivacyPolicyController;
 use App\Http\Controllers\Admin\SinglePage\TermsOfServiceController;
 use App\Http\Controllers\Frontend\BlogSearchController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -80,6 +81,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+
+Route::get('/terms-of-service', [TermsOfServiceController::class, 'content'])->name('terms-of-service');
+
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'content'])->name('privacy-policy');
 #endregion
 
 Route::middleware('auth')->group(function () {
@@ -131,6 +136,7 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::get('contact_message/message_details={slug}', [ContactMessageController::class, 'messageDetails'])->name('contact_message.message_details');
     Route::resource('contact_message', ContactMessageController::class)->only(['index', 'show']);
     Route::resource('terms_of_service', TermsOfServiceController::class);
+    Route::resource('privacy_policy', PrivacyPolicyController::class);
 });
 
 Route::group(['middleware'=> ['auth'], 'prefix' => 'blog', 'as' => 'blog.'], function(){

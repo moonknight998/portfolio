@@ -27,7 +27,7 @@
                             </div> --}}
                             <div class="card-body">
                                 <div class="col-lg">
-                                    <div class="p-3 border-bottom">
+                                    <div class="p-3 border rounded">
                                         <div class="row align-items-center">
                                             <div class="col-lg-6">
                                                 <div class="d-flex align-items-center mb-2 mb-md-0">
@@ -57,14 +57,14 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="p-3 border-bottom d-flex align-items-center justify-content-between flex-wrap">
+                                        class="p-3 d-flex align-items-center justify-content-between flex-wrap">
                                         @if (count($contact_messages) > 0)
                                         {{-- <div class="blog-pagination justify-content-end">
                                             {!!$contact_messages->links('vendor.pagination.flex-start')!!}
                                         </div> --}}
                                         @else
                                             <div class="d-flex align-items-center justify-content-start flex-grow-1">
-                                                <span class="me-2">Chưa có tin nhắn nào</span>
+                                                <span class="me-2">@lang('admin/contact/contact.no_message_found')</span>
                                             </div>
                                         @endif
                                     </div>

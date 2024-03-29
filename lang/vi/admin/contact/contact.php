@@ -15,4 +15,5 @@
         'info_placeholder' => 'Nhập thông tin của bạn',
         'edit_item' => 'Chỉnh sửa thông tin',
         'item_updated' => 'Cập nhật thông tin thành công!',
+        'no_message_found' => 'Chưa có tin nhắn nào!',
     ];

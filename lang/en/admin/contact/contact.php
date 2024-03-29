@@ -15,4 +15,5 @@
         'info_placeholder' => 'Type your info',
         'edit_item' => 'Edit contact info',
         'item_updated' => 'Update contact info successfully!',
+        'no_message_found' => 'No message found!',
     ];

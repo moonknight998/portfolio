@@ -8,8 +8,8 @@
           <ol class="breadcrumb my-0 ms-2">
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.components')}}</a></li>
             <li class="breadcrumb-item"><a>{{__('admin/sidebar.home')}}</a></li>
-            <li class="breadcrumb-item"><a>{{__('admin/sidebar.terms_of_service')}}</a></li>
-            <li class="breadcrumb-item active"><a>{{__('admin/termsofservice/termsofservice.update_section')}}</a></li>
+            <li class="breadcrumb-item"><a>{{__('admin/sidebar.privacy_policy')}}</a></li>
+            <li class="breadcrumb-item active"><a>{{__('admin/privacypolicy/privacypolicy.update_section')}}</a></li>
           </ol>
         </nav>
       </div>
@@ -24,11 +24,11 @@
                 <div class="card-group d-block d-md-flex row">
                     <div class="card col-md-7 p-2 mb-4">
                         <div class="card-header">
-                            <h2>@lang('admin/termsofservice/termsofservice.update_section')</h2>
+                            <h2>@lang('admin/privacypolicy/privacypolicy.update_section')</h2>
                         </div>
-                        <form class="was-validated" novalidate method="POST" action="{{$terms_of_service ? route('admin.terms_of_service.update', $terms_of_service->id) : route('admin.terms_of_service.store')}}" enctype="multipart/form-data">
+                        <form class="was-validated" novalidate method="POST" action="{{$privacy_policy ? route('admin.privacy_policy.update', $privacy_policy->id) : route('admin.privacy_policy.store')}}" enctype="multipart/form-data">
                             @csrf
-                            @if ($terms_of_service)
+                            @if ($privacy_policy)
                             @method('PATCH')
                             @endif
                             <div class="card-body">
@@ -59,7 +59,7 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">@lang('admin/termsofservice/termsofservice.title_required')</label>
                                             <input class="form-control" name="title" type="text" placeholder="@lang('admin/termsofservice/termsofservice.title_placeholder')"
-                                            onchange="loadDocument(event, 'preview_title')" required minlength="3" maxlength="500" value="{{$terms_of_service ? $terms_of_service->title : ''}}"></input>
+                                            onchange="loadDocument(event, 'preview_title')" required minlength="3" maxlength="500" value="{{$privacy_policy ? $privacy_policy->title : ''}}"></input>
                                             @if ($errors->has('title'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('title')}}</div>
@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/termsofservice/termsofservice.content_required')}}</label>
-                                            <textarea class="form-control" rows="5" id="ckeditor5" name="content" type="text" required>{!!$terms_of_service ? $terms_of_service->content : ''!!}</textarea>
+                                            <textarea class="form-control" rows="5" id="ckeditor5" name="content" type="text" required>{!!$privacy_policy ? $privacy_policy->content : ''!!}</textarea>
                                             @if ($errors->has('content'))
                                                 <div class="row mb-0">
                                                     <div class="invalid-feedback" style="display: inline;">{{$errors->first('content')}}</div>
@@ -78,8 +78,8 @@
                                         <div class="form-group mb-3">
                                             <label class="form-label">{{__('admin/common.status')}}</label>
                                             <select class="form-select" id="status" name="status" required>
-                                                <option {{$terms_of_service ? ($terms_of_service->status == 1 ? 'selected' : '') : 'selected'}} value="1">{{__('admin/common.display')}}</option>
-                                                <option {{$terms_of_service ? ($terms_of_service->status == 0 ? 'selected' : '') : ''}}value="0">{{__('admin/common.hide')}}</option>
+                                                <option {{$privacy_policy ? ($privacy_policy->status == 1 ? 'selected' : '') : 'selected'}} value="1">{{__('admin/common.display')}}</option>
+                                                <option {{$privacy_policy ? ($privacy_policy->status == 0 ? 'selected' : '') : ''}}value="0">{{__('admin/common.hide')}}</option>
                                             </select>
                                         </div>
                                       </div>
@@ -101,19 +101,19 @@
                                                     <div class="col-lg-12 entries">
                                                         <article class="entry entry-single">
                                                             <h2 class="entry-title">
-                                                                <a id="preview_title">{{$terms_of_service ? $terms_of_service->title : __('admin/termsofservice/termsofservice.title_preview')}}</a>
+                                                                <a id="preview_title">{{$privacy_policy ? $privacy_policy->title : __('admin/privacypolicy/privacypolicy.title_preview')}}</a>
                                                             </h2>
                                                             <div class="entry-meta">
                                                                 <ul>
                                                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i><a>@lang('admin/common.admin')</a></li>
-                                                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$terms_of_service ? __('admin/common.updated_at').':'.' '.date('d-m-Y', strtotime($terms_of_service->updated_at)) : __('admin/common.updated_at').':'.' '.date('d-m-Y')}}</time></a></li>
+                                                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><time>{{$privacy_policy ? __('admin/common.updated_at').':'.' '.date('d-m-Y', strtotime($privacy_policy->updated_at)) : __('admin/common.updated_at').':'.' '.date('d-m-Y')}}</time></a></li>
                                                                 </ul>
                                                             </div>
                                                             <div id="preview_content" class="ck-content">
-                                                                @if ($terms_of_service)
-                                                                    {!!$terms_of_service->content!!}
+                                                                @if ($privacy_policy)
+                                                                    {!!$privacy_policy->content!!}
                                                                 @else
-                                                                    <p>{{__('admin/termsofservice/termsofservice.content_preview')}}</p>
+                                                                    <p>{{__('admin/privacypolicy/privacypolicy.content_preview')}}</p>
                                                                 @endif
                                                                 <!--Post content-->
                                                             </div>
@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <button class="btn btn-primary mb-3" type="submit">{{$terms_of_service ? __('admin/common.update') : __('admin/common.create_new')}}</button>
+                                        <button class="btn btn-primary mb-3" type="submit">{{$privacy_policy ? __('admin/common.update') : __('admin/common.create_new')}}</button>
                                     </div>
                                 </div>
                             </div>

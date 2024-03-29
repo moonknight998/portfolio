@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin\SinglePage;
 
 use App\Http\Controllers\Controller;
-use App\Models\TermsOfService;
+use App\Models\PrivacyPolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class TermsOfServiceController extends Controller
+class PrivacyPolicyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $terms_of_service = TermsOfService::first();
-        return view('admin.pages.single.terms_of_service_index', compact('terms_of_service'));
+        $privacy_policy = PrivacyPolicy::first();
+        return view('admin.pages.single.privacy_policy_index', compact('privacy_policy'));
     }
 
     /**
@@ -74,7 +74,7 @@ class TermsOfServiceController extends Controller
                 $image_scr = base64_decode($src); // Decode the base64 encoded image source
 
                 // Generate a unique image name and path
-                $image_name = '/uploads/terms_of_service/'.date("H_i_s").'_'.date('d_m_Y').'_'.uniqid().'.'.$type;
+                $image_name = '/uploads/privacy_policy/'.date("H_i_s").'_'.date('d_m_Y').'_'.uniqid().'.'.$type;
                 $image_path = public_path($image_name);
 
                 // Save the image to the specified path
@@ -87,12 +87,12 @@ class TermsOfServiceController extends Controller
             }
         }
 
-        $terms_of_service = new TermsOfService();
-        $terms_of_service->title = $request->title;
-        $terms_of_service->slug = Str::slug($request->title).'-'.time().'-'.Str::random(10);
-        $terms_of_service->content = $content;
-        $terms_of_service->status = $request->status;
-        $terms_of_service->save();
+        $privacy_policy = new PrivacyPolicy();
+        $privacy_policy->title = $request->title;
+        $privacy_policy->slug = Str::slug($request->title).'-'.time().'-'.Str::random(10);
+        $privacy_policy->content = $content;
+        $privacy_policy->status = $request->status;
+        $privacy_policy->save();
 
         return redirect()->back()->with('status', 'updated');
     }
@@ -118,7 +118,7 @@ class TermsOfServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $terms_of_service = TermsOfService::findOrFail($id);
+        $privacy_policy = PrivacyPolicy::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:100'],
@@ -137,7 +137,7 @@ class TermsOfServiceController extends Controller
         }
 
         // Retrieve the content from the $terms_of_service object
-        $content_present = $terms_of_service->content;
+        $content_present = $privacy_policy->content;
 
         // Create a new DOMDocument object
         $dom_present = new \DOMDocument();
@@ -236,11 +236,11 @@ class TermsOfServiceController extends Controller
             }
         }
 
-        $terms_of_service->title = $request->title;
-        $terms_of_service->slug = Str::slug($request->title).'-'.time().'-'.Str::random(10);
-        $terms_of_service->content = $content_to_update;
-        $terms_of_service->status = $request->status;
-        $terms_of_service->save();
+        $privacy_policy->title = $request->title;
+        $privacy_policy->slug = Str::slug($request->title).'-'.time().'-'.Str::random(10);
+        $privacy_policy->content = $content_to_update;
+        $privacy_policy->status = $request->status;
+        $privacy_policy->save();
 
         return redirect()->back()->with('status', 'updated');
     }
@@ -257,9 +257,9 @@ class TermsOfServiceController extends Controller
      * Show content for guest
      */
 
-    public function content()
-    {
-        $terms_of_service = TermsOfService::first();
-        return view('frontend.pages.terms_of_service.terms_of_service', compact('terms_of_service'));
-    }
+     public function content()
+     {
+         $privacy_policy = PrivacyPolicy::first();
+         return view('frontend.pages.privacy_policy.privacy_policy', compact('privacy_policy'));
+     }
 }
