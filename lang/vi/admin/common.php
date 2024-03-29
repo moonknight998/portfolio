@@ -111,4 +111,6 @@ return [
     'messages' => 'Tin nhắn',
     'all_messages' => 'Tất cả tin nhắn',
     'inbox' => 'Hộp thư',
+    'unread' => 'tin nhắn chưa đọc',
+    'admin' => 'Quản trị viên',
 ];

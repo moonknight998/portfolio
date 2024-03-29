@@ -113,4 +113,6 @@ return [
     'messages' => 'Messages',
     'all_messages' => 'All messages',
     'inbox' => 'Inbox',
+    'unread_messages' => 'unread messages',
+    'admin' => 'Admin',
 ];

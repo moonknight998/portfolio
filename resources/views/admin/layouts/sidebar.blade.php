@@ -143,6 +143,7 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link {{request()->is('*admin/terms_of_service*') ? 'active' : ''}}" href="{{route('admin.terms_of_service.index')}}"><span class="nav-icon"></span>{{__('admin/sidebar.terms_of_service')}}</a></li>
             </ul>
         </li>
         <li class="nav-group {{request()->is('*blog*') ? 'show' : ''}}">

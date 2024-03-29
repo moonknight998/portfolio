@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\Section\Testimonial\TestimonialItemController;
 use App\Http\Controllers\Admin\Section\Testimonial\TestimonialTitleController;
 use App\Http\Controllers\Admin\Section\Value\ValueCardController;
 use App\Http\Controllers\Admin\Section\Value\ValueTitleController;
+use App\Http\Controllers\Admin\SinglePage\TermsOfServiceController;
 use App\Http\Controllers\Frontend\BlogSearchController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Models\BlogCategory;
@@ -79,16 +80,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/change-language/{lang}', [DashboardController::class, 'changeLanguage'])->name('change-language');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
-Route::get('/all_message', function ()
-{
-    return view('admin.pages.sections.contact.contact_message_item');
-
-});
-Route::get('/message_details', function ()
-{
-    return view('admin.pages.sections.contact.contact_message_details');
-
-});
 #endregion
 
 Route::middleware('auth')->group(function () {
@@ -139,6 +130,7 @@ Route::group(['middleware'=> ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('contact_item', ContactItemController::class);
     Route::get('contact_message/message_details={slug}', [ContactMessageController::class, 'messageDetails'])->name('contact_message.message_details');
     Route::resource('contact_message', ContactMessageController::class)->only(['index', 'show']);
+    Route::resource('terms_of_service', TermsOfServiceController::class);
 });
 
 Route::group(['middleware'=> ['auth'], 'prefix' => 'blog', 'as' => 'blog.'], function(){

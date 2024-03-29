@@ -34,4 +34,5 @@ return [
     'post' => 'Bài viết',
     'contact_section' => 'Liên hệ',
     'contact_items' => 'Các thông tin',
+    'terms_of_service' => 'Điều khoản dịch vụ',
 ];

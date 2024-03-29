@@ -16,8 +16,9 @@ class ContactMessageController extends Controller
      */
     public function index()
     {
-        $contact_messages = ContactMessage::orderBy('created_at', 'desc');
-        return view('admin.pages.sections.contact.contact_message_item', compact('contact_messages'));
+        $contact_messages = ContactMessage::orderBy('created_at', 'desc')->get();
+        $contact_messages_unread = ContactMessage::where('status', MessageStatusEnum::SENT->value)->get();
+        return view('admin.pages.sections.contact.contact_message_item', compact('contact_messages', 'contact_messages_unread'));
     }
 
     /**

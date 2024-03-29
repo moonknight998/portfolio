@@ -1,9 +1,6 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <?php
-    $contact_messages = App\Models\ContactMessage::all();
-    ?>
     <!--Breadcrumb-->
     <header class="header header-sticky mb-4" style="z-index: 0">
         <div class="container-fluid m-1">
@@ -40,7 +37,7 @@
                                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
                                                     </svg>
                                                     <h4 class="me-1">@lang('admin/common.inbox')</h4>
-                                                    <span class="text-muted">(2 new messages)</span>
+                                                    <span class="text-muted">({{count($contact_messages_unread).' '.__('admin/common.unread')}})</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -73,9 +70,12 @@
                                     </div>
                                     <div class="email-list">
                                         @foreach ($contact_messages as $contact_message_local)
+                                        {{-- @php
+                                            dd($contact_message_local->status);
+                                        @endphp --}}
                                             <!-- email list item -->
                                             <div
-                                                class="email-list-item email-list-item--{{ $contact_message_local->status == 'seen' ? 'seen' : 'unread' }}">
+                                                class="email-list-item email-list-item--{{ $contact_message_local->status->value == 'seen' ? 'seen' : 'unread' }}">
                                                 <div class="email-list-actions">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input">

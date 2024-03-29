@@ -34,4 +34,5 @@ return [
     'post' => 'Post',
     'contact_section' => 'Contact Section',
     'contact_items' => 'Contact info',
+    'terms_of_service' => 'Terms of service',
 ];
