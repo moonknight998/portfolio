@@ -2,8 +2,10 @@
 
 @section('content')
 
-<!--Breadcrumb-->
-<header class="header header-sticky mb-4" style="z-index: 0">
+<!--Header-->
+<header class="header header-sticky p-0 mb-4">
+    @include('admin.layouts.user_option')
+    <!-- Breadcrumb-->
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb my-0 ms-2">
@@ -13,8 +15,9 @@
           </ol>
         </nav>
       </div>
+    <!--End Breadcumb-->
 </header>
-<!--End Breadcrumb-->
+<!--End Header-->
 
 <!--Main Part-->
 <div class="body flex-grow-1 px-1">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <base href="./">
@@ -55,6 +55,9 @@
 
     <!-- Main styles for this application-->
     <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet">
+    <script src="{{ asset('backend/assets/js/config.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/color-modes.js')}}"></script>
+    <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/custom_style.css') }}">
 
@@ -66,130 +69,10 @@
     <!--End Sidebar-->
 
     <!--Start Main Part-->
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-        <!--Start Header-->
-        <header class="header header-sticky" style="z-index: 1500">
-            <div class="container-fluid">
-                <button class="header-toggler px-md-0 me-md-3" type="button"
-                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-                    <svg class="icon icon-lg">
-                        <use xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-menu') }}">
-                        </use>
-                    </svg>
-                </button>
-                <a class="header-brand d-md-none" href="#">
-                    <svg width="118" height="46" alt="CoreUI Logo">
-                        <use xlink:href="{{ asset('backend/assets/brand/coreui.svg#full') }}"></use>
-                    </svg>
-                </a>
-                <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link"
-                            href="{{ route('dashboard') }}">{{ __('admin-header.dashboard') }}</a></li>
-                </ul>
-                <ul class="header-nav ms-auto">
-                    <!--Stretchy header-->
-                </ul>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-coreui-toggle="dropdown"
-                        aria-expanded="false">{{ ShowLocaleSetting() }}</button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item"
-                                style="pointer-events: {{ app()->getLocale() == 'vi' ? 'none' : 'auto' }}"
-                                href="{{ route('change-language', 'vi') }}">{{ __('admin/common.vietnamese') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item"
-                                style="pointer-events: {{ app()->getLocale() == 'en' ? 'none' : 'auto' }}"
-                                href="{{ route('change-language', 'en') }}">{{ __('admin/common.english') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <ul class="header-nav ms-3">
-                    <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <div class="avatar avatar-md"><img class="avatar-img"
-                                    src="{{ asset('backend/assets/img/avatars/8.jpg') }}" alt="user@email.com"></div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end pt-0">
-                            <div class="dropdown-header bg-light py-2">
-                                <div class="fw-semibold">Account</div>
-                            </div><a class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bell') }}">
-                                    </use>
-                                </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a
-                                href="{{route('admin.contact_message.index')}}"
-                                class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open') }}">
-                                    </use>
-                                </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a
-                                class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-tas') }}k">
-                                    </use>
-                                </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a
-                                class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-comment-square') }}">
-                                    </use>
-                                </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
-                            <div class="dropdown-header bg-light py-2">
-                                <div class="fw-semibold">Settings</div>
-                            </div><a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user') }}">
-                                    </use>
-                                </svg> Profile</a><a class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-settings') }}">
-                                    </use>
-                                </svg> Settings</a><a class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-credit-card') }}">
-                                    </use>
-                                </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a
-                                class="dropdown-item" href="#">
-                                <svg class="icon me-2">
-                                    <use
-                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-file') }}">
-                                    </use>
-                                </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-                            <div class="dropdown-divider"></div>
-                            {{-- <a class="dropdown-item" href="#">
-                                    <svg class="icon me-2">
-                                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                                    </svg>
-                                Lock Account
-                                </a> --}}
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" href="#"
-                                    onclick="event.preventDefault();this.closest('form').submit();">
-                                    <svg class="icon me-2">
-                                        <use
-                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}">
-                                        </use>
-                                    </svg>
-                                    Logout
-                                </a>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <!--End Header-->
+    <div class="wrapper d-flex flex-column min-vh-100">
+        {{-- <!--Start Header-->
+        @include('admin.layouts.header')
+        <!--End Header--> --}}
 
         <!--Start Body-->
         @yield('content')
@@ -213,15 +96,14 @@
     <script src="{{ asset('backend/assets/vendors/simplebar/js/simplebar.min.js') }}"></script>
 
     <!-- Plugins and scripts required by this view-->
-    <script src="{{ asset('backend/assets/vendors/chart.js/js/chart.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendors/@coreui/utils/js/coreui-utils.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/chart.js/js/chart.umd.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/@coreui/chartjs/js/coreui-chartjs.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendors/@coreui/utils/js/index.js') }}"></script>
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
+
+    <!--Externail JS libraries-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
-
-    <!-- include summernote css/js-->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <!--CKEDITOR-->
     <script src="{{ asset('assets/vendor/ckeditor5/build/ckeditor.js') }}"></script>
@@ -239,7 +121,7 @@
     <script src="{{ asset('functions/functions.js') }}"></script>
 
 
-    <!-- Popup -->
+    <!-- Sweet Alert 2-->
     <script>
         $(document).ready(function() {
             $('body').on('click', '.delete-btn', function(e) {
@@ -251,14 +133,14 @@
                 e.preventDefault();
                 let deleteUrl = $(this).attr('href');
                 Swal.fire({
-                    title: '{{ __('admin/common.are_you_sure') }}',
-                    text: '{{ __('admin/common.cant_reverted') }}',
+                    title: '@lang('admin/common.are_you_sure')',
+                    text: '@lang('admin/common.cant_reverted')',
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: '{{ __('admin/common.yes_delete_it') }}',
-                    cancelButtonText: '{{ __('admin/common.cancel') }}'
+                    confirmButtonText: '@lang('admin/common.yes_delete_it')',
+                    cancelButtonText: '@lang('admin/common.cancel')'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -267,7 +149,7 @@
                             success: function(data, status, xhr) {
                                 if (status == 'success') {
                                     Swal.fire(
-                                        '{{ __('admin/common.swal_deleted') }}',
+                                        '@lang('admin/common.swal_deleted')',
                                         '',
                                         'success'
                                     ).then((result) => {
@@ -277,7 +159,7 @@
                                     })
                                 } else if (status == 'error') {
                                     Swal.fire(
-                                        '{{ __('admin/common.swal_delete_failed') }}',
+                                        '@lang('admin/common.swal_delete_failed')',
                                         '',
                                         'error'
                                     )
@@ -353,24 +235,6 @@
                     spaceBetween: 120,
                 }
             }
-        });
-    </script>
-
-    <!-- Summernote for all page but not using anymore -->
-    <script>
-        $('#summernote-full').summernote({
-            placeholder: '{{ __('admin/common.type_your_content') }}',
-            tabsize: 2,
-            height: 360,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
         });
     </script>
 

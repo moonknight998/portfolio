@@ -14,7 +14,7 @@
                 <li class="dropdown"><a href="#recent-blog-posts"><span>Blog</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                     <li><a href="{{Route::currentRouteName() === 'home' ? '#recent-blog-posts' : route('home').'#recent-blog-posts'}}">@lang('admin/blog/blog.recent_posts')</a></li>
-                    <li><a href="{{Route::currentRouteName() === 'home' ? route('blogs'): "#"}}">@lang('admin/common.all_post')</a></li>
+                    <li><a href="{{Route::currentRouteName() === 'blogs' ? '#' : route('blogs')}}">@lang('admin/common.all_post')</a></li>
                     </ul>
                 </li>
 

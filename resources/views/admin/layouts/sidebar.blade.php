@@ -1,12 +1,17 @@
-<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
     <!--Start Logo-->
-    <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-            <use xlink:href="{{ asset('backend/assets/brand/coreui.svg#full') }}"></use>
-        </svg>
-        <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-            <use xlink:href="{{ asset('backend/assets/brand/coreui.svg#signet') }}"></use>
-        </svg>
+    <div class="sidebar-header border-bottom">
+        <div class="sidebar-brand">
+            <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
+                <use xlink:href="{{ asset('backend/assets/brand/coreui.svg#full') }}"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
+                <use xlink:href="{{ asset('backend/assets/brand/coreui.svg#signet') }}"></use>
+            </svg>
+        </div>
+        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark"
+            aria-label="Close"
+            onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
     </div>
     <!--End Logo-->
 
@@ -27,7 +32,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-home') }}"></use>
                 </svg>{{ __('admin/sidebar.home') }}</a>
-            <ul class="nav-group-items">
+            <ul class="nav-group-items compact">
                 <li class="nav-item"><a class="nav-link {{ request()->is('*admin/hero*') ? 'active' : '' }}"
                         href="{{ route('admin.hero.index') }}"><span
                             class="nav-icon"></span>{{ __('admin/sidebar.hero-section') }}</a></li>
@@ -43,11 +48,11 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/value_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.value_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.value-title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.value-title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/value_card*') ? 'active' : '' }}"
                                 href="{{ route('admin.value_card.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.value-card') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.value-card') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link {{ request()->is('*admin/count*') ? 'active' : '' }}"
@@ -62,27 +67,27 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/common.main_title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/common.main_title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_list*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_list.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.feature_list') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.feature_list') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_tab_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_tab_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.feature_tab_title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.feature_tab_title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_tab_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_tab_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.feature_tab_items') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.feature_tab_items') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_icon_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_icon_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.feature_icon_title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.feature_icon_title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/feature_icon_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.feature_icon_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.feature_icon_item') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.feature_icon_item') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-group {{ request()->is('*admin/service_title*') || request()->is('*admin/service_item*') ? 'show' : '' }}"
@@ -94,11 +99,11 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/service_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.service_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/service/service.title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/service/service.title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/service_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.service_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/service/service.service_items') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/service/service.service_items') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-group {{ request()->is('*admin/pricing_title*') || request()->is('*admin/pricing_item*') ? 'show' : '' }}"
@@ -110,11 +115,11 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/pricing_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.pricing_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/pricing/pricing.title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/pricing/pricing.title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/pricing_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.pricing_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.pricing_items') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.pricing_items') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-group {{ request()->is('*admin/faq_title*') || request()->is('*admin/faq_item*') ? 'show' : '' }}"
@@ -126,11 +131,11 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/faq_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.faq_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/faq/faq.title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/faq/faq.title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/faq_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.faq_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.faq_items') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.faq_items') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-group {{ request()->is('*admin/testimonial_title*') || request()->is('*admin/testimonial_item*') ? 'show' : '' }}"
@@ -142,11 +147,11 @@
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/testimonial_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.testimonial_title.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/testimonial/testimonial.title') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/testimonial/testimonial.title') }}</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->is('*admin/testimonial_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.testimonial_item.index') }}"><span
-                                    class="nav-icon"></span>{{ __('admin/sidebar.testimonial_items') }}</a></li>
+                                    class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.testimonial_items') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-group {{ request()->is('*admin/team_title*') || request()->is('*admin/team_item*') ? 'show' : '' }}"
@@ -158,12 +163,12 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/team_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.team_title.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/team/team.title') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/team/team.title') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/team_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.team_item.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/sidebar.team_items') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.team_items') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -176,12 +181,12 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/client_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.client_title.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/client/client.title') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/client/client.title') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/client_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.client_item.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/sidebar.client_items') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.client_items') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -194,7 +199,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/blog_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.blog_title.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/blog/blog.blog_title') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/blog/blog.blog_title') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -207,12 +212,12 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/contact_title*') ? 'active' : '' }}"
                                 href="{{ route('admin.contact_title.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/contact/contact.title') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/contact/contact.title') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*admin/contact_item*') ? 'active' : '' }}"
                                 href="{{ route('admin.contact_item.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/sidebar.contact_items') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.contact_items') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -221,9 +226,9 @@
                         href="{{ route('admin.terms_of_service.index') }}"><span
                             class="nav-icon"></span>{{ __('admin/sidebar.terms_of_service') }}</a></li>
                 <li class="nav-item"><a
-                    class="nav-link {{ request()->is('*admin/privacy_policy*') ? 'active' : '' }}"
-                    href="{{ route('admin.privacy_policy.index') }}"><span
-                        class="nav-icon"></span>{{ __('admin/sidebar.privacy_policy') }}</a></li>
+                        class="nav-link {{ request()->is('*admin/privacy_policy*') ? 'active' : '' }}"
+                        href="{{ route('admin.privacy_policy.index') }}"><span
+                            class="nav-icon"></span>{{ __('admin/sidebar.privacy_policy') }}</a></li>
             </ul>
         </li>
         <li class="nav-group {{ request()->is('*blog*') ? 'show' : '' }}">
@@ -240,14 +245,14 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*blog/blog_category*') ? 'active' : '' }}"
                                 href="{{ route('blog.blog_category.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/sidebar.category') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.category') }}</a>
                         </li>
                     </ul>
                     <ul class="nav-group-items">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('*blog/blog_post*') ? 'active' : '' }}"
                                 href="{{ route('blog.blog_post.index') }}">
-                                <span class="nav-icon"></span>{{ __('admin/sidebar.blog_post') }}</a>
+                                <span class="nav-icon"><span class="nav-icon-bullet"></span></span>{{ __('admin/sidebar.blog_post') }}</a>
                         </li>
                     </ul>
                 </li>
