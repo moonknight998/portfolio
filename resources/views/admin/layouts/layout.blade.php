@@ -52,14 +52,13 @@
 
     <!-- Frontend style for preview-->
     @include('frontend.layout.style')
-
+        
     <!-- Main styles for this application-->
     <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('backend/assets/js/config.js')}}"></script>
     <script src="{{ asset('backend/assets/js/color-modes.js')}}"></script>
     <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/custom_style.css') }}">
 
 </head>
 

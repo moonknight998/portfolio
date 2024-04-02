@@ -1,6 +1,6 @@
 <div class="container-fluid border-bottom px-4">
     <button class="header-toggler" type="button"
-        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px">
         <svg class="icon icon-lg">
             <use xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-menu') }}">
             </use>
@@ -10,14 +10,14 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">{{ __('admin-header.dashboard') }}</a>
         </li>
     </ul>
-    <ul class="header-nav ms-auto">
+    <ul class="header-nav d-none d-md-flex ms-auto">
         <li class="nav-item"><a class="nav-link" href="{{route('admin.contact_message.index')}}">
             <svg class="icon icon-lg">
                 <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open')}}"></use>
             </svg></a>
         </li>
     </ul>
-    <ul class="header-nav">
+    <ul class="header-nav ms-auto ms-md-0">
         <li class="nav-item py-1">
             <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
         </li>
@@ -56,23 +56,19 @@
         </li>
         <!--Language dropdown-->
         <li class="nav-item dropdown">
-            <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button"
-                aria-expanded="false" data-coreui-toggle="dropdown">
-                <svg class="icon icon-lg theme-icon-active">
-                    <use xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-language') }}">
-                    </use>
+            <button class="btn btn-link nav-link" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+                <svg class="icon icon-lg">
+                  <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-language')}}"></use>
                 </svg>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
                 <li>
                     <a class="dropdown-item" style="pointer-events: {{ app()->getLocale() == 'vi' ? 'none' : 'auto' }}"
-                        href="{{ route('change-language', 'vi') }}">{{ __('admin/common.vietnamese') }}
-                    </a>
+                        href="{{ route('change-language', 'vi') }}"> {{ __('admin/common.vietnamese') }}</a>
                 </li>
                 <li>
                     <a class="dropdown-item" style="pointer-events: {{ app()->getLocale() == 'en' ? 'none' : 'auto' }}"
-                        href="{{ route('change-language', 'en') }}">{{ __('admin/common.english') }}
-                    </a>
+                        href="{{ route('change-language', 'en') }}"> {{ __('admin/common.english') }}</a>
                 </li>
             </ul>
         </li>

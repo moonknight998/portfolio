@@ -43,7 +43,8 @@
                                                     </use>
                                                 </svg></span>
                                             <input id="name" class="form-control" type="text"
-                                                placeholder="{{ __('admin-profile.name') }}" name="name" value="{{ $user->name }}">
+                                                placeholder="{{ __('admin-profile.name') }}" name="name"
+                                                value="{{ $user->name }}">
                                         </div>
                                         @if ($errors->has('name'))
                                             <div class="valid-feedback" style="display: inline; color: red;">
@@ -137,8 +138,8 @@
                                                         xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked') }}">
                                                     </use>
                                                 </svg></span>
-                                            <input id="update_password_password_confirmation" name="new_password_confirmation"
-                                                type="password" class="form-control"
+                                            <input id="update_password_password_confirmation"
+                                                name="new_password_confirmation" type="password" class="form-control"
                                                 placeholder="{{ __('admin-profile.confirm_password') }}">
                                         </div>
                                         @if ($errors->updatePassword->has('new_password_confirmation'))

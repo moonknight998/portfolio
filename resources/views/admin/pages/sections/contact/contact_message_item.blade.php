@@ -1,11 +1,13 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <!--Breadcrumb-->
-    <header class="header header-sticky mb-4" style="z-index: 0">
-        <div class="container-fluid m-1">
+    <!--Header-->
+    <header class="header header-sticky p-0 mb-4">
+        @include('admin.layouts.user_option')
+        <!-- Breadcrumb-->
+        <div class="container-fluid px-4">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb my-0 ms-2">
+                <ol class="breadcrumb my-0">
                     <li class="breadcrumb-item"><a>{{ __('admin/common.user') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/common.messages') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/common.all_messages') }}</a></li>
@@ -13,98 +15,143 @@
             </nav>
         </div>
     </header>
-    <!--End Breadcrumb-->
+    <!--End Header-->
 
     <!--Main Part-->
-    <div class="body flex-grow-1 px-1">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card-group d-block d-md-flex row">
-                        <div class="card col-md-7 p-2 mb-4">
-                            {{-- <div class="card-header">
-                                <h2>@lang('admin/common.all_messages')</h2>
-                            </div> --}}
-                            <div class="card-body">
-                                <div class="col-lg">
-                                    <div class="p-3 border rounded">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center mb-2 mb-md-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38"
-                                                        fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
-                                                    </svg>
-                                                    <h4 class="me-1">@lang('admin/common.inbox')</h4>
-                                                    <span class="text-muted">({{count($contact_messages_unread).' '.__('admin/common.unread')}})</span>
+    <div class="body flex-grow-1">
+        <div class="container-lg px-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="btn-toolbar mb-4">
+                        <div class="btn-group me-1 d-lg-inline-flex d-none">
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-closed') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-star') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bookmark') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="btn-group me-1 d-lg-inline-flex d-none">
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-al') }}l">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary d-inline-block" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-boxed') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary me-1 d-lg-inline-block d-none" type="button">
+                            <svg class="icon">
+                                <use
+                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-trash') }}">
+                                </use>
+                            </svg>
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-tags') }}">
+                                    </use>
+                                </svg><span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">add
+                                    label<span class="badge bg-danger-gradient ms-2"> Home</span></a><a
+                                    class="dropdown-item" href="#">add label<span class="badge bg-info-gradient ms-2">
+                                        Job</span></a><a class="dropdown-item" href="#">add label<span
+                                        class="badge bg-success-gradient ms-2">
+                                        Clients</span></a><a class="dropdown-item" href="#">add label<span
+                                        class="badge bg-warning-gradient ms-2"> News</span></a></div>
+                        </div>
+                        <div class="btn-group ms-auto">
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-left') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="messages">
+                        @if (count($contact_messages) > 0)
+                            @foreach ($contact_messages as $contact_message_local)
+                                <a class="message d-flex mb-3 text-{{ $contact_message_local->status->value === 'seen' ? 'body-secondary' : 'high-emphasis' }} text-decoration-none"
+                                    href="{{ route('admin.contact_message.message_details', $contact_message_local->slug) }}">
+                                    <div class="message-actions me-3">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-star') }}">
+                                            </use>
+                                        </svg>
+                                    </div>
+                                    <div class="container-fluid px-0 message-details flex-wrap pb-3 border-bottom">
+                                        <div class="message-headers flex-wrap">
+                                            <div class="container-fluid px-0">
+                                                <div class="row justify-between">
+                                                    <div class="col d-flex justify-start">
+                                                        <div class="message-headers-from">{{ $contact_message_local->name }}</div>
+                                                    </div>
+                                                    <div class="col d-flex justify-end">
+                                                        <div class="message-headers-date algi">
+                                                            <svg class="icon">
+                                                                {{-- <use
+                                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-paperclip') }}">
+                                                                </use> --}}
+                                                            </svg>{{ $contact_message_local->created_at->format('H:m d-m-Y') }}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="input-group">
-                                                    <input class="form-control" type="text" placeholder="Search mail...">
-                                                    <button class="btn btn-light btn-icon" type="button"
-                                                        id="button-search-addon"><svg xmlns="http://www.w3.org/2000/svg"
-                                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="feather feather-search">
-                                                            <circle cx="11" cy="11" r="8"></circle>
-                                                            <line x1="21" y1="21" x2="16.65"
-                                                                y2="16.65"></line>
-                                                        </svg></button>
+                                            <div class="container-fluid px-0">
+                                                <div class="row d-flex justify-start">
+                                                    <div class="message-headers-subject w-100 fs-5 fw-semibold">
+                                                        {{ $contact_message_local->message_title }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="message-body">{{ $contact_message_local->message }}</div>
                                     </div>
-                                    <div
-                                        class="p-3 d-flex align-items-center justify-content-between flex-wrap">
-                                        @if (count($contact_messages) > 0)
-                                        {{-- <div class="blog-pagination justify-content-end">
-                                            {!!$contact_messages->links('vendor.pagination.flex-start')!!}
-                                        </div> --}}
-                                        @else
-                                            <div class="d-flex align-items-center justify-content-start flex-grow-1">
-                                                <span class="me-2">@lang('admin/contact/contact.no_message_found')</span>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="email-list">
-                                        @foreach ($contact_messages as $contact_message_local)
-                                        {{-- @php
-                                            dd($contact_message_local->status);
-                                        @endphp --}}
-                                            <!-- email list item -->
-                                            <div
-                                                class="email-list-item email-list-item--{{ $contact_message_local->status->value == 'seen' ? 'seen' : 'unread' }}">
-                                                <div class="email-list-actions">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </div>
-                                                    <a class="favorite"><span><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" viewBox="0 0 24 24"
-                                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-star">
-                                                                <polygon
-                                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                </polygon>
-                                                            </svg></span></a>
-                                                </div>
-                                                <a class="email-list-detail" href="{{route('admin.contact_message.message_details', $contact_message_local->slug)}}">
-                                                    <div class="content">
-                                                        <span class="from">{{ $contact_message_local->name }}</span>
-                                                        <p class="msg">{{ $contact_message_local->message_title }}</p>
-                                                    </div>
-                                                    <time class="date">
-                                                        {{ $contact_message_local->created_at->format('d-m-Y') }}
-                                                    </time>
-                                                </a>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

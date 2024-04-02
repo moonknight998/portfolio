@@ -7,9 +7,9 @@
         <!-- Breadcrumb-->
         <div class="container-fluid">
             <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0 ms-2">
-                <li class="breadcrumb-item"><a>{{__('admin/sidebar.dashboard')}}</a></li>
-            </ol>
+                <ol class="breadcrumb my-0 ms-2">
+                    <li class="breadcrumb-item"><a>{{ __('admin/sidebar.dashboard') }}</a></li>
+                </ol>
             </nav>
         </div>
         <!--End Breadcumb-->
@@ -25,7 +25,9 @@
                             <div>
                                 <div class="fs-4 fw-semibold">26K <span class="fs-6 fw-normal">(-12.4%
                                         <svg class="icon">
-                                            <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom')}}"></use>
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom') }}">
+                                            </use>
                                         </svg>)</span></div>
                                 <div>Users</div>
                             </div>
@@ -33,7 +35,9 @@
                                 <button class="btn btn-transparent text-white p-0" type="button"
                                     data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg class="icon">
-                                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                                        <use
+                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
+                                        </use>
                                     </svg>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
@@ -71,7 +75,9 @@
                             <div>
                                 <div class="fs-4 fw-semibold">$6.200 <span class="fs-6 fw-normal">(40.9%
                                         <svg class="icon">
-                                            <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top')}}"></use>
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top') }}">
+                                            </use>
                                         </svg>)</span></div>
                                 <div>Income</div>
                             </div>
@@ -79,7 +85,9 @@
                                 <button class="btn btn-transparent text-white p-0" type="button"
                                     data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg class="icon">
-                                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                                        <use
+                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
+                                        </use>
                                     </svg>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
@@ -101,7 +109,9 @@
                             <div>
                                 <div class="fs-4 fw-semibold">2.49% <span class="fs-6 fw-normal">(84.7%
                                         <svg class="icon">
-                                            <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top')}}"></use>
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-top') }}">
+                                            </use>
                                         </svg>)</span></div>
                                 <div>Conversion Rate</div>
                             </div>
@@ -109,7 +119,9 @@
                                 <button class="btn btn-transparent text-white p-0" type="button"
                                     data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg class="icon">
-                                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                                        <use
+                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
+                                        </use>
                                     </svg>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
@@ -131,7 +143,9 @@
                             <div>
                                 <div class="fs-4 fw-semibold">44K <span class="fs-6 fw-normal">(-23.6%
                                         <svg class="icon">
-                                            <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom')}}"></use>
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom') }}">
+                                            </use>
                                         </svg>)</span></div>
                                 <div>Sessions</div>
                             </div>
@@ -139,7 +153,9 @@
                                 <button class="btn btn-transparent text-white p-0" type="button"
                                     data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg class="icon">
-                                        <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                                        <use
+                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
+                                        </use>
                                     </svg>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
@@ -167,24 +183,26 @@
                         <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
                             <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
                                 <input class="btn-check" id="option1" type="radio" name="options"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-secondary"> Day</label>
+                                    autocomplete="off" checked>
+                                <label class="btn btn-outline-secondary"> Week</label>
                                 <input class="btn-check" id="option2" type="radio" name="options"
-                                    autocomplete="off" checked="">
-                                <label class="btn btn-outline-secondary active"> Month</label>
+                                    autocomplete="off">
+                                <label class="btn btn-outline-secondary"> Month</label>
                                 <input class="btn-check" id="option3" type="radio" name="options"
                                     autocomplete="off">
                                 <label class="btn btn-outline-secondary"> Year</label>
                             </div>
                             <button class="btn btn-primary" type="button">
                                 <svg class="icon">
-                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-cloud-download')}}"></use>
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-cloud-download') }}">
+                                    </use>
                                 </svg>
                             </button>
                         </div>
                     </div>
                     <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
-                        <canvas class="chart" id="main-chart" height="600"
+                        <canvas class="chart" id="main-chart-2" height="600"
                             style="display: block; box-sizing: border-box; height: 300px; width: 509px;"
                             width="1018"></canvas>
                         <div class="chartjs-tooltip" style="opacity: 0; left: 387.676px; top: 205.819px;">
@@ -266,7 +284,9 @@
                     <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
                         <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
-                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-facebook-f')}}"></use>
+                                <use
+                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-facebook-f') }}">
+                                </use>
                             </svg>
                             <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
                                 <canvas id="social-box-chart-1" height="90"></canvas>
@@ -290,7 +310,9 @@
                     <div class="card mb-4" style="--cui-card-cap-bg: #00aced">
                         <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
-                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-twitter')}}"></use>
+                                <use
+                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-twitter') }}">
+                                </use>
                             </svg>
                             <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
                                 <canvas id="social-box-chart-2" height="90"></canvas>
@@ -314,7 +336,9 @@
                     <div class="card mb-4" style="--cui-card-cap-bg: #4875b4">
                         <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
-                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-linkedin')}}"></use>
+                                <use
+                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-linkedin') }}">
+                                </use>
                             </svg>
                             <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
                                 <canvas id="social-box-chart-3" height="90"></canvas>
@@ -483,7 +507,9 @@
                                     <div class="progress-group">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user') }}">
+                                                </use>
                                             </svg>
                                             <div>Male</div>
                                             <div class="ms-auto fw-semibold">43%</div>
@@ -499,7 +525,9 @@
                                     <div class="progress-group mb-5">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user-female')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-user-female') }}">
+                                                </use>
                                             </svg>
                                             <div>Female</div>
                                             <div class="ms-auto fw-semibold">37%</div>
@@ -515,7 +543,9 @@
                                     <div class="progress-group">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-google')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-google') }}">
+                                                </use>
                                             </svg>
                                             <div>Organic Search</div>
                                             <div class="ms-auto fw-semibold me-2">191.235</div>
@@ -532,7 +562,9 @@
                                     <div class="progress-group">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-facebook-f')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-facebook-f') }}">
+                                                </use>
                                             </svg>
                                             <div>Facebook</div>
                                             <div class="ms-auto fw-semibold me-2">51.223</div>
@@ -549,7 +581,9 @@
                                     <div class="progress-group">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-twitter')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-twitter') }}">
+                                                </use>
                                             </svg>
                                             <div>Twitter</div>
                                             <div class="ms-auto fw-semibold me-2">37.564</div>
@@ -566,7 +600,9 @@
                                     <div class="progress-group">
                                         <div class="progress-group-header">
                                             <svg class="icon icon-lg me-2">
-                                                <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-linkedin')}}"></use>
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-linkedin') }}">
+                                                </use>
                                             </svg>
                                             <div>LinkedIn</div>
                                             <div class="ms-auto fw-semibold me-2">27.319</div>
@@ -589,7 +625,9 @@
                                         <tr class="align-middle">
                                             <th class="text-center">
                                                 <svg class="icon">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-people')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-people') }}">
+                                                    </use>
                                                 </svg>
                                             </th>
                                             <th>User</th>
@@ -604,7 +642,8 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/1.jpg')}}" alt="user@email.com"><span
+                                                        src="{{ asset('backend/assets/img/avatars/1.jpg') }}"
+                                                        alt="user@email.com"><span
                                                         class="avatar-status bg-success"></span></div>
                                             </td>
                                             <td>
@@ -614,7 +653,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-us')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-us') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -634,7 +675,7 @@
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
                                                     <use
-                                                        xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-mastercard')}}">
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-mastercard') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -649,7 +690,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>
@@ -663,8 +704,9 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/2.jpg')}}" alt="user@email.com"><span
-                                                        class="avatar-status bg-danger"></span></div>
+                                                        src="{{ asset('backend/assets/img/avatars/2.jpg') }}"
+                                                        alt="user@email.com"><span class="avatar-status bg-danger"></span>
+                                                </div>
                                             </td>
                                             <td>
                                                 <div>Avram Tarasios</div>
@@ -673,7 +715,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-br')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-br') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -692,7 +736,8 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-visa')}}">
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-visa') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -707,7 +752,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>
@@ -721,7 +766,8 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/3.jpg')}}" alt="user@email.com"><span
+                                                        src="{{ asset('backend/assets/img/avatars/3.jpg') }}"
+                                                        alt="user@email.com"><span
                                                         class="avatar-status bg-warning"></span></div>
                                             </td>
                                             <td>
@@ -731,7 +777,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-in')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-in') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -750,7 +798,8 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-stripe')}}">
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-stripe') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -765,7 +814,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>
@@ -779,7 +828,8 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/4.jpg')}}" alt="user@email.com"><span
+                                                        src="{{ asset('backend/assets/img/avatars/4.jpg') }}"
+                                                        alt="user@email.com"><span
                                                         class="avatar-status bg-secondary"></span></div>
                                             </td>
                                             <td>
@@ -789,7 +839,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-fr')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-fr') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -808,7 +860,8 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-paypal')}}">
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-paypal') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -823,7 +876,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>
@@ -837,7 +890,8 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/5.jpg')}}" alt="user@email.com"><span
+                                                        src="{{ asset('backend/assets/img/avatars/5.jpg') }}"
+                                                        alt="user@email.com"><span
                                                         class="avatar-status bg-success"></span></div>
                                             </td>
                                             <td>
@@ -847,7 +901,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-es')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-es') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -866,7 +922,8 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-apple-pay')}}">
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-apple-pay') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -881,7 +938,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>
@@ -895,8 +952,9 @@
                                         <tr class="align-middle">
                                             <td class="text-center">
                                                 <div class="avatar avatar-md"><img class="avatar-img"
-                                                        src="{{asset('backend/assets/img/avatars/6.jpg')}}" alt="user@email.com"><span
-                                                        class="avatar-status bg-danger"></span></div>
+                                                        src="{{ asset('backend/assets/img/avatars/6.jpg') }}"
+                                                        alt="user@email.com"><span class="avatar-status bg-danger"></span>
+                                                </div>
                                             </td>
                                             <td>
                                                 <div>Friderik Dávid</div>
@@ -905,7 +963,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-pl')}}"></use>
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/flag.svg#cif-pl') }}">
+                                                    </use>
                                                 </svg>
                                             </td>
                                             <td>
@@ -924,7 +984,8 @@
                                             </td>
                                             <td class="text-center">
                                                 <svg class="icon icon-xl">
-                                                    <use xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-amex')}}">
+                                                    <use
+                                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/brand.svg#cib-cc-amex') }}">
                                                     </use>
                                                 </svg>
                                             </td>
@@ -939,7 +1000,7 @@
                                                         aria-expanded="false">
                                                         <svg class="icon">
                                                             <use
-                                                                xlink:href="{{asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options')}}">
+                                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
                                                             </use>
                                                         </svg>
                                                     </button>

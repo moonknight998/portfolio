@@ -1,11 +1,13 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <!--Breadcrumb-->
-    <header class="header header-sticky mb-4" style="z-index: 0">
-        <div class="container-fluid m-1">
+    <!--Header-->
+    <header class="header header-sticky p-0 mb-4">
+        @include('admin.layouts.user_option')
+        <!-- Breadcrumb-->
+        <div class="container-fluid px-4">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb my-0 ms-2">
+                <ol class="breadcrumb my-0">
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.components') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.home') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.blog_section') }}</a></li>
@@ -94,8 +96,7 @@
                                                         class="form-label">{{ __('admin/common.title_required') }}</label>
                                                     <textarea class="form-control" rows="5" id="title" name="title" type="text"
                                                         placeholder="{{ __('admin/common.title_placeholder') }}" onchange="loadDocument(event, 'preview_title')"
-                                                        onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')"
-                                                        required>{{ ShowFormValue($blog_title, 'title') }}</textarea>
+                                                        onkeypress="detectEnterline(event, 'title'); loadDocument(event, 'preview_title')" required>{{ ShowFormValue($blog_title, 'title') }}</textarea>
                                                     @if ($errors->has('title'))
                                                         <div class="row mb-0">
                                                             <div class="invalid-feedback" style="display: inline;">
@@ -104,7 +105,8 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <label class="form-label">{{ __('admin/common.status_required') }}</label>
+                                                    <label
+                                                        class="form-label">{{ __('admin/common.status_required') }}</label>
                                                     <select class="form-select" id="status" name="status" required>
                                                         <option
                                                             {{ $blog_title ? ($blog_title->status == 1 ? 'selected' : '') : 'selected' }}

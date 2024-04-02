@@ -1,11 +1,13 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <!--Breadcrumb-->
-    <header class="header header-sticky mb-4" style="z-index: 0">
-        <div class="container-fluid m-1">
+    <!--Header-->
+    <header class="header header-sticky p-0 mb-4">
+        @include('admin.layouts.user_option')
+        <!-- Breadcrumb-->
+        <div class="container-fluid px-4">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb my-0 ms-2">
+                <ol class="breadcrumb my-0">
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.components') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.home') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.contact_section') }}</a></li>
@@ -14,7 +16,7 @@
             </nav>
         </div>
     </header>
-    <!--End Breadcrumb-->
+    <!--End Header-->
 
     <!--Main Part-->
     <div class="body flex-grow-1 px-1">
@@ -169,22 +171,31 @@
                                                             <div class="col-lg-6">
                                                                 <div class="row gy-4">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" class="form-control" name="name" placeholder="@lang('admin/common.your_name_required')">
+                                                                        <input type="text" class="form-control"
+                                                                            name="name"
+                                                                            placeholder="@lang('admin/common.your_name_required')">
                                                                     </div>
                                                                     <div class="col-md-4 ">
-                                                                        <input type="email" class="form-control" name="email" placeholder="@lang('admin/common.your_email_required')">
+                                                                        <input type="email" class="form-control"
+                                                                            name="email"
+                                                                            placeholder="@lang('admin/common.your_email_required')">
                                                                     </div>
                                                                     <div class="col-md-4 ">
-                                                                        <input type="tel" class="form-control" name="phone_number" placeholder="@lang('admin/common.phone_number_required')">
+                                                                        <input type="tel" class="form-control"
+                                                                            name="phone_number"
+                                                                            placeholder="@lang('admin/common.phone_number_required')">
                                                                     </div>
                                                                     <div class="col-md-12">
-                                                                        <input type="text" class="form-control" name="title_message" placeholder="@lang('admin/common.title_required')">
+                                                                        <input type="text" class="form-control"
+                                                                            name="title_message"
+                                                                            placeholder="@lang('admin/common.title_required')">
                                                                     </div>
                                                                     <div class="col-md-12">
                                                                         <textarea class="form-control" name="message" rows="6" placeholder="@lang('admin/common.message_required')"></textarea>
                                                                     </div>
                                                                     <div class="col-md-12 text-center">
-                                                                        <button disabled class="preview_send_message">Send Message</button>
+                                                                        <button disabled class="preview_send_message">Send
+                                                                            Message</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

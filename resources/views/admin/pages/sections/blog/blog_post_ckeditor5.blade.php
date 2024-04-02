@@ -4,7 +4,7 @@
     }
 
     .ck.ck-content ul,
-    .ck.ck-content ul li{
+    .ck.ck-content ul li {
         list-style-type: inherit;
     }
 
@@ -17,17 +17,17 @@
     }
 </style>
 @push('scripts')
-<script>
-    ClassicEditor
-        .create( document.querySelector('#ckeditor5'))
-        .then( editor => {
-            editor.model.document.on( 'change', () => {
-                $('#preview_post_content').html(editor.getData());
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#ckeditor5'))
+            .then(editor => {
+                editor.model.document.on('change', () => {
+                    $('#preview_post_content').html(editor.getData());
 
+                });
+            })
+            .catch(error => {
+                console.error(error);
             });
-        })
-        .catch( error => {
-            console.error( error );
-        });
-</script>
+    </script>
 @endpush

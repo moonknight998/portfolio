@@ -5,9 +5,9 @@
     <header class="header header-sticky p-0 mb-4">
         @include('admin.layouts.user_option')
         <!-- Breadcrumb-->
-        <div class="container-fluid m-1">
+        <div class="container-fluid px-4">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb my-0 ms-2">
+                <ol class="breadcrumb my-0">
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.components') }}</a></li>
                     <li class="breadcrumb-item"><a>{{ __('admin/sidebar.home') }}</a></li>
                     <li class="breadcrumb-item active"><a>{{ __('admin/about/about-index.about-section') }}</a></li>
