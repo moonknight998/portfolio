@@ -18,74 +18,192 @@
     <!--End Header-->
 
     <!--Main Part-->
-    <div class="body flex-grow-1 px-1">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card-group d-block d-md-flex row">
-                        <div class="card col-md-7 p-2 mb-4">
-                            {{-- <div class="card-header">
-                                <h2>@lang('admin/common.all_messages')</h2>
-                            </div> --}}
-                            <div class="card-body">
-                                <div class="col-lg-12">
-                                    <div class="d-flex align-items-center justify-content-between p-3 border-bottom tx-16">
-                                        <div class="d-flex align-items-end">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                                                <path
-                                                    d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
-                                            </svg>
-                                            <span class="ms-3"
-                                                style="font-size: 20px; font-weight: 500">@lang('admin/common.messages')</span>
+    <div class="body flex-grow-1">
+        <div class="container-lg px-4">
+            <div class="card email-app">
+                <div class="card-body">
+                    <div class="btn-toolbar mb-4">
+                        <div class="btn-group me-1 d-lg-inline-flex d-none">
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-closed') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-star') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bookmark') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="btn-group me-1 d-lg-none">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-options') }}">
+                                    </use>
+                                </svg><span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu message-option">
+                                <div class="btn-group me-1">
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-closed') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-star') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-bookmark') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="btn-group me-1">
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-all') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button">
+                                        <svg class="icon">
+                                            <use
+                                                xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-boxed') }}">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button class="btn btn-secondary me-1" type="button">
+                                    <svg class="icon">
+                                        <use
+                                            xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-trash') }}">
+                                        </use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="btn-group me-1 d-lg-inline-flex d-none">
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-all') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-share-boxed') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary me-1 d-lg-inline-flex d-none" type="button">
+                            <svg class="icon">
+                                <use
+                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-tras') }}h">
+                                </use>
+                            </svg>
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-tags') }}">
+                                    </use>
+                                </svg><span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">add label<span
+                                        class="badge bg-danger-gradient ms-2"> Home</span></a><a class="dropdown-item"
+                                    href="#">add label<span class="badge bg-info-gradient ms-2"> Job</span></a><a
+                                    class="dropdown-item" href="#">add label<span
+                                        class="badge bg-success-gradient ms-2"> Clients</span></a><a class="dropdown-item"
+                                    href="#">add label<span class="badge bg-warning-gradient ms-2"> News</span></a>
+                            </div>
+                        </div>
+                        <div class="btn-group d-none ms-auto">
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-left') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                            <button class="btn btn-secondary" type="button">
+                                <svg class="icon">
+                                    <use
+                                        xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-chevron-right') }}">
+                                    </use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="message-details flex-wrap pb-3">
+                            <div class="message-headers d-flex flex-col flex-lg-wrap">
+                                <div class="message-headers-subject w-100 fs-5 fw-semibold">
+                                    {{ $contact_message->message_title }}</div>
+                                <div class="row justify-between">
+                                    <div class="col-lg d-lg-flex d-block overflow-hidden">
+                                        <div class="message-headers-from">{{ $contact_message->name }}<span
+                                            class="text-body-secondary"> {{$contact_message->email === null ? '('.__('admin/common.no_email').')' : '('.$contact_message->email.')'}}</span></div>
+                                    </div>
+                                    <div class="col-lg d-lg-flex d-block justify-content-lg-end overflow-hidden">
+                                        <div class="message-headers-date ms-lg-auto">
+                                            {{-- <svg class="icon">
+                                                <use
+                                                    xlink:href="{{ asset('backend/assets/vendors/@coreui/icons/svg/free.svg#cil-paperclip') }}">
+                                                </use>
+                                            </svg> --}}
+                                            {{ $contact_message->created_at->format('h:m, d-m-Y') }}
                                         </div>
                                     </div>
-                                    <div
-                                        class="d-flex align-items-center justify-content-between flex-wrap px-3 py-2 border-bottom">
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar">
-                                                <img src="{{ asset('backend/assets/img/avatars/blank_avatar.jpg') }}"
-                                                    width="32" height="32" alt="Avatar" class="avatar-img">
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a
-                                                    class="text-center text-decoration-none px-2">{{ $contact_message->name }}</a>
-                                                <span
-                                                    class="text-muted px-2 d-none d-md-inline">{{ $contact_message->email }}</span>
-                                                <div class="actions dropdown">
-                                                    <a href="#" data-bs-toggle="dropdown"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                            class="feather feather-chevron-down icon-lg text-muted">
-                                                            <polyline points="6 9 12 15 18 9"></polyline>
-                                                        </svg></a>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item" href="#">Mark as read</a>
-                                                        <a class="dropdown-item" href="#">Mark as unread</a>
-                                                        <a class="dropdown-item" href="#">Spam</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tx-13 text-muted mt-sm-0">
-                                            {{ $contact_message->created_at->format('d-m-Y') }}</div>
-                                    </div>
                                 </div>
-                                <div class="p-4 border-bottom">
-                                    <p class="mb-0 tx-13">{{ $contact_message->message }}</p>
-                                </div>
+                            </div>
+                            <hr>
+                            <div class="message-body">
+                                <p>{{ $contact_message->message }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!--End Main Part-->
 @endsection

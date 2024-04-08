@@ -23,6 +23,8 @@ class BlogPostController extends Controller
     {
         $blog_title = BlogTitle::first();
         $blog_categories = BlogCategory::all();
+        $blog_posts = BlogPost::all();
+        $blog_posts_paginate = BlogPost::orderBy('id', 'desc')->paginate(10);
 
         if (request()->is('api/*')) {
             $arr = [
@@ -44,7 +46,7 @@ class BlogPostController extends Controller
                 return redirect()->route('blog.blog_category.index')->with('status', 'required');
             }
 
-            return $dataTable->render('admin.pages.sections.blog.blog_post_index');
+            return view('admin.pages.sections.blog.blog_post_index', compact('blog_posts', 'blog_posts_paginate'));
         }
     }
 

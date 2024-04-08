@@ -32,7 +32,57 @@
                                         class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
-                                {{ $dataTable->table() }}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="fw-semibold text-nowrap">
+                                            <tr class="align-middle">
+                                                <th class="text-center">Id</th>
+                                                <th class="text-center">@lang('admin/blog/blog.post_title')</th>
+                                                <th class="text-center">@lang('admin/common.thumbnail')</th>
+                                                <th class="text-center">@lang('admin/common.status')</th>
+                                                <th class="text-center">@lang('admin/common.action')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($blog_posts_paginate as $blog_post_local)
+                                                <tr class="align-middle">
+                                                    <td class="text-center" style="width: 70px">{{ $blog_post_local->id }}</td>
+                                                    <td class="text-start">{{ $blog_post_local->post_title }}</td>
+                                                    <td class="text-center">
+                                                        <div class="container" style="display: flex; justify-content: center; width: 80px">
+                                                            <img class="img-thumbnail border-0" src="{{ $blog_post_local->thumbnail }}" style="object-fit: contain">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 100px">
+                                                        <div class="form-check form-switch"
+                                                            style="display: flex; justify-content: center">
+                                                            <input class="form-check-input change-status"
+                                                                {{ $blog_post_local->status == 1 ? 'checked' : '' }}
+                                                                data-id="{{ $blog_post_local->id }}" type="checkbox"
+                                                                role="switch" id="flexSwitchCheckChecked">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 400px">
+                                                        <div class="d-flex justify-content-center align-items-center gap-1">
+                                                            <a href="{{ route('blog.blog_post.comment', $blog_post_local->slug) }}"
+                                                                class="btn btn-info"><span class="d-none d-md-inline">@lang('admin/common.view_comment') </span><i class="fas fa-eye">
+                                                            </i></a>
+                                                            <a href="{{ route('blog.blog_post.edit', $blog_post_local->id) }}"
+                                                                class="btn btn-success"><span class="d-none d-md-inline">@lang('admin/common.edit') </span><i class="fas fa-pen">
+                                                            </i></a>
+                                                            <a href="{{ route('blog.blog_post.destroy', $blog_post_local->id) }}"
+                                                                class="btn btn-danger delete-btn"><span class="d-none d-md-inline">@lang('admin/common.delete') </span><i class="fas fa-trash">
+                                                            </i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-3">
+                                    {{ $blog_posts_paginate->links('vendor.pagination.bootstrap-5') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +94,6 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {

@@ -113,4 +113,5 @@ return [
     'inbox' => 'Hộp thư',
     'unread' => 'tin nhắn chưa đọc',
     'admin' => 'Quản trị viên',
+    'no_email' => 'Không có email!',
 ];

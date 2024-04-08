@@ -32,7 +32,6 @@
                             <div class="card-header">
                                 <h2>{{ __('admin/blog/blog.blog_comments_from') . '[' . Str::limit($blog_post->post_title, 50) . ']' }}
                                 </h2>
-                                {{-- <a href="{{route('blog.blog_post.create')}}" class="btn btn-success">{{__('admin/common.create_new')}}<i class="fas fa-plus"></i></a> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

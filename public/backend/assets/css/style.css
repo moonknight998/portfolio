@@ -14014,4 +14014,13 @@ textarea.form-control-lg {
   --cui-footer-bg: var(--cui-body-bg);
 }
 
+.dropdown-menu.message-option.show {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

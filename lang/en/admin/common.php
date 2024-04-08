@@ -115,4 +115,5 @@ return [
     'inbox' => 'Inbox',
     'unread_messages' => 'unread messages',
     'admin' => 'Admin',
+    'no_email' => 'No email!',
 ];

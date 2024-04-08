@@ -52,12 +52,12 @@
 
     <!-- Frontend style for preview-->
     @include('frontend.layout.style')
-        
+
     <!-- Main styles for this application-->
     <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet">
-    <script src="{{ asset('backend/assets/js/config.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/color-modes.js')}}"></script>
-    <link href="{{asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
+    <script src="{{ asset('backend/assets/js/config.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/color-modes.js') }}"></script>
+    <link href="{{ asset('backend/assets/vendors/@coreui/chartjs/css/coreui-chartjs.css') }}" rel="stylesheet">
 
 
 </head>
@@ -69,19 +69,16 @@
 
     <!--Start Main Part-->
     <div class="wrapper d-flex flex-column min-vh-100">
-        {{-- <!--Start Header-->
-        @include('admin.layouts.header')
-        <!--End Header--> --}}
 
         <!--Start Body-->
         @yield('content')
         <!--End Body-->
 
         <!--Start Footer-->
-        <footer class="footer footer-sticky mt-4">
-            <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> ©
-                2023 creativeLabs.</div>
-            <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+        <footer class="footer footer-sticky mt-4 d-flex flex-col flex-lg-row justify-center">
+            <div><a href="https://coreui.io">CoreUI </a>
+                <a href="https://coreui.io">Bootstrap Admin Template</a> ©2023 creativeLabs.</div>
+            <div class="ms-lg-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
         </footer>
         <!--End Footer-->
     </div>

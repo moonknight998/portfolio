@@ -23,9 +23,9 @@ class BlogPostDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $viewCommentBtn = '<a href="'.route('blog.blog_post.comment', $query->slug).'" class="btn btn-info mr-2">'.__('admin/common.view_comment').' <i class="fas fa-eye"></i></a>';
+                $viewCommentBtn = '<a href="'.route('blog.blog_post.comment', $query->slug).'" class="btn btn-info me-1">'.__('admin/common.view_comment').' <i class="fas fa-eye"></i></a>';
                 $editBtn = '<a href="'.route('blog.blog_post.edit', $query->id).'" class="btn btn-success">'.__('admin/common.edit').' <i class="fas fa-pen"></i></a>';
-                $deleteBtn = '<a href="'.route('blog.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ml-2">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
+                $deleteBtn = '<a href="'.route('blog.blog_post.destroy', $query->id).'" class="btn btn-danger delete-btn ms-1">'.__('admin/common.delete').' <i class="fas fa-trash"></i></a>';
                 return $viewCommentBtn.$editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
