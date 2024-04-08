@@ -15,10 +15,12 @@ class BlogCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(BlogCategoryDataTable $dataTable)
+    public function index()
     {
         $blog_title = BlogTitle::first();
         $categories = BlogCategory::all();
+        $categories_paginate = BlogCategory::orderBy('id', 'desc')->paginate(10);
+
         if (request()->is('api/*')) {
             $arr = [
                 'status' => 'success',
@@ -32,7 +34,7 @@ class BlogCategoryController extends Controller
             {
                 return redirect()->route('admin.blog_title.index')->with('status', 'required');
             }
-            return $dataTable->render('admin.pages.sections.blog.blog_category_index');
+            return view('admin.pages.sections.blog.blog_category_index', compact('categories_paginate'));
         }
     }
 

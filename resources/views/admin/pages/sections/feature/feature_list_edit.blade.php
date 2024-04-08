@@ -71,7 +71,7 @@
                                                         class="form-label">{{ __('admin/feature/feature.title') }}</label>
                                                     <input class="form-control" id="title" name="title" type="text"
                                                         placeholder="{{ __('admin/feature/feature.title_placeholder') }}"
-                                                        onchange="loadDocument(event, 'preview_card_title')"
+                                                        onchange="loadDocument(event, 'preview_feature_list_title')"
                                                         value="{{ $feature_list_item->title }}">
                                                     @if ($errors->has('title'))
                                                         <div class="row mb-0">
@@ -84,10 +84,10 @@
                                                     <label class="form-label">{{ __('admin/common.icon') }} <a
                                                             href="https://icons.getbootstrap.com/"
                                                             target="_blank">({{ __('admin/count/count.choose_icon_here') }})</a></label>
-                                                    <input class="form-control" readonly id="icon" name="icon"
+                                                    <input class="form-control" id="icon" name="icon"
                                                         type="text"
                                                         onchange="changeAttribute(event, 'preview_icon', 'class')"
-                                                        value="bi bi-check" style="color: grey">
+                                                        value="{{ $feature_list_item->icon }}">
                                                     @if ($errors->has('icon'))
                                                         <div class="row mb-0">
                                                             <div class="invalid-feedback" style="display: inline;">
@@ -161,11 +161,11 @@
                                                                                 data-aos="zoom-out" data-aos-delay="200"
                                                                                 style="width: 100%; display: block">
                                                                                 <div class="feature-box d-flex align-items-center"
-                                                                                    style="width: 100%; {{ $feature_list_item_local->status == 0 ? 'background-color: rgba(187, 187, 187, 0.4)' : '' }}">
+                                                                                    style="width: 100%;">
                                                                                     <i id="{{ $feature_list_item_local->id == $feature_list_item->id ? 'preview_icon' : '' }}"
                                                                                         class="{{ $feature_list_item_local->icon }}"></i>
                                                                                     <h3
-                                                                                        id="{{ $feature_list_item_local->id == $feature_list_item->id ? 'preview_card_title' : '' }}">
+                                                                                        id="{{ $feature_list_item_local->id == $feature_list_item->id ? 'preview_feature_list_title' : '' }}">
                                                                                         {{ $feature_list_item_local->title }}
                                                                                     </h3>
                                                                                 </div>

@@ -39,7 +39,50 @@
                                         class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
-                                {{ $dataTable->table() }}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="fw-semibold text-nowrap">
+                                            <tr class="align-middle">
+                                                <th class="text-center">Id</th>
+                                                <th class="text-center">@lang('admin/blog/blog.category_name')</th>
+                                                <th class="text-center">Slug</th>
+                                                <th class="text-center">@lang('admin/common.status')</th>
+                                                <th class="text-center">@lang('admin/common.action')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($categories_paginate as $category_local)
+                                                <tr class="align-middle">
+                                                    <td class="text-center" style="width: 70px">{{ $category_local->id }}</td>
+                                                    <td class="text-center">{{ $category_local->category_name }}</td>
+                                                    <td class="text-center">{{ $category_local->slug }}</td>
+                                                    <td style="width: 100px">
+                                                        <div class="form-check form-switch"
+                                                            style="display: flex; justify-content: center">
+                                                            <input class="form-check-input change-status"
+                                                                {{ $category_local->status == 1 ? 'checked' : '' }}
+                                                                data-id="{{ $category_local->id }}" type="checkbox"
+                                                                role="switch" id="flexSwitchCheckChecked">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 200px">
+                                                        <div class="d-flex justify-content-center align-items-center gap-1">
+                                                            <a href="{{ route('blog.blog_category.edit', $category_local->id) }}"
+                                                                class="btn btn-success"><span class="d-none d-md-inline">@lang('admin/common.edit') </span><i class="fas fa-pen">
+                                                            </i></a>
+                                                            <a href="{{ route('blog.blog_category.destroy', $category_local->id) }}"
+                                                                class="btn btn-danger delete-btn"><span class="d-none d-md-inline">@lang('admin/common.delete') </span><i class="fas fa-trash">
+                                                            </i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-3">
+                                    {{ $categories_paginate->links('vendor.pagination.bootstrap-5') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +94,6 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {

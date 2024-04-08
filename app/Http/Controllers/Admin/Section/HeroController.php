@@ -77,6 +77,15 @@ class HeroController extends Controller
         $hero->status = $request->status;
         $hero->save();
 
+        if (request()->is('api/*')) {
+            $arr = [
+                'status' => 'success',
+                'message' => 'Create hero section data successfully!',
+                'data' => isset($hero) ? $hero : empty('No data yet!'),
+            ];
+            return response()->json($arr, 200);
+        }
+
         return redirect()->back()->with('status','updated');
     }
 
@@ -101,7 +110,54 @@ class HeroController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $hero = Hero::first();
+
+        if (request()->is('api/*')) {
+            $validator = Validator::make($request->all(), [
+                'slogan'=> ['required','string', 'max:200'],
+                'short_description'=> ['required','string', 'max:500'],
+                'button_text'=> ['required','string','max:100'],
+                'image' => ['mimes:jpeg,bmp,png', 'max:2048'], //2MB max
+                'status' => ['required'],
+            ]);
+
+            if ($validator->fails()) {
+                $key = '';
+                foreach ($validator->errors()->getMessages() as $keyError => $messageError)
+                {
+                    $key = $keyError;
+                    break;
+                }
+                return response()->json($key, 300);
+            }
+
+            if($request->hasFile('image')){
+                if($hero && File::exists(public_path($hero->image))){
+                    File::delete(public_path($hero->image));
+                }
+                $image = $request->file('image');
+                $imageName = rand().$image->getClientOriginalName();
+                $image->move(public_path('/uploads'), $imageName);
+
+                $imagePath = "/uploads/".$imageName;
+            }
+
+            $hero->slogan = $request->slogan;
+            $hero->short_description = $request->short_description;
+            $hero->button_text = $request->button_text;
+            $hero->button_url = $request->button_url;
+            $hero->image = isset($imagePath) ? $imagePath : '';
+            $hero->status = $request->status;
+            $hero->save();
+
+            $arr = [
+                'status' => 'success',
+                'message' => 'Update hero section data successfully!',
+                'data' => isset($hero) ? $hero : empty('No data yet!'),
+            ];
+            return response()->json($arr, 200);
+        }
 
         $validator = Validator::make($request->all(), [
             'slogan'=> ['required','string', 'max:200'],
@@ -132,17 +188,13 @@ class HeroController extends Controller
             $imagePath = "/uploads/".$imageName;
         }
 
-        Hero::updateOrCreate(
-            ["id"=> $id],
-            [
-                'slogan' => $request->slogan,
-                'short_description' => $request->short_description,
-                'button_text' => $request->button_text,
-                'button_url' => $request->button_url,
-                'image' => isset($imagePath) ? $imagePath : $hero->image,
-                'status' => $request->status,
-            ]
-        );
+        $hero->slogan = $request->slogan;
+        $hero->short_description = $request->short_description;
+        $hero->button_text = $request->button_text;
+        $hero->button_url = $request->button_url;
+        $hero->image = isset($imagePath) ? $imagePath : '';
+        $hero->status = $request->status;
+        $hero->save();
 
         return redirect()->back()->with('status', 'updated');
     }

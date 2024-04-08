@@ -43,7 +43,7 @@
                                                         </use>
                                                     </svg>{{ __('admin/common.content') }}</a>
                                             </li>
-                                            <li class="nav-item" role="presentation"><a class="nav-link"
+                                            <li class="d-none av-item" role="presentation"><a class="nav-link"
                                                     data-coreui-toggle="tab" role="tab" aria-selected="false"
                                                     onclick="openTab(event, 'preview_tab', 'content_tab')">
                                                     <svg class="icon me-2">
@@ -91,7 +91,7 @@
                                         <!--End Edit Tab-->
 
                                         <!--Preview Tab-->
-                                        <div class="tab-content rounded-bottom" id="preview_tab" style="display: none">
+                                        <div class="d-none tab-content rounded-bottom" id="preview_tab">
                                             <div class="tab-pane active preview" role="tabpanel">
                                                 @if (MobileDetect()->isMobile())
                                                     <div class="alert alert-warning fade show mt-4" role="alert">

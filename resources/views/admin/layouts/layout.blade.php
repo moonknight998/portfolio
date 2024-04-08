@@ -75,7 +75,7 @@
         <!--End Body-->
 
         <!--Start Footer-->
-        <footer class="footer footer-sticky mt-4 d-flex flex-col flex-lg-row justify-center">
+        <footer class="footer footer-sticky mt-4 d-flex flex-col flex-lg-row justify-content-center align-items-center">
             <div><a href="https://coreui.io">CoreUI </a>
                 <a href="https://coreui.io">Bootstrap Admin Template</a> ©2023 creativeLabs.</div>
             <div class="ms-lg-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>

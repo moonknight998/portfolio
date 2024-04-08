@@ -19,14 +19,15 @@ class ValueCardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ValueCardDataTable $dataTable)
+    public function index()
     {
         $value_title = ValueTitle::first();
+        $value_cards_paginate = ValueCard::orderBy('id', 'desc')->paginate(10);
         if ($value_title == null)
         {
             return redirect()->route('admin.value_title.index')->with('status','required');
         }
-        return $dataTable->render('admin.pages.sections.value.value_card_index');
+        return view('admin.pages.sections.value.value_card_index', compact('value_cards_paginate'));
     }
 
     /**

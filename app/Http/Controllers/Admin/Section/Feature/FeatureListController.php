@@ -19,11 +19,12 @@ class FeatureListController extends Controller
     public function index(FeatureListDataTable $dataTable)
     {
         $feature_title = FeatureTitle::first();
+        $feature_lists_paginate = FeatureList::orderBy('id', 'desc')->paginate(10);
         if ($feature_title == null)
         {
             return redirect()->route('admin.feature_title.index')->with('status', 'required');
         }
-        return $dataTable->render('admin.pages.sections.feature.feature_list_index');
+        return view('admin.pages.sections.feature.feature_list_index', compact('feature_lists_paginate'));
     }
 
     /**

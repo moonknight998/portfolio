@@ -70,7 +70,7 @@
                                                         class="form-label">{{ __('admin/feature/feature.title') }}</label>
                                                     <input class="form-control" id="title" name="title" type="text"
                                                         placeholder="{{ __('admin/feature/feature.title_placeholder') }}"
-                                                        onchange="loadDocument(event, 'preview_card_title')">
+                                                        onchange="loadDocument(event, 'preview_feature_list_title')">
                                                     @if ($errors->has('title'))
                                                         <div class="row mb-0">
                                                             <div class="invalid-feedback" style="display: inline;">
@@ -82,7 +82,7 @@
                                                     <label class="form-label">{{ __('admin/common.icon') }} <a
                                                             href="https://icons.getbootstrap.com/"
                                                             target="_blank">({{ __('admin/count/count.choose_icon_here') }})</a></label>
-                                                    <input class="form-control" readonly id="icon" name="icon"
+                                                    <input class="form-control" id="icon" name="icon"
                                                         type="text"
                                                         onchange="changeAttribute(event, 'preview_icon', 'class')"
                                                         value="bi bi-check">
@@ -149,41 +149,39 @@
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             @endif
-                                                            @if (count($feature_lists) > 0)
-                                                                <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
-                                                                    <div class="row-md-6 align-self-center gy-4"
-                                                                        style="width: 100%">
-                                                                        @foreach ($feature_lists as $feature_list_item)
-                                                                            @if ($feature_list_item->status == 1)
-                                                                                <div class="col-md-6 aos-init aos-animate py-1"
-                                                                                    data-aos="zoom-out"
-                                                                                    data-aos-delay="200"
-                                                                                    style="width: 100%">
-                                                                                    <div class="feature-box d-flex align-items-center"
-                                                                                        style="width: 100%">
-                                                                                        <i
-                                                                                            class="{{ $feature_list_item->icon }}"></i>
-                                                                                        <h3>{{ $feature_list_item->title }}
-                                                                                        </h3>
-                                                                                    </div>
-                                                                                </div>
-                                                                            @endif
-                                                                        @endforeach
-                                                                        <div class="col-md-6 aos-init aos-animate py-1"
-                                                                            data-aos="zoom-out" data-aos-delay="200"
-                                                                            style="width: 100%">
-                                                                            <div class="feature-box d-flex align-items-center"
+                                                            <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+                                                                <div class="row-md-6 align-self-center gy-4"
+                                                                style="width: 100%">
+                                                                @if (count($feature_lists) > 0)
+                                                                    @foreach ($feature_lists as $feature_list_item)
+                                                                        @if ($feature_list_item->status == 1)
+                                                                            <div class="col-md-6 aos-init aos-animate py-1"
+                                                                                data-aos="zoom-out"
+                                                                                data-aos-delay="200"
                                                                                 style="width: 100%">
-                                                                                <i id="preview_icon"
-                                                                                    class="bi bi-check"></i>
-                                                                                <h3 id="preview_title">
-                                                                                    {{ __('admin/feature/feature.title_placeholder') }}
-                                                                                </h3>
+                                                                                <div class="feature-box d-flex align-items-center"
+                                                                                    style="width: 100%">
+                                                                                    <i
+                                                                                        class="{{ $feature_list_item->icon }}"></i>
+                                                                                    <h3>{{ $feature_list_item->title }}
+                                                                                    </h3>
+                                                                                </div>
                                                                             </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                    <div class="col-md-6 aos-init aos-animate py-1"
+                                                                        data-aos="zoom-out"
+                                                                        data-aos-delay="200"
+                                                                        style="width: 100%">
+                                                                        <div class="feature-box d-flex align-items-center"
+                                                                            style="width: 100%">
+                                                                            <i id="preview_icon" class="bi bi-check"></i>
+                                                                            <h3 id="preview_feature_list_title">@lang('admin/common.title_placeholder')</h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </section>
