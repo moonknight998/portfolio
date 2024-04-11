@@ -15,18 +15,18 @@ class FeatureTabItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(FeatureTabItemDataTable $dataTable)
+    public function index()
     {
         $feature_tab_title = FeatureTabTitle::first();
         if($feature_tab_title == null)
         {
             return redirect()->route('admin.feature_tab_title.index')->with('status','required');
         }
-
+        $feature_tab_items_paginate = FeatureTabItem::orderBy('id', 'desc')->paginate(10);
         $feature_tab_items = FeatureTabItem::all();
         $can_create_new = count($feature_tab_items) < $feature_tab_title->tab_quantity;
 
-        return $dataTable->render('admin.pages.sections.feature.feature_tab_item_index', compact('can_create_new'));
+        return view('admin.pages.sections.feature.feature_tab_item_index', compact('feature_tab_items_paginate', 'can_create_new'));
     }
 
     /**

@@ -33,7 +33,45 @@
                                 @endif
                             </div>
                             <div class="card-body">
-                                {{ $dataTable->table() }}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="fw-semibold text-nowrap">
+                                            <tr class="align-middle">
+                                                <th class="text-center">Id</th>
+                                                <th class="text-center">@lang('admin/feature/feature.tab_item_name')</th>
+                                                <th class="text-center">@lang('admin/common.status')</th>
+                                                <th class="text-center">@lang('admin/common.action')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($feature_tab_items_paginate as $feature_tab_item_local)
+                                                <tr class="align-middle">
+                                                    <td class="text-center" style="width: 70px">{{ $feature_tab_item_local->id }}</td>
+                                                    <td class="text-center">{{ $feature_tab_item_local->tab_name }}</td>
+                                                    <td style="width: 100px">
+                                                        <div class="form-check form-switch"
+                                                            style="display: flex; justify-content: center">
+                                                            <input class="form-check-input change-status"
+                                                                {{ $feature_tab_item_local->status == 1 ? 'checked' : '' }}
+                                                                data-id="{{ $feature_tab_item_local->id }}" type="checkbox"
+                                                                role="switch" id="flexSwitchCheckChecked">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 200px">
+                                                        <div class="d-flex justify-content-center align-items-center gap-1">
+                                                            <a href="{{ route('admin.feature_tab_item.edit', $feature_tab_item_local->id) }}"
+                                                                class="btn btn-success"><span class="d-none d-md-inline">@lang('admin/common.edit') </span><i class="fas fa-pen">
+                                                            </i></a>
+                                                            <a href="{{ route('admin.feature_tab_item.destroy', $feature_tab_item_local->id) }}"
+                                                                class="btn btn-danger delete-btn"><span class="d-none d-md-inline">@lang('admin/common.delete') </span><i class="fas fa-trash">
+                                                            </i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +83,6 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {

@@ -199,8 +199,7 @@
                                                                         @foreach ($feature_tab_items as $feature_tab_item_local)
                                                                             <li><a id="{{ $feature_tab_item_local->id == $feature_tab_item->id ? 'preview_tab_name' : '' }}"
                                                                                     class="nav-link {{ $feature_tab_item_local->id == $feature_tab_item->id ? 'active' : '' }}"
-                                                                                    data-bs-toggle="pill"
-                                                                                    href="#{{ $feature_tab_item_local->tab_id }}">{{ $feature_tab_item_local->tab_name }}</a>
+                                                                                    data-bs-toggle="pill">{{ $feature_tab_item_local->tab_name }}</a>
                                                                             </li>
                                                                         @endforeach
                                                                     @endif

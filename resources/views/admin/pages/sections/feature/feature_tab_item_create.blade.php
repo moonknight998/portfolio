@@ -193,14 +193,11 @@
                                                                 <ul class="nav mb-3">
                                                                     @if (count($feature_tab_items) > 0)
                                                                         @foreach ($feature_tab_items as $feature_tab_item_local)
-                                                                            <li><a class="nav-link" data-bs-toggle="pill"
-                                                                                    href="#{{ $feature_tab_item_local->tab_id }}">{{ $feature_tab_item_local->tab_name }}</a>
+                                                                            <li><a class="nav-link" data-bs-toggle="pill">{{ $feature_tab_item_local->tab_name }}</a>
                                                                             </li>
                                                                         @endforeach
                                                                     @endif
-                                                                    <li><a id="preview_tab_name" class="nav-link active"
-                                                                            data-bs-toggle="pill"
-                                                                            href="#tab{{ count($feature_tab_items) + 1 }}">{{ __('admin/feature/feature.tab_item_name') }}</a>
+                                                                    <li><a id="preview_tab_name" class="nav-link active" data-bs-toggle="pill">{{ __('admin/feature/feature.tab_item_name') }}</a>
                                                                     </li>
                                                                 </ul>
                                                                 <div class="tab-content custom">
